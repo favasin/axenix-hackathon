@@ -33,6 +33,14 @@ titleIcon: "fa-solid fa-circle-info"
 
 Для подготовки документации и системного дизайна выбрана модель **Claude**.
 
+Отчеты о взаимодействии с ИИ:
+- ChatGPT: https://chatgpt.com/share/69a2ee3a-f5bc-8010-a884-8c208a90f67c
+- Claude: https://claude.ai/share/5b420602-1eda-431d-a929-64b3977d8aef
+- Gemini: https://gemini.google.com/share/5010cc2be7c6 
+- Deepseek: https://chat.deepseek.com/share/qkn0g0mk5m2ovmqwxm 
+- Mistral:  https://chat.mistral.ai/chat/10287d2f-d7ce-414d-8c07-e30f2c4f9048
+
+
 ## Почему выбрали Claude для документирования решения
 
 - Лучше сохраняет структуру длинных материалов: от бизнес-требований до технической архитектуры.
