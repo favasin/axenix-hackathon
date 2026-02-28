@@ -1,0 +1,416 @@
+<!doctype html><html><head><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=generator content="Hugo 0.124.1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Назначение раздела и принятые архитектурные решения системы."><title>Архитектура</title>
+<link rel=icon href="/images/favicon.png?v=1772315575" type=image/x-icon><link rel=stylesheet rel=preload type=text/css href=/css/main.css><link rel=stylesheet type=text/css href=/css/external/all.min.css><link rel=stylesheet type=text/css href=/css/external/sharp-thin.min.css><link rel=stylesheet type=text/css href=/css/external/sharp-solid.min.css><link rel=stylesheet type=text/css href=/css/external/sharp-regular.min.css><link rel=stylesheet type=text/css href=/css/external/sharp-light.min.css><link rel=stylesheet type=text/css href=/css/external/sorttable/sorttable.min.css><link rel=stylesheet type=text/css href=/css/external/tippy/light-border.min.css><link rel=stylesheet type=text/css href=/css/external/techradar/radar.min.css><link rel=stylesheet type=text/css href=/css/external/form-js/form-js.min.css><link rel=stylesheet type=text/css href=/css/external/overlay-scrollbars/overlayscrollbars.min.css><link rel=stylesheet type=text/css href=/css/external/simplesearch/simplesearch.min.css></head><body onload=browserCompatibility()><div id=navbarInfo class="is-hidden modal-container"><div class="modal-content-box modal-text-box"><div class="card modal-title is-radiusless"><div class=card-header><p class="card-header-title is-marginless">About</p></div></div><div class=modal-content-container><div class="modal-content-block is-block"></div></div></div></div><div id=navbarShortcuts class="is-hidden modal-container"><div class="modal-content-box modal-text-box"><div class="card modal-title is-radiusless"><div class=card-header><p class="card-header-title is-marginless">Keyboard shortcuts</p></div></div><div class=modal-content-container><div class=modal-content-block><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>q</kbd></div><div class=modal-content><p class=has-text-weight-normal>Show current page QR code</p></div><div class=modal-content><kbd>Escape</kbd></div><div class=modal-content><p class=has-text-weight-normal>Close modals</p></div><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>i</kbd></div><div class=modal-content><p class=has-text-weight-normal>Show website information</p></div><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>k</kbd></div><div class=modal-content><p class=has-text-weight-normal>Show shortcuts</p></div><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>h</kbd></div><div class=modal-content><p class=has-text-weight-normal>Go to homepage</p></div><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>f</kbd></div><div class=modal-content><p class=has-text-weight-normal>Find on website</p></div><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>m</kbd></div><div class=modal-content><p class=has-text-weight-normal>Collapse/Uncollapse sidebar</p></div><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>t</kbd></div><div class=modal-content><p class=has-text-weight-normal>Collapse/Uncollapse table of contents</p></div><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>↑</kbd></div><div class=modal-content><p class=has-text-weight-normal>Go to the top of the page</p></div><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>↓</kbd></div><div class=modal-content><p class=has-text-weight-normal>Go to the bottom of the page</p></div><div class=modal-content><kbd>Shift</kbd><p>+</p><kbd>p</kbd></div><div class=modal-content><p class=has-text-weight-normal>Print current page</p></div></div></div></div></div><div id=modalContainer class="is-hidden modal-container"><div id=modal class=modal-content-box></div></div><nav id=navbar class=navbar role=navigation aria-label="main navigation"><div id=navbarItemsContainer class=navbar-brand><div id=globalLogoContainer class=is-flex><a id=globalLogo class="navbar-item navbar-item-standard is-paddingless" href=/><img id=globalLogoImg alt=Homepage src="/images/logo.png?v=1772315575"><div class=logo-header-container><span>Сервис генерации презентаций</span></div></a><a id=globalTouchLogo class="navbar-item navbar-item-standard is-paddingless" href=/><img alt=Homepage src="/images/logoTouch.png?v=1772315575"></a></div><div id=navbarItems class=is-flex><div id=navbarItemsStart class=is-flex></div><div id=navbarItemsEnd class=is-flex><div class=navbar-item><a id=listDocuments class="button navbar-item-standard" href=/listdocuments/><span class=icon><i class="fa-solid fa-list"></i>
+</span><span class=icon-text>&nbsp;Список документов</span></a></div><div class=navbar-item><a id=searchButton class="button navbar-item-standard" href=/search/><span class=icon><i class="fa-solid fa-magnifying-glass"></i>
+</span><span class=icon-text>&nbsp;Поиск</span></a></div><div class=navbar-item><a id=printButton class="button navbar-item-standard"><span class=icon-text>Print</span>
+<span class=icon><i class="fa-solid fa-print fa-lg"></i></span></a></div></div></div></div></nav><div id=navbarOverlay></div><div class="columns is-mobile is-paddingless is-marginless" id=mainContainer><div id=sidebarContainer class="column is-narrow is-paddingless is-marginless"><div id=sidebarWrapper class=is-fixed><div id=sidebar class=is-marginless><aside class="menu is-paddingless is-marginless"><ul class="menu-list is-marginless is-paddingless"><div class="card is-fs-expandable-icon"><div class=card-header><a href=/00_overview/ class=card-header-title><i class='fa-solid fa-circle-info fa-lg'></i></a></div></div><div class=is-expandable><div class=is-sidebar-list-wrapper><li class="is-marginless is-entries-expandable is-entries-shrinked"><div class=card><div class=card-header><a href=/00_overview/ class=card-header-title title='Общее описание'><i class='fa-solid fa-circle-info fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Общее описание</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked"><span class=icon></span></a></div></div><ul class=is-marginless><div><div><li class="is-marginless is-entries-expandable is-entries-shrinked"><div class=card><div class=card-header><a href=/00_overview/01_br/ class=card-header-title title='Описание БТ'><i class='fa-solid fa-circle-info'></i><p class="pt-0 pb-0 pr-2 pl-1">Описание БТ</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked"><span class=icon></span></a></div></div><ul class=is-marginless><div><div><li class=is-marginless><div class=card><div class="card-header is-single-link"><a href=/00_overview/01_br/01_br/ class=card-header-title title='Бизнес-контекст и БТ'><i class='fa-solid fa-circle-info'></i><p class="pt-0 pb-0 pr-2 pl-1">Бизнес-контекст и БТ</p></a></div></div></li></div></div></ul></li></div></div></ul></li></div></div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header is-single-link"><a href=/01_architecture/ class=card-header-title><i class='fa-solid fa-diagram-project fa-lg'></i></a></div></div><div class=is-expandable><div class=is-sidebar-list-wrapper><li class="is-marginless is-tree-active"><div class="card is-sidebar-active" id=sidebarActiveEntry><div class="card-header is-single-link"><a href=/01_architecture/ class=card-header-title title=Архитектура><i class='fa-solid fa-diagram-project fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Архитектура</p></a></div></div></li></div></div><div class="card is-fs-expandable-icon"><div class=card-header><a href=/03_backend/ class=card-header-title><i class='fa-solid fa-server fa-lg'></i></a></div></div><div class=is-expandable><div class=is-sidebar-list-wrapper><li class="is-marginless is-entries-expandable is-entries-shrinked"><div class=card><div class=card-header><a href=/03_backend/ class=card-header-title title=Backend><i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked"><span class=icon></span></a></div></div><ul class=is-marginless><div><div><li class=is-marginless><div class=card><div class="card-header is-single-link"><a href=/03_backend/01_info_models/ class=card-header-title title='Модель данных и базы данных'><i class='fa-solid fa-database'></i><p class="pt-0 pb-0 pr-2 pl-1">Модель данных и базы данных</p></a></div></div></li></div></div><div><div><li class=is-marginless><div class=card><div class="card-header is-single-link"><a href=/03_backend/02_rest_methods/ class=card-header-title title='REST API'><i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a></div></div></li></div></div></ul></li></div></div><div class="card is-fs-expandable-icon"><div class="card-header is-single-link"><a href=/02_frontend/ class=card-header-title><i class='fa-solid fa-display fa-lg'></i></a></div></div><div class=is-expandable><div class=is-sidebar-list-wrapper><li class=is-marginless><div class=card><div class="card-header is-single-link"><a href=/02_frontend/ class=card-header-title title=Frontend><i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a></div></div></li></div></div></ul></aside></div><div id=sidebarCollapsible class=is-marginless><div class="card is-uncollapse-action"><div id=sidebarUncollapse class="card-header is-single-link" title="Collapse/Uncollapse sidebar"><a class=card-header-title><i class="fa-solid fa-angles-right fa-lg"></i></a></div></div><div class="card is-collapse-action"><div id=sidebarCollapse class="card-header is-single-link" title="Collapse/Uncollapse sidebar"><a class=card-header-title><i class="fa-solid fa-angles-left fa-lg"></i><p>Collapse sidebar</p></a></div></div></div></div></div><div id=sidebarMobileWrapper class="column is-narrow is-hidden-desktop"></div><div class="columns is-mobile is-marginless is-scroll-smooth has-toc is-toc-collapsed" id=contentContainer><div class=column id=content data-pagefind-body><style>ul.breadcrumb{padding:10px 15px;list-style:none;background-color:#eee}ul.breadcrumb li{display:inline;font-size:14px}ul.breadcrumb li+li:before{padding:8px;color:#000;content:"/\00a0"}ul.breadcrumb li a{color:#0275d8;text-decoration:none}ul.breadcrumb li a:hover{color:#01447e;text-decoration:underline}</style><ul id=breadcrumbs class=breadcrumb><li><a href=/>Промпт-инжиниринг</a></li><li><a href=/01_architecture/>Архитектура</a></li></ul><div id=contentTitle>Архитектура</div><p>Раздел описывает целевую архитектуру решения: состав подсистем, их ответственности и взаимодействия. Здесь фиксируются ключевые архитектурные решения, допущения и ограничения, влияющие на реализацию и эксплуатацию.</p><p>Материалы используются как опорная точка для согласования интерфейсов, распределения ответственности между компонентами и оценки последствий изменений.</p><h1 id=архитектурный-документ-ai-сервис-генерации-презентаций>Архитектурный документ: AI-сервис генерации презентаций<a href=#%d0%b0%d1%80%d1%85%d0%b8%d1%82%d0%b5%d0%ba%d1%82%d1%83%d1%80%d0%bd%d1%8b%d0%b9-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82-ai-%d1%81%d0%b5%d1%80%d0%b2%d0%b8%d1%81-%d0%b3%d0%b5%d0%bd%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d0%b8-%d0%bf%d1%80%d0%b5%d0%b7%d0%b5%d0%bd%d1%82%d0%b0%d1%86%d0%b8%d0%b9 class=anchor>#</a></h1><blockquote><p><strong>Версия:</strong> 1.0 | <strong>Дата:</strong> 28.02.2026 | <strong>Статус:</strong> Ready for Development</p></blockquote><hr><h2 id=executive-summary>Executive Summary<a href=#executive-summary class=anchor>#</a></h2><p>Сервис генерации презентаций строится на принципе <strong>«смысл прежде дизайна»</strong>: RAG-пайплайн извлекает данные из пользовательских источников, LLM формирует аргументированную структуру, шаблонизатор применяет корпоративный Brand Kit, и только затем генерируется финальный слайд-дек.</p><p><strong>Ключевые архитектурные решения:</strong></p><table><thead><tr><th>Решение</th><th>Выбор</th><th>Обоснование</th></tr></thead><tbody><tr><td>Бэкенд</td><td>Python (FastAPI)</td><td>Нативная экосистема ML/AI, async, высокая производительность</td></tr><tr><td>AI-оркестрация</td><td>LangChain + LangGraph</td><td>Зрелый RAG-фреймворк, поддержка агентов и итеративных цепочек</td></tr><tr><td>LLM (основной)</td><td>Claude claude-sonnet-4-6 / GPT-4o (fallback)</td><td>Качество генерации, мультимодальность, API-доступность</td></tr><tr><td>Векторное хранилище</td><td>Qdrant</td><td>Производительность, self-hosted вариант для on-premise</td></tr><tr><td>СУБД</td><td>PostgreSQL + Redis</td><td>Надёжность + кэширование/очереди</td></tr><tr><td>Очереди задач</td><td>Celery + Redis / AWS SQS</td><td>Асинхронная обработка тяжёлых файлов</td></tr><tr><td>Генерация PPTX</td><td>python-pptx</td><td>Нативная библиотека, полная редактируемость</td></tr><tr><td>Фронтенд</td><td>Next.js (React)</td><td>SSR, производительность, богатая экосистема</td></tr><tr><td>Инфраструктура</td><td>Kubernetes (EKS/GKE)</td><td>Горизонтальное масштабирование, управление ресурсами</td></tr></tbody></table><p><strong>Целевые показатели надёжности:</strong> uptime 99.5%, Time-to-First-Slide &lt; 5 сек, генерация 15 слайдов &lt; 60 сек.</p><hr><h2 id=этап-0-анализ-бизнес-контекста-и-архитектурных-драйверов>Этап 0. Анализ бизнес-контекста и архитектурных драйверов<a href=#%d1%8d%d1%82%d0%b0%d0%bf-0-%d0%b0%d0%bd%d0%b0%d0%bb%d0%b8%d0%b7-%d0%b1%d0%b8%d0%b7%d0%bd%d0%b5%d1%81-%d0%ba%d0%be%d0%bd%d1%82%d0%b5%d0%ba%d1%81%d1%82%d0%b0-%d0%b8-%d0%b0%d1%80%d1%85%d0%b8%d1%82%d0%b5%d0%ba%d1%82%d1%83%d1%80%d0%bd%d1%8b%d1%85-%d0%b4%d1%80%d0%b0%d0%b9%d0%b2%d0%b5%d1%80%d0%be%d0%b2 class=anchor>#</a></h2><h3 id=прогнозируемые-нагрузки>Прогнозируемые нагрузки<a href=#%d0%bf%d1%80%d0%be%d0%b3%d0%bd%d0%be%d0%b7%d0%b8%d1%80%d1%83%d0%b5%d0%bc%d1%8b%d0%b5-%d0%bd%d0%b0%d0%b3%d1%80%d1%83%d0%b7%d0%ba%d0%b8 class=anchor>#</a></h3><p><strong>Временные горизонты и DAU:</strong></p><table><thead><tr><th>Период</th><th>MAU</th><th>DAU</th><th>Пик RPS (генерация)</th></tr></thead><tbody><tr><td>Мес. 3</td><td>5 000</td><td>500</td><td>5–10</td></tr><tr><td>Мес. 6</td><td>25 000</td><td>2 500</td><td>25–50</td></tr><tr><td>Мес. 12</td><td>100 000</td><td>10 000</td><td>100–200</td></tr></tbody></table><p><strong>Объём генерируемого контента:</strong></p><ul><li>Средний размер входных данных: 2–15 МБ (PDF/DOCX/XLSX)</li><li>Средний размер итогового PPTX: 3–8 МБ</li><li>Презентаций на активного пользователя: 6–8/мес</li><li>Расчётный объём хранилища на 12 мес.: ~50 ТБ</li></ul><p><strong>Требования к скорости отклика:</strong></p><table><thead><tr><th>Операция</th><th>Синхронная цель</th><th>Критическое значение</th></tr></thead><tbody><tr><td>Генерация outline</td><td>&lt; 10 сек</td><td>&lt; 20 сек</td></tr><tr><td>Генерация одного слайда</td><td>&lt; 5 сек</td><td>&lt; 10 сек</td></tr><tr><td>Полная презентация (15 слайдов)</td><td>&lt; 60 сек</td><td>&lt; 120 сек</td></tr><tr><td>Обработка файла 50 МБ</td><td>&lt; 30 сек (async)</td><td>&lt; 60 сек</td></tr><tr><td>Экспорт PPTX</td><td>&lt; 15 сек</td><td>&lt; 30 сек</td></tr><tr><td>Смена тональности</td><td>&lt; 30 сек</td><td>&lt; 60 сек</td></tr></tbody></table><p><strong>Целевой uptime:</strong> 99.5% (≈ 43 часа простоя в год допустимо).</p><p><strong>Географическое распределение:</strong> Приоритет — РФ и СНГ (152-ФЗ), затем EU (GDPR). Основной регион развёртывания — РФ или EU-West с репликацией.</p><h3 id=ранжирование-атрибутов-качества>Ранжирование атрибутов качества<a href=#%d1%80%d0%b0%d0%bd%d0%b6%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b0%d1%82%d1%80%d0%b8%d0%b1%d1%83%d1%82%d0%be%d0%b2-%d0%ba%d0%b0%d1%87%d0%b5%d1%81%d1%82%d0%b2%d0%b0 class=anchor>#</a></h3><table><thead><tr><th>Приоритет</th><th>Атрибут</th><th>Обоснование</th></tr></thead><tbody><tr><td>1</td><td><strong>Экономическая эффективность (AI-затраты)</strong></td><td>LLM API — главная статья COGS; без контроля марже не выжить при масштабировании</td></tr><tr><td>2</td><td><strong>Безопасность данных и compliance</strong></td><td>Блокирует Enterprise-сегмент без 152-ФЗ/GDPR/on-premise; без него нет B корпоративных продаж</td></tr><tr><td>3</td><td><strong>Устойчивость к сбоям</strong></td><td>Потеря сессии генерации = потеря доверия; критично для платящих пользователей</td></tr><tr><td>4</td><td><strong>Горизонтальное масштабирование</strong></td><td>Рост нагрузки в 20× за год требует архитектуры без single bottleneck</td></tr><tr><td>5</td><td><strong>Гибкость замены AI-компонентов</strong></td><td>Рынок LLM меняется быстро; vendor lock-in на одну модель — стратегический риск</td></tr><tr><td>6</td><td><strong>Удобство разработки</strong></td><td>Важно, но вторично относительно продуктовых атрибутов</td></tr></tbody></table><hr><h2 id=этап-1-архитектурные-требования-и-ограничения>Этап 1. Архитектурные требования и ограничения<a href=#%d1%8d%d1%82%d0%b0%d0%bf-1-%d0%b0%d1%80%d1%85%d0%b8%d1%82%d0%b5%d0%ba%d1%82%d1%83%d1%80%d0%bd%d1%8b%d0%b5-%d1%82%d1%80%d0%b5%d0%b1%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f-%d0%b8-%d0%be%d0%b3%d1%80%d0%b0%d0%bd%d0%b8%d1%87%d0%b5%d0%bd%d0%b8%d1%8f class=anchor>#</a></h2><h3 id=мультитенантность-и-изоляция-данных>Мультитенантность и изоляция данных<a href=#%d0%bc%d1%83%d0%bb%d1%8c%d1%82%d0%b8%d1%82%d0%b5%d0%bd%d0%b0%d0%bd%d1%82%d0%bd%d0%be%d1%81%d1%82%d1%8c-%d0%b8-%d0%b8%d0%b7%d0%be%d0%bb%d1%8f%d1%86%d0%b8%d1%8f-%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d1%85 class=anchor>#</a></h3><p>Применяется <strong>гибридная модель</strong> изоляции:</p><ul><li><strong>Free/Pro:</strong> общая БД PostgreSQL со схемой <code>tenant_id</code> во всех таблицах. Row-level security (RLS).</li><li><strong>Team:</strong> общая БД + отдельный S3 bucket per организация для файлов.</li><li><strong>Enterprise:</strong> опция отдельной схемы PostgreSQL или выделенного инстанса. On-premise: полная изоляция в контуре клиента.</li></ul><p>Векторное хранилище (Qdrant): коллекция per tenant с namespace-изоляцией.</p><h3 id=безопасность-и-соответствие-стандартам>Безопасность и соответствие стандартам<a href=#%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c-%d0%b8-%d1%81%d0%be%d0%be%d1%82%d0%b2%d0%b5%d1%82%d1%81%d1%82%d0%b2%d0%b8%d0%b5-%d1%81%d1%82%d0%b0%d0%bd%d0%b4%d0%b0%d1%80%d1%82%d0%b0%d0%bc class=anchor>#</a></h3><ul><li><strong>Аутентификация:</strong> SSO через SAML 2.0 и OAuth 2.0 (Google, Microsoft, Okta). MFA обязателен для Enterprise.</li><li><strong>Авторизация:</strong> RBAC на уровне организации и проекта (Admin / Editor / Viewer).</li><li><strong>Шифрование:</strong> AES-256 at-rest, TLS 1.3 in-transit.</li><li><strong>152-ФЗ:</strong> данные граждан РФ хранятся в российском регионе.</li><li><strong>GDPR:</strong> право на удаление, право на экспорт, DPA-соглашения.</li><li><strong>SOC 2 Type II:</strong> дорожная карта — 18 месяцев после запуска.</li><li><strong>Аудит:</strong> полный audit log всех действий (кто, что, когда) с хранением 90 дней.</li></ul><h3 id=интеграция-с-внешними-экосистемами>Интеграция с внешними экосистемами<a href=#%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d1%81-%d0%b2%d0%bd%d0%b5%d1%88%d0%bd%d0%b8%d0%bc%d0%b8-%d1%8d%d0%ba%d0%be%d1%81%d0%b8%d1%81%d1%82%d0%b5%d0%bc%d0%b0%d0%bc%d0%b8 class=anchor>#</a></h3><p><strong>Источники данных (входящие):</strong> Google Drive, Microsoft OneDrive/SharePoint (OAuth 2.0), Notion, Confluence (API Token), URL web scraping, file upload (PDF, DOCX, XLSX, CSV, PPTX).</p><p><strong>Рабочее окружение (исходящие события):</strong> Slack slash-command, Microsoft Teams App, webhooks.</p><p><strong>Форматы вывода:</strong> PPTX, PDF, Google Slides (API), веб-ссылка (PWA), PNG/JPEG.</p><p><strong>Влияние на API-дизайн:</strong> публичный REST API + webhook-система с гарантиями доставки, OAuth 2.0 для сторонних интеграций, rate limiting per tenant.</p><hr><h2 id=этап-2-технологический-стек>Этап 2. Технологический стек<a href=#%d1%8d%d1%82%d0%b0%d0%bf-2-%d1%82%d0%b5%d1%85%d0%bd%d0%be%d0%bb%d0%be%d0%b3%d0%b8%d1%87%d0%b5%d1%81%d0%ba%d0%b8%d0%b9-%d1%81%d1%82%d0%b5%d0%ba class=anchor>#</a></h2><h3 id=итоговый-выбор-технологий>Итоговый выбор технологий<a href=#%d0%b8%d1%82%d0%be%d0%b3%d0%be%d0%b2%d1%8b%d0%b9-%d0%b2%d1%8b%d0%b1%d0%be%d1%80-%d1%82%d0%b5%d1%85%d0%bd%d0%be%d0%bb%d0%be%d0%b3%d0%b8%d0%b9 class=anchor>#</a></h3><table><thead><tr><th>Компонент</th><th>Технология</th><th>Версия/уровень</th></tr></thead><tbody><tr><td>Бэкенд API</td><td>Python 3.12 + FastAPI</td><td>Production</td></tr><tr><td>AI-оркестрация</td><td>LangChain + LangGraph</td><td>Production</td></tr><tr><td>LLM (primary)</td><td>Anthropic Claude API (Sonnet)</td><td>Production</td></tr><tr><td>LLM (fallback)</td><td>OpenAI GPT-4o</td><td>Failover</td></tr><tr><td>LLM (on-premise)</td><td>vLLM + Llama 3 / Mistral</td><td>Enterprise</td></tr><tr><td>Embeddings</td><td>text-embedding-3-large / BGE-M3</td><td>Production</td></tr><tr><td>Векторное хранилище</td><td>Qdrant</td><td>Production</td></tr><tr><td>Реляционная БД</td><td>PostgreSQL 16</td><td>Production</td></tr><tr><td>Кэш / Брокер</td><td>Redis 7 (Cluster)</td><td>Production</td></tr><tr><td>Очереди задач</td><td>Celery + Redis</td><td>Production</td></tr><tr><td>Object Storage</td><td>S3-совместимое (AWS S3 / Yandex S3)</td><td>Production</td></tr><tr><td>Генерация PPTX</td><td>python-pptx</td><td>Production</td></tr><tr><td>Парсинг документов</td><td>Apache Tika / unstructured.io</td><td>Production</td></tr><tr><td>Генерация графиков</td><td>Matplotlib + Plotly</td><td>Production</td></tr><tr><td>Фронтенд</td><td>Next.js 14 (React)</td><td>Production</td></tr><tr><td>Realtime</td><td>WebSocket (FastAPI native)</td><td>Production</td></tr><tr><td>Gateway</td><td>Kong / AWS API Gateway</td><td>Production</td></tr><tr><td>Контейнеризация</td><td>Docker + Kubernetes</td><td>Production</td></tr><tr><td>IaC</td><td>Terraform + Helm</td><td>Production</td></tr><tr><td>CI/CD</td><td>GitHub Actions</td><td>Production</td></tr><tr><td>Мониторинг</td><td>Prometheus + Grafana + Jaeger</td><td>Production</td></tr><tr><td>Логирование</td><td>ELK Stack (Elasticsearch, Logstash, Kibana)</td><td>Production</td></tr></tbody></table><hr><h2 id=этап-3-детальное-проектирование-архитектуры>Этап 3. Детальное проектирование архитектуры<a href=#%d1%8d%d1%82%d0%b0%d0%bf-3-%d0%b4%d0%b5%d1%82%d0%b0%d0%bb%d1%8c%d0%bd%d0%be%d0%b5-%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b0%d1%80%d1%85%d0%b8%d1%82%d0%b5%d0%ba%d1%82%d1%83%d1%80%d1%8b class=anchor>#</a></h2><h3 id=31-высокоуровневая-диаграмма-c4-уровень-1--system-context>3.1 Высокоуровневая диаграмма C4 (уровень 1 — System Context)<a href=#31-%d0%b2%d1%8b%d1%81%d0%be%d0%ba%d0%be%d1%83%d1%80%d0%be%d0%b2%d0%bd%d0%b5%d0%b2%d0%b0%d1%8f-%d0%b4%d0%b8%d0%b0%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b0-c4-%d1%83%d1%80%d0%be%d0%b2%d0%b5%d0%bd%d1%8c-1--system-context class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>C4Context
+    title Система генерации презентаций — Контекст
+
+    Person(user, &#34;Пользователь&#34;, &#34;PMM / BA / Консультант / Enterprise-команда&#34;)
+    Person(admin, &#34;Администратор&#34;, &#34;Управление Brand Kit и пользователями&#34;)
+
+    System(presgen, &#34;PresentAI&#34;, &#34;Сервис генерации презентаций на основе данных пользователя&#34;)
+
+    System_Ext(llm, &#34;LLM API&#34;, &#34;Anthropic Claude / OpenAI GPT-4o&#34;)
+    System_Ext(gdrive, &#34;Google Drive / Docs&#34;, &#34;Источник данных&#34;)
+    System_Ext(onedrive, &#34;Microsoft OneDrive / SharePoint&#34;, &#34;Источник данных&#34;)
+    System_Ext(notion, &#34;Notion / Confluence&#34;, &#34;Источник данных&#34;)
+    System_Ext(slack, &#34;Slack / MS Teams&#34;, &#34;Уведомления и slash-команды&#34;)
+    System_Ext(gslides, &#34;Google Slides API&#34;, &#34;Экспорт&#34;)
+    System_Ext(sso, &#34;SSO Provider&#34;, &#34;Аутентификация&#34;)
+
+    Rel(user, presgen, &#34;Использует&#34;, &#34;HTTPS / WebSocket&#34;)
+    Rel(admin, presgen, &#34;Управляет&#34;, &#34;HTTPS&#34;)
+    Rel(presgen, llm, &#34;Запросы к модели&#34;, &#34;HTTPS / REST&#34;)
+    Rel(presgen, gdrive, &#34;Импорт данных&#34;, &#34;OAuth 2.0 / REST&#34;)
+    Rel(presgen, onedrive, &#34;Импорт данных&#34;, &#34;OAuth 2.0 / REST&#34;)
+    Rel(presgen, notion, &#34;Импорт данных&#34;, &#34;API Token / REST&#34;)
+    Rel(presgen, slack, &#34;Уведомления и бот&#34;, &#34;Webhook / Bot API&#34;)
+    Rel(presgen, gslides, &#34;Экспорт презентаций&#34;, &#34;OAuth 2.0 / REST&#34;)
+    Rel(presgen, sso, &#34;Аутентификация&#34;, &#34;SAML 2.0 / OAuth 2.0&#34;)
+</code></pre><h3 id=32-диаграмма-c4-уровень-2--контейнеры>3.2 Диаграмма C4 (уровень 2 — Контейнеры)<a href=#32-%d0%b4%d0%b8%d0%b0%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b0-c4-%d1%83%d1%80%d0%be%d0%b2%d0%b5%d0%bd%d1%8c-2--%d0%ba%d0%be%d0%bd%d1%82%d0%b5%d0%b9%d0%bd%d0%b5%d1%80%d1%8b class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>C4Container
+    title PresentAI - C4 Container Diagram
+
+    Person(user, &#34;Пользователь&#34;, &#34;Работает с презентациями&#34;)
+
+    System_Boundary(presgen, &#34;PresentAI Platform&#34;) {
+        Container(web, &#34;Web App&#34;, &#34;Next.js&#34;, &#34;UI и редактор слайдов&#34;)
+        Container(gateway, &#34;API Gateway&#34;, &#34;Kong&#34;, &#34;Маршрутизация / auth / rate limit&#34;)
+        Container(api, &#34;API Service&#34;, &#34;FastAPI&#34;, &#34;REST API и WebSocket&#34;)
+        Container(rag, &#34;RAG Service&#34;, &#34;LangChain&#34;, &#34;Индексация и retrieval&#34;)
+        Container(gen, &#34;Generation Service&#34;, &#34;LangGraph&#34;, &#34;Оркестрация генерации&#34;)
+        Container(export, &#34;Export Service&#34;, &#34;python-pptx&#34;, &#34;Экспорт PPTX / PDF / Slides&#34;)
+        ContainerDb(pg, &#34;PostgreSQL&#34;, &#34;PostgreSQL 16&#34;, &#34;Пользователи / проекты / metadata&#34;)
+        ContainerDb(redis, &#34;Redis&#34;, &#34;Redis 7&#34;, &#34;Кэш / сессии / очереди&#34;)
+        ContainerDb(qdrant, &#34;Qdrant&#34;, &#34;Vector DB&#34;, &#34;Embeddings&#34;)
+        ContainerDb(s3, &#34;Object Storage&#34;, &#34;S3&#34;, &#34;Файлы и артефакты&#34;)
+    }
+
+    Rel(user, web, &#34;Использует&#34;, &#34;HTTPS&#34;)
+    Rel(web, gateway, &#34;API/WebSocket&#34;, &#34;HTTPS/WSS&#34;)
+    Rel(gateway, api, &#34;Проксирование&#34;, &#34;HTTP&#34;)
+    Rel(api, rag, &#34;Запросы retrieval&#34;, &#34;gRPC/HTTP&#34;)
+    Rel(api, gen, &#34;Запуск генерации&#34;, &#34;gRPC/HTTP&#34;)
+    Rel(api, export, &#34;Экспорт&#34;, &#34;HTTP&#34;)
+    Rel(api, pg, &#34;Чтение/запись&#34;, &#34;SQL&#34;)
+    Rel(api, redis, &#34;Кэш и очереди&#34;, &#34;TCP&#34;)
+    Rel(rag, qdrant, &#34;Поиск embeddings&#34;, &#34;gRPC&#34;)
+    Rel(rag, s3, &#34;Чтение документов&#34;, &#34;S3 API&#34;)
+    Rel(export, s3, &#34;Сохранение артефактов&#34;, &#34;S3 API&#34;)
+</code></pre><h3 id=33-диаграмма-высокоуровневой-архитектуры-компоненты>3.3 Диаграмма высокоуровневой архитектуры (компоненты)<a href=#33-%d0%b4%d0%b8%d0%b0%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b0-%d0%b2%d1%8b%d1%81%d0%be%d0%ba%d0%be%d1%83%d1%80%d0%be%d0%b2%d0%bd%d0%b5%d0%b2%d0%be%d0%b9-%d0%b0%d1%80%d1%85%d0%b8%d1%82%d0%b5%d0%ba%d1%82%d1%83%d1%80%d1%8b-%d0%ba%d0%be%d0%bc%d0%bf%d0%be%d0%bd%d0%b5%d0%bd%d1%82%d1%8b class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>flowchart TB
+    subgraph Client[&#34;Клиент&#34;]
+        WEB[&#34;Web App\nNext.js&#34;]
+        WS[&#34;WebSocket\nстриминг&#34;]
+    end
+
+    subgraph GW[&#34;API Gateway (Kong)&#34;]
+        AUTH[&#34;Auth / JWT\nvalidation&#34;]
+        RL[&#34;Rate\nLimiting&#34;]
+        ROUTE[&#34;Routing&#34;]
+    end
+
+    subgraph API[&#34;API Service (FastAPI)&#34;]
+        PROJ[&#34;Project\nController&#34;]
+        PRES[&#34;Presentation\nController&#34;]
+        BRAND[&#34;Brand Kit\nController&#34;]
+        EXP[&#34;Export\nController&#34;]
+    end
+
+    subgraph RAG[&#34;RAG Service&#34;]
+        ING[&#34;Document\nIngestion&#34;]
+        CHUNK[&#34;Chunking &amp;\nEmbedding&#34;]
+        RET[&#34;Retrieval &amp;\nRe-ranking&#34;]
+    end
+
+    subgraph GEN[&#34;Generation Service (LangGraph)&#34;]
+        OUTLINE[&#34;Outline\nGenerator&#34;]
+        SLIDE_GEN[&#34;Slide Content\nGenerator&#34;]
+        POST[&#34;Post-processor\n(anti-AI filter)&#34;]
+        VERIFY[&#34;Fact\nVerifier&#34;]
+    end
+
+    subgraph EXPORT[&#34;Export Service&#34;]
+        PPTX_R[&#34;PPTX\nRenderer&#34;]
+        PDF_R[&#34;PDF\nRenderer&#34;]
+        GSLIDES[&#34;Google Slides\nExporter&#34;]
+    end
+
+    subgraph DATA[&#34;Data Layer&#34;]
+        PG[(&#34;PostgreSQL&#34;)]
+        REDIS[(&#34;Redis&#34;)]
+        QDRANT[(&#34;Qdrant\nVector Store&#34;)]
+        S3[(&#34;S3\nObject Storage&#34;)]
+    end
+
+    subgraph EXT[&#34;Внешние системы&#34;]
+        LLM_API[&#34;LLM API\nClaude / GPT-4o&#34;]
+        GDRIVE[&#34;Google Drive&#34;]
+        OD[&#34;OneDrive&#34;]
+        SLACK[&#34;Slack / Teams&#34;]
+    end
+
+    WEB --&gt;|HTTPS| AUTH
+    AUTH --&gt; RL
+    RL --&gt; ROUTE
+    ROUTE --&gt; PRES
+    WEB &lt;--&gt;|WSS| WS
+
+    PROJ --&gt; PG
+    PRES --&gt; ING
+    PRES --&gt; OUTLINE
+    EXP --&gt; PPTX_R
+    EXP --&gt; PDF_R
+    EXP --&gt; GSLIDES
+
+    ING --&gt; S3
+    ING --&gt; CHUNK
+    CHUNK --&gt; QDRANT
+    RET --&gt; QDRANT
+    RET --&gt; LLM_API
+
+    OUTLINE --&gt; RET
+    OUTLINE --&gt; LLM_API
+    SLIDE_GEN --&gt; RET
+    SLIDE_GEN --&gt; LLM_API
+    SLIDE_GEN --&gt; POST
+    POST --&gt; VERIFY
+
+    PPTX_R --&gt; S3
+    PDF_R --&gt; S3
+
+    PRES --&gt; REDIS
+    PRES --&gt; PG
+    GSLIDES --&gt; GDRIVE
+</code></pre><h2 id=34-rag-пайплайн-и-обработка-данных>3.4 RAG-пайплайн и обработка данных<a href=#34-rag-%d0%bf%d0%b0%d0%b9%d0%bf%d0%bb%d0%b0%d0%b9%d0%bd-%d0%b8-%d0%be%d0%b1%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%ba%d0%b0-%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d1%85 class=anchor>#</a></h2><h3 id=приём-и-обработка-источников-данных>Приём и обработка источников данных<a href=#%d0%bf%d1%80%d0%b8%d1%91%d0%bc-%d0%b8-%d0%be%d0%b1%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%ba%d0%b0-%d0%b8%d1%81%d1%82%d0%be%d1%87%d0%bd%d0%b8%d0%ba%d0%be%d0%b2-%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d1%85 class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>flowchart LR
+    subgraph INPUT_B[&#34;Источники данных&#34;]
+        PDF_SRC[&#34;PDF / DOCX&#34;]
+        XLS_SRC[&#34;XLSX / CSV&#34;]
+        URL_SRC[&#34;URL&#34;]
+        PPTX_SRC[&#34;PPTX&#34;]
+        IMG_SRC[&#34;PNG / JPG&#34;]
+    end
+
+    subgraph EXTRACT_B[&#34;Извлечение&#34;]
+        TIKA[&#34;Apache Tika\n/ unstructured.io&#34;]
+        PANDAS[&#34;pandas\nтабличные данные&#34;]
+        SCRAPER[&#34;Web Scraper\nBeautifulSoup&#34;]
+        OCR[&#34;Tesseract OCR\nизображения&#34;]
+    end
+
+    subgraph PROCESS_B[&#34;Обработка&#34;]
+        CHUNK[&#34;Chunking\n512 tokens, overlap 64&#34;]
+        EMBED[&#34;Embedding\ntext-embedding-3-large&#34;]
+        META[&#34;Метаданные\nисточник, страница, дата&#34;]
+    end
+
+    subgraph STOR_B[&#34;Хранение&#34;]
+        QDRANT_ST[(&#34;Qdrant\nper-tenant collection&#34;)]
+        S3_ST[(&#34;S3\nOriginal files&#34;)]
+    end
+
+    PDF_SRC --&gt; TIKA
+    PPTX_SRC --&gt; TIKA
+    XLS_SRC --&gt; PANDAS
+    URL_SRC --&gt; SCRAPER
+    IMG_SRC --&gt; OCR
+
+    TIKA --&gt; CHUNK
+    PANDAS --&gt; CHUNK
+    SCRAPER --&gt; CHUNK
+    OCR --&gt; CHUNK
+
+    CHUNK --&gt; EMBED
+    EMBED --&gt; META
+    META --&gt; QDRANT_ST
+    PDF_SRC --&gt; S3_ST
+    XLS_SRC --&gt; S3_ST
+</code></pre><h3 id=механизмы-обеспечения-достоверности-и-борьба-с-галлюцинациями>Механизмы обеспечения достоверности и борьба с галлюцинациями<a href=#%d0%bc%d0%b5%d1%85%d0%b0%d0%bd%d0%b8%d0%b7%d0%bc%d1%8b-%d0%be%d0%b1%d0%b5%d1%81%d0%bf%d0%b5%d1%87%d0%b5%d0%bd%d0%b8%d1%8f-%d0%b4%d0%be%d1%81%d1%82%d0%be%d0%b2%d0%b5%d1%80%d0%bd%d0%be%d1%81%d1%82%d0%b8-%d0%b8-%d0%b1%d0%be%d1%80%d1%8c%d0%b1%d0%b0-%d1%81-%d0%b3%d0%b0%d0%bb%d0%bb%d1%8e%d1%86%d0%b8%d0%bd%d0%b0%d1%86%d0%b8%d1%8f%d0%bc%d0%b8 class=anchor>#</a></h3><p><strong>Стратегия атрибуции источников:</strong></p><ul><li>Каждый chunk при ingestion сохраняет метаданные: <code>source_file</code>, <code>page_number</code>, <code>url</code>, <code>extracted_at</code>.</li><li>При генерации слайда модель получает релевантные chunks с метаданными и обязана явно ссылаться на источник в структурированном JSON-ответе.</li><li>Интерфейс отображает иконку-ссылку рядом с каждым фактом; при наведении — preview оригинального фрагмента.</li></ul><p><strong>Проверка числовых утверждений (AI-002):</strong></p><ol><li>Пост-процессор парсит числа из сгенерированного текста.</li><li>Для каждого числа выполняется поиск в векторном хранилище: есть ли chunk с этим числом в ±5% диапазоне?</li><li>Если совпадения нет — утверждение помечается флагом «⚠ Источник: знания модели».</li><li>Противоречия между источниками (одна метрика с разными значениями) детектируются на этапе ingestion при сравнении embeddings с высоким cosine-similarity но разными числовыми значениями.</li></ol><p><strong>Пайплайн генерации с проверкой:</strong></p><pre tabindex=0><code class=language-mermaid data-lang=mermaid>flowchart TD
+    A[&#34;Запрос генерации слайда&#34;] --&gt; B[&#34;Retrieval: top-k chunks из Qdrant&#34;]
+    B --&gt; C[&#34;LLM: генерация текста\nсо ссылками на источники&#34;]
+    C --&gt; D{&#34;Постпроцессинг&#34;}
+    D --&gt; E[&#34;Удаление AI-клише\nanti-hallucination filter&#34;]
+    D --&gt; F[&#34;Проверка числовых\nутверждений&#34;]
+    D --&gt; G[&#34;Консистентность терминологии&#34;]
+    F --&gt; H{&#34;Найдено в\nисточниках?&#34;}
+    H --&gt;|&#34;Да&#34;| I[&#34;Добавить attribution-метаданные&#34;]
+    H --&gt;|&#34;Нет&#34;| J[&#34;Пометить флагом\nзнания модели&#34;]
+    E --&gt; K[&#34;Финальный слайд&#34;]
+    I --&gt; K
+    J --&gt; K
+    G --&gt; K
+</code></pre><p><strong>Предотвращение AI-клише (NFR-102):</strong></p><ul><li>Системный промпт содержит список запрещённых конструкций.</li><li>Выходной постпроцессор на основе регулярных выражений и классификатора заменяет паттерны.</li><li>Целевая метрика: GPTZero классифицирует текст как «человеческий» с P > 70%.</li></ul><hr><h2 id=35-интеграционная-архитектура-для-enterprise>3.5 Интеграционная архитектура для Enterprise<a href=#35-%d0%b8%d0%bd%d1%82%d0%b5%d0%b3%d1%80%d0%b0%d1%86%d0%b8%d0%be%d0%bd%d0%bd%d0%b0%d1%8f-%d0%b0%d1%80%d1%85%d0%b8%d1%82%d0%b5%d0%ba%d1%82%d1%83%d1%80%d0%b0-%d0%b4%d0%bb%d1%8f-enterprise class=anchor>#</a></h2><h3 id=публичный-api>Публичный API<a href=#%d0%bf%d1%83%d0%b1%d0%bb%d0%b8%d1%87%d0%bd%d1%8b%d0%b9-api class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>flowchart LR
+    CLIENT[&#34;API Client\nIntegrator&#34;]
+
+    subgraph API_GW_B[&#34;API Gateway (Kong)&#34;]
+        KEY[&#34;API Key\nValidation&#34;]
+        RATE[&#34;Rate Limiting\nper key, per tenant&#34;]
+        USAGE[&#34;Usage\nMetering&#34;]
+        LOG_GW[&#34;Audit\nLogging&#34;]
+    end
+
+    subgraph ENDPOINTS_B[&#34;REST API v1&#34;]
+        PRES_EP[&#34;/presentations\nCRUD&#34;]
+        GEN_EP[&#34;/presentations/id/generate\nAsynchronous&#34;]
+        FILE_EP[&#34;/files\nUpload sources&#34;]
+        BRAND_EP[&#34;/brand-kits\nManage Brand Kit&#34;]
+        WH_EP[&#34;/webhooks\nManage subscriptions&#34;]
+        EXPORT_EP[&#34;/presentations/id/export\nPPTX / PDF / GSlides&#34;]
+    end
+
+    CLIENT --&gt; KEY
+    KEY --&gt; RATE
+    RATE --&gt; USAGE
+    USAGE --&gt; LOG_GW
+    LOG_GW --&gt; PRES_EP
+    LOG_GW --&gt; GEN_EP
+    LOG_GW --&gt; FILE_EP
+    LOG_GW --&gt; BRAND_EP
+    LOG_GW --&gt; WH_EP
+    LOG_GW --&gt; EXPORT_EP
+</code></pre><p><strong>Модель авторизации API:</strong></p><ul><li>API Key per организация с возможностью создания нескольких ключей с разными scope.</li><li>Rate limits: Free — 10 req/min, Pro — 60 req/min, Enterprise — custom.</li><li>Usage metering: billing по количеству сгенерированных слайдов ($0.05/слайд).</li></ul><h3 id=webhook-система-с-гарантиями-доставки>Webhook-система с гарантиями доставки<a href=#webhook-%d1%81%d0%b8%d1%81%d1%82%d0%b5%d0%bc%d0%b0-%d1%81-%d0%b3%d0%b0%d1%80%d0%b0%d0%bd%d1%82%d0%b8%d1%8f%d0%bc%d0%b8-%d0%b4%d0%be%d1%81%d1%82%d0%b0%d0%b2%d0%ba%d0%b8 class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>sequenceDiagram
+    participant SYS as Generation Service
+    participant WD as Webhook Dispatcher
+    participant DB as PostgreSQL
+    participant EXT as External System
+
+    SYS-&gt;&gt;DB: Создать событие (status=pending)
+    SYS-&gt;&gt;WD: Отправить событие
+    WD-&gt;&gt;EXT: POST /webhook (HMAC-подпись)
+    alt Успех (2xx)
+        EXT--&gt;&gt;WD: 200 OK
+        WD-&gt;&gt;DB: status=delivered
+    else Ошибка
+        EXT--&gt;&gt;WD: 5xx / timeout
+        WD-&gt;&gt;DB: status=failed, attempts++
+        WD-&gt;&gt;WD: Retry: exponential backoff 1m - 5m - 30m - 2h - 24h
+        Note over WD: Максимум 5 попыток
+    end
+</code></pre><p><strong>Гарантии доставки:</strong> at-least-once; идемпотентность на стороне клиента через <code>event_id</code>. Хранение событий 7 дней. HMAC-SHA256 подпись для верификации.</p><p><strong>События:</strong> <code>presentation.generation.started</code>, <code>presentation.generation.completed</code>, <code>presentation.generation.failed</code>, <code>presentation.exported</code>, <code>file.processed</code>.</p><h3 id=адаптеры-экспорта>Адаптеры экспорта<a href=#%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80%d1%8b-%d1%8d%d0%ba%d1%81%d0%bf%d0%be%d1%80%d1%82%d0%b0 class=anchor>#</a></h3><table><thead><tr><th>Формат</th><th>Технология</th><th>Особенности</th></tr></thead><tbody><tr><td>PPTX</td><td>python-pptx</td><td>Нативные объекты PowerPoint, встроенные шрифты, редактируемые графики</td></tr><tr><td>PDF</td><td>WeasyPrint / Puppeteer</td><td>Векторный, закладки по слайдам</td></tr><tr><td>Google Slides</td><td>Google Slides API v1</td><td>OAuth 2.0, создание в Drive пользователя</td></tr><tr><td>Web (PWA)</td><td>Next.js SSG</td><td>Responsive, аналитика просмотров</td></tr><tr><td>PNG</td><td>Playwright headless</td><td>Рендеринг слайда через браузер</td></tr></tbody></table><hr><h2 id=этап-4-операционные-аспекты>Этап 4. Операционные аспекты<a href=#%d1%8d%d1%82%d0%b0%d0%bf-4-%d0%be%d0%bf%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d0%be%d0%bd%d0%bd%d1%8b%d0%b5-%d0%b0%d1%81%d0%bf%d0%b5%d0%ba%d1%82%d1%8b class=anchor>#</a></h2><h3 id=observability>Observability<a href=#observability class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>flowchart LR
+    subgraph SVCS_B[&#34;Сервисы&#34;]
+        SVC1[&#34;API Service&#34;]
+        SVC2[&#34;RAG Service&#34;]
+        SVC3[&#34;Generation Service&#34;]
+        SVC4[&#34;Export Service&#34;]
+        SVC5[&#34;Workers&#34;]
+    end
+
+    subgraph COLLECT_B[&#34;Сбор данных&#34;]
+        PROM[&#34;Prometheus\nметрики&#34;]
+        OTEL[&#34;OpenTelemetry\nтрассировка&#34;]
+        FLUENTD[&#34;Fluentd\nлоги&#34;]
+    end
+
+    subgraph STOR_OBS[&#34;Хранение&#34;]
+        PROM_DB[(&#34;Prometheus TSDB&#34;)]
+        JAEGER_DB[(&#34;Jaeger&#34;)]
+        ES_DB[(&#34;Elasticsearch&#34;)]
+    end
+
+    subgraph VIZ_B[&#34;Визуализация&#34;]
+        GRAFANA[&#34;Grafana\nДашборды&#34;]
+        KIBANA[&#34;Kibana\nЛоги&#34;]
+        ALERTS[&#34;AlertManager\nАлерты - PagerDuty&#34;]
+    end
+
+    SVC1 --&gt; PROM
+    SVC2 --&gt; PROM
+    SVC3 --&gt; PROM
+    SVC4 --&gt; PROM
+    SVC5 --&gt; PROM
+    SVC1 --&gt; OTEL
+    SVC2 --&gt; OTEL
+    SVC3 --&gt; OTEL
+    SVC1 --&gt; FLUENTD
+    SVC2 --&gt; FLUENTD
+    SVC3 --&gt; FLUENTD
+    SVC4 --&gt; FLUENTD
+    SVC5 --&gt; FLUENTD
+    PROM --&gt; PROM_DB
+    PROM_DB --&gt; GRAFANA
+    OTEL --&gt; JAEGER_DB
+    JAEGER_DB --&gt; GRAFANA
+    FLUENTD --&gt; ES_DB
+    ES_DB --&gt; KIBANA
+    GRAFANA --&gt; ALERTS
+</code></pre><p><strong>Ключевые метрики:</strong></p><table><thead><tr><th>Категория</th><th>Метрика</th><th>Порог алерта</th></tr></thead><tbody><tr><td>Производительность</td><td>P99 latency генерации outline</td><td>> 15 сек</td></tr><tr><td>Производительность</td><td>P99 latency full presentation</td><td>> 120 сек</td></tr><tr><td>Доступность</td><td>Uptime API</td><td>&lt; 99.5%</td></tr><tr><td>AI-качество</td><td>LLM API error rate</td><td>> 2%</td></tr><tr><td>Бизнес</td><td>Presentations generated/hour</td><td>Падение > 30% от базового</td></tr><tr><td>Стоимость</td><td>LLM API spend / hour</td><td>> порога бюджета</td></tr><tr><td>Очереди</td><td>Celery queue depth</td><td>> 500 задач</td></tr></tbody></table><p><strong>Трассировка:</strong> каждый запрос генерации имеет <code>trace_id</code>, который проходит через все сервисы. Особо трассируются: retrieval latency, LLM call latency, postprocessing latency.</p><h3 id=паттерны-отказоустойчивости>Паттерны отказоустойчивости<a href=#%d0%bf%d0%b0%d1%82%d1%82%d0%b5%d1%80%d0%bd%d1%8b-%d0%be%d1%82%d0%ba%d0%b0%d0%b7%d0%be%d1%83%d1%81%d1%82%d0%be%d0%b9%d1%87%d0%b8%d0%b2%d0%be%d1%81%d1%82%d0%b8 class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>flowchart TD
+    A[&#34;Запрос к LLM&#34;] --&gt; B{&#34;Circuit Breaker&#34;}
+    B --&gt;|&#34;Closed&#34;| C[&#34;Основной провайдер\nClaude Sonnet&#34;]
+    B --&gt;|&#34;Open / Error&#34;| D[&#34;Fallback\nGPT-4o&#34;]
+    C --&gt;|&#34;Timeout&#34;| E[&#34;Retry x2&#34;]
+    E --&gt;|&#34;Fail&#34;| D
+    D --&gt;|&#34;Timeout&#34;| F[&#34;Деградированный режим\nупрощённая генерация&#34;]
+
+    G[&#34;Запрос к Qdrant&#34;] --&gt; H{&#34;Health Check&#34;}
+    H --&gt;|&#34;OK&#34;| I[&#34;Primary Qdrant&#34;]
+    H --&gt;|&#34;Fail&#34;| J[&#34;Read Replica\nили cached results&#34;]
+</code></pre><p><strong>Паттерны:</strong></p><ul><li><strong>Circuit Breaker</strong> для всех внешних API (LLM, Google Drive, OneDrive).</li><li><strong>Retry с exponential backoff</strong> для идемпотентных операций.</li><li><strong>Graceful degradation:</strong> при недоступности векторного хранилища — генерация только из промпта без RAG с предупреждением пользователю.</li><li><strong>Streaming генерация:</strong> слайды рендерятся по мере готовности — потеря соединения теряет только незаконченный слайд, не всю презентацию.</li><li><strong>Checkpoint-based recovery:</strong> состояние генерации сохраняется в Redis после каждого слайда.</li></ul><h3 id=резервное-копирование-и-восстановление>Резервное копирование и восстановление<a href=#%d1%80%d0%b5%d0%b7%d0%b5%d1%80%d0%b2%d0%bd%d0%be%d0%b5-%d0%ba%d0%be%d0%bf%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b8-%d0%b2%d0%be%d1%81%d1%81%d1%82%d0%b0%d0%bd%d0%be%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5 class=anchor>#</a></h3><table><thead><tr><th>Компонент</th><th>Стратегия</th><th>RPO</th><th>RTO</th></tr></thead><tbody><tr><td>PostgreSQL</td><td>Continuous WAL archiving + daily snapshot</td><td>5 мин</td><td>30 мин</td></tr><tr><td>Qdrant</td><td>Periodic snapshot → S3 (каждые 6 часов)</td><td>6 часов</td><td>1 час</td></tr><tr><td>S3 (файлы)</td><td>Cross-region replication</td><td>Real-time</td><td>Мгновенно</td></tr><tr><td>Redis</td><td>AOF + RDB snapshot</td><td>1 мин</td><td>15 мин</td></tr></tbody></table><h3 id=управление-затратами-cost-aware-architecture>Управление затратами (Cost-Aware Architecture)<a href=#%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b7%d0%b0%d1%82%d1%80%d0%b0%d1%82%d0%b0%d0%bc%d0%b8-cost-aware-architecture class=anchor>#</a></h3><p><strong>Структура LLM-затрат на 1 презентацию (15 слайдов):</strong></p><table><thead><tr><th>Операция</th><th>Токены (оценка)</th><th>Стоимость</th></tr></thead><tbody><tr><td>Генерация outline</td><td>~2 000</td><td>$0.01–0.02</td></tr><tr><td>Генерация 15 слайдов</td><td>~15 000</td><td>$0.06–0.10</td></tr><tr><td>Postprocessing / verification</td><td>~3 000</td><td>$0.01–0.02</td></tr><tr><td>Embeddings (RAG ingestion)</td><td>~10 000</td><td>$0.001</td></tr><tr><td><strong>Итого</strong></td><td><strong>~30 000</strong></td><td><strong>$0.08–0.15</strong></td></tr></tbody></table><p><strong>Механизмы оптимизации:</strong></p><ol><li><strong>Semantic caching:</strong> похожие outline-запросы (~cosine similarity > 0.95) отдаются из кэша без вызова LLM.</li><li><strong>Model tiering:</strong> для outline и постпроцессинга — более дешёвая модель (Haiku / GPT-4o mini); для финальной генерации слайдов — основная.</li><li><strong>Batching:</strong> несколько слайдов генерируются в одном LLM-запросе где возможно.</li><li><strong>Usage anomaly detection:</strong> алерт при превышении среднего потребления токенов на пользователя в 5×.</li><li><strong>Fair-use policy для Enterprise:</strong> soft-лимит с уведомлением при превышении в 3× от плана.</li></ol><hr><h2 id=этап-5-развёртывание-и-жизненный-цикл>Этап 5. Развёртывание и жизненный цикл<a href=#%d1%8d%d1%82%d0%b0%d0%bf-5-%d1%80%d0%b0%d0%b7%d0%b2%d1%91%d1%80%d1%82%d1%8b%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b8-%d0%b6%d0%b8%d0%b7%d0%bd%d0%b5%d0%bd%d0%bd%d1%8b%d0%b9-%d1%86%d0%b8%d0%ba%d0%bb class=anchor>#</a></h2><h3 id=инфраструктура-как-код>Инфраструктура как код<a href=#%d0%b8%d0%bd%d1%84%d1%80%d0%b0%d1%81%d1%82%d1%80%d1%83%d0%ba%d1%82%d1%83%d1%80%d0%b0-%d0%ba%d0%b0%d0%ba-%d0%ba%d0%be%d0%b4 class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>flowchart LR
+    TF[&#34;Terraform\nInfrastructure&#34;]
+    HELM[&#34;Helm Charts\nKubernetes&#34;]
+    ANSIBLE[&#34;Ansible\nOn-premise&#34;]
+
+    VPC_R[&#34;VPC / Network&#34;]
+    EKS_R[&#34;EKS / GKE Cluster&#34;]
+    RDS_R[&#34;RDS PostgreSQL&#34;]
+    REDIS_R[&#34;ElastiCache Redis&#34;]
+    S3_R[&#34;S3 Buckets&#34;]
+    QDRANT_R[&#34;Qdrant Cloud /\nSelf-hosted&#34;]
+
+    API_D[&#34;API Service\nDeployment&#34;]
+    RAG_D[&#34;RAG Service\nDeployment&#34;]
+    GEN_D[&#34;Generation Service\nDeployment&#34;]
+    WORKER_D[&#34;Workers\nDeployment&#34;]
+
+    ON_P[&#34;Enterprise\non-premise setup&#34;]
+
+    TF --&gt; VPC_R
+    TF --&gt; EKS_R
+    TF --&gt; RDS_R
+    TF --&gt; REDIS_R
+    TF --&gt; S3_R
+    TF --&gt; QDRANT_R
+    HELM --&gt; API_D
+    HELM --&gt; RAG_D
+    HELM --&gt; GEN_D
+    HELM --&gt; WORKER_D
+    ANSIBLE --&gt; ON_P
+</code></pre><p><strong>Окружения:</strong> <code>dev</code> → <code>staging</code> → <code>production</code> (EU/RU). Все конфиги хранятся в Git. Secrets через Vault / AWS Secrets Manager.</p><h3 id=cicd-pipeline>CI/CD Pipeline<a href=#cicd-pipeline class=anchor>#</a></h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>flowchart LR
+    PR[&#34;Pull Request&#34;] --&gt; LINT[&#34;Lint &amp;\nType Check&#34;]
+    LINT --&gt; UNIT[&#34;Unit Tests\n(pytest, vitest)&#34;]
+    UNIT --&gt; INT[&#34;Integration Tests\n(testcontainers)&#34;]
+    INT --&gt; BUILD[&#34;Docker Build\n&amp; Push&#34;]
+    BUILD --&gt; DEPLOY_STAGING[&#34;Deploy to\nStaging&#34;]
+    DEPLOY_STAGING --&gt; E2E[&#34;E2E Tests\n(Playwright)&#34;]
+    E2E --&gt; LOAD[&#34;Load Tests\n(k6, 100 VU)&#34;]
+    LOAD --&gt;|main branch| CANARY[&#34;Canary Deploy\n(5% трафик)&#34;]
+    CANARY --&gt;|Метрики OK| FULL[&#34;Full Production\nDeploy&#34;]
+    CANARY --&gt;|Аномалии| ROLLBACK[&#34;Auto Rollback&#34;]
+</code></pre><h3 id=стратегии-обновления-без-простоя>Стратегии обновления без простоя<a href=#%d1%81%d1%82%d1%80%d0%b0%d1%82%d0%b5%d0%b3%d0%b8%d0%b8-%d0%be%d0%b1%d0%bd%d0%be%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d1%8f-%d0%b1%d0%b5%d0%b7-%d0%bf%d1%80%d0%be%d1%81%d1%82%d0%be%d1%8f class=anchor>#</a></h3><p><strong>Для stateless-сервисов (API, RAG, Export):</strong> Rolling update с health check. Kubernetes <code>maxSurge: 25%</code>, <code>maxUnavailable: 0</code>.</p><p><strong>Для Generation Service (AI-компоненты):</strong> Canary deployment:</p><ol><li>5% трафика → новая версия.</li><li>Мониторинг 30 мин: error rate, P99 latency, quality metrics.</li><li>При отсутствии аномалий — постепенное увеличение до 100%.</li><li>При аномалиях — автоматический откат.</li></ol><p><strong>Для моделей (prompts/LangGraph chains):</strong> A/B тестирование через feature flags (LaunchDarkly). Новая цепочка генерации активируется для 10% пользователей с мониторингом CSAT.</p><p><strong>Для баз данных:</strong> Zero-downtime migrations через backward-compatible схемы (expand → migrate → contract). Инструмент: Alembic.</p><hr><h2 id=этап-6-альтернативные-решения-и-анализ-компромиссов>Этап 6. Альтернативные решения и анализ компромиссов<a href=#%d1%8d%d1%82%d0%b0%d0%bf-6-%d0%b0%d0%bb%d1%8c%d1%82%d0%b5%d1%80%d0%bd%d0%b0%d1%82%d0%b8%d0%b2%d0%bd%d1%8b%d0%b5-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d1%8f-%d0%b8-%d0%b0%d0%bd%d0%b0%d0%bb%d0%b8%d0%b7-%d0%ba%d0%be%d0%bc%d0%bf%d1%80%d0%be%d0%bc%d0%b8%d1%81%d1%81%d0%be%d0%b2 class=anchor>#</a></h2><h3 id=альтернатива-1-микросервисы-vs-модульный-монолит>Альтернатива 1: Микросервисы vs Модульный монолит<a href=#%d0%b0%d0%bb%d1%8c%d1%82%d0%b5%d1%80%d0%bd%d0%b0%d1%82%d0%b8%d0%b2%d0%b0-1-%d0%bc%d0%b8%d0%ba%d1%80%d0%be%d1%81%d0%b5%d1%80%d0%b2%d0%b8%d1%81%d1%8b-vs-%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d1%8c%d0%bd%d1%8b%d0%b9-%d0%bc%d0%be%d0%bd%d0%be%d0%bb%d0%b8%d1%82 class=anchor>#</a></h3><table><thead><tr><th>Критерий</th><th>Микросервисы (выбрано)</th><th>Модульный монолит</th></tr></thead><tbody><tr><td>Масштабирование</td><td>Независимое масштабирование AI-компонентов</td><td>Только вертикально или целиком</td></tr><tr><td>Операционная сложность</td><td>Высокая (K8s, service mesh)</td><td>Низкая</td></tr><tr><td>Замена AI-компонентов</td><td>Изолированно, без риска для остальных</td><td>Требует полного деплоя</td></tr><tr><td>Time to market (MVP)</td><td>Медленнее на старте</td><td>Быстрее на старте</td></tr><tr><td>Команда &lt; 5 чел.</td><td>Overhead значительный</td><td>Оптимально</td></tr><tr><td>Команда 10+ чел.</td><td>Оптимально</td><td>Coordination hell</td></tr></tbody></table><p><strong>Решение:</strong> Начать с <strong>модульного монолита</strong> (MVP, 0–6 мес.), разрезать на сервисы по мере роста команды и нагрузки. Граница разреза определена заранее (RAG, Generation, Export — независимые модули).</p><h3 id=альтернатива-2-векторное-хранилище>Альтернатива 2: Векторное хранилище<a href=#%d0%b0%d0%bb%d1%8c%d1%82%d0%b5%d1%80%d0%bd%d0%b0%d1%82%d0%b8%d0%b2%d0%b0-2-%d0%b2%d0%b5%d0%ba%d1%82%d0%be%d1%80%d0%bd%d0%be%d0%b5-%d1%85%d1%80%d0%b0%d0%bd%d0%b8%d0%bb%d0%b8%d1%89%d0%b5 class=anchor>#</a></h3><table><thead><tr><th>Критерий</th><th>Qdrant (выбрано)</th><th>Pinecone</th><th>pgvector</th></tr></thead><tbody><tr><td>Self-hosted / on-premise</td><td>Да (Docker)</td><td>Нет (SaaS only)</td><td>Да</td></tr><tr><td>Производительность (>1M vectors)</td><td>Отличная</td><td>Отличная</td><td>Приемлемая</td></tr><tr><td>Стоимость</td><td>Open Source</td><td>$70+/мес</td><td>Бесплатно (в PostgreSQL)</td></tr><tr><td>Namespace изоляция (multitenancy)</td><td>Да</td><td>Да</td><td>Через schema/table</td></tr><tr><td>Enterprise требование</td><td>Критично</td><td>Блокер</td><td>Ок</td></tr></tbody></table><p><strong>Решение:</strong> Qdrant — единственный вариант с production-ready self-hosted для on-premise Enterprise.</p><h3 id=альтернатива-3-подход-к-генерации-изображений>Альтернатива 3: Подход к генерации изображений<a href=#%d0%b0%d0%bb%d1%8c%d1%82%d0%b5%d1%80%d0%bd%d0%b0%d1%82%d0%b8%d0%b2%d0%b0-3-%d0%bf%d0%be%d0%b4%d1%85%d0%be%d0%b4-%d0%ba-%d0%b3%d0%b5%d0%bd%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d0%b8-%d0%b8%d0%b7%d0%be%d0%b1%d1%80%d0%b0%d0%b6%d0%b5%d0%bd%d0%b8%d0%b9 class=anchor>#</a></h3><table><thead><tr><th>Критерий</th><th>Лицензированные библиотеки (выбрано)</th><th>AI-генерация (DALL-E / SD)</th><th>Иконочные наборы</th></tr></thead><tbody><tr><td>Правовые риски</td><td>Нет</td><td>Высокие (авторское право)</td><td>Нет</td></tr><tr><td>Качество</td><td>Стабильное</td><td>Непредсказуемое</td><td>Ограниченное</td></tr><tr><td>Стоимость</td><td>Фиксированная лицензия</td><td>$0.04/изображение</td><td>Бесплатно</td></tr><tr><td>Соответствие контексту</td><td>Ручной подбор AI</td><td>Высокое</td><td>Среднее</td></tr></tbody></table><p><strong>Решение:</strong> Лицензированные библиотеки (Shutterstock/Getty API) + иконочные наборы (Font Awesome, Phosphor). AI-генерация изображений — только по явному запросу пользователя с предупреждением.</p><hr><h2 id=этап-7-план-верификации-архитектуры>Этап 7. План верификации архитектуры<a href=#%d1%8d%d1%82%d0%b0%d0%bf-7-%d0%bf%d0%bb%d0%b0%d0%bd-%d0%b2%d0%b5%d1%80%d0%b8%d1%84%d0%b8%d0%ba%d0%b0%d1%86%d0%b8%d0%b8-%d0%b0%d1%80%d1%85%d0%b8%d1%82%d0%b5%d0%ba%d1%82%d1%83%d1%80%d1%8b class=anchor>#</a></h2><h3 id=виды-тестирования>Виды тестирования<a href=#%d0%b2%d0%b8%d0%b4%d1%8b-%d1%82%d0%b5%d1%81%d1%82%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f class=anchor>#</a></h3><table><thead><tr><th>Тип</th><th>Инструмент</th><th>Покрытие / Сценарий</th></tr></thead><tbody><tr><td>Unit-тесты</td><td>pytest, vitest</td><td>>80% coverage, RAG-цепочки, постпроцессор</td></tr><tr><td>Integration-тесты</td><td>testcontainers (PostgreSQL, Redis, Qdrant)</td><td>Полный пайплайн ingestion→retrieval→generation</td></tr><tr><td>Contract-тесты</td><td>Pact</td><td>API между сервисами</td></tr><tr><td>E2E-тесты</td><td>Playwright</td><td>Ключевые user journeys: upload→generate→export</td></tr><tr><td>Load-тесты</td><td>k6</td><td>200 concurrent users, 30 мин; цель P99 &lt; 10 сек</td></tr><tr><td>Chaos-тесты</td><td>Chaos Mesh</td><td>Отключение Qdrant, LLM timeout, Redis failover</td></tr><tr><td>AI Quality-тесты</td><td>GPTZero API, ручная оценка</td><td>NFR-102 (anti-AI), NFR-103 (attribution)</td></tr><tr><td>Security-тесты</td><td>OWASP ZAP, Trivy</td><td>OWASP Top 10, уязвимости контейнеров</td></tr></tbody></table><h3 id=пилотное-внедрение>Пилотное внедрение<a href=#%d0%bf%d0%b8%d0%bb%d0%be%d1%82%d0%bd%d0%be%d0%b5-%d0%b2%d0%bd%d0%b5%d0%b4%d1%80%d0%b5%d0%bd%d0%b8%d0%b5 class=anchor>#</a></h3><p><strong>Фаза 1 (Мес. 1–2):</strong> Closed beta с 50 пользователями из сегмента Early Adopters. Метрики: Time-to-First-Deck, CSAT, количество итераций до экспорта.</p><p><strong>Фаза 2 (Мес. 3):</strong> Open beta. Нагрузочное тестирование с реальным трафиком. Мониторинг LLM-затрат и unit economics.</p><p><strong>Фаза 3 (Мес. 4–6):</strong> Enterprise pilot с 2–3 компаниями. Тестирование on-premise деплоя, Brand Kit, SSO.</p><hr><h2 id=этап-8-матрица-рисков-и-митигация>Этап 8. Матрица рисков и митигация<a href=#%d1%8d%d1%82%d0%b0%d0%bf-8-%d0%bc%d0%b0%d1%82%d1%80%d0%b8%d1%86%d0%b0-%d1%80%d0%b8%d1%81%d0%ba%d0%be%d0%b2-%d0%b8-%d0%bc%d0%b8%d1%82%d0%b8%d0%b3%d0%b0%d1%86%d0%b8%d1%8f class=anchor>#</a></h2><table><thead><tr><th>#</th><th>Риск</th><th>Вероятность</th><th>Влияние</th><th>Приоритет</th><th>Митигация</th></tr></thead><tbody><tr><td>R-01</td><td>Vendor lock-in на LLM API (Anthropic/OpenAI недоступны)</td><td>Средняя</td><td>Критическое</td><td>Высокий</td><td>Абстракция LLM-слоя через LangChain. Fallback: Claude → GPT-4o → Llama 3 on-premise. Контракт на резервный API.</td></tr><tr><td>R-02</td><td>Рост LLM-затрат при масштабировании</td><td>Высокая</td><td>Высокое</td><td>Высокий</td><td>Semantic caching, model tiering, fair-use policy, мониторинг cost/presentation. Горизонт 18 мес: fine-tuned open-source модель.</td></tr><tr><td>R-03</td><td>Утечка корпоративных данных пользователей</td><td>Низкая</td><td>Критическое</td><td>Высокий</td><td>Шифрование AES-256 + TLS 1.3. Изоляция per-tenant в S3 и Qdrant. On-premise для Enterprise. Audit log. Регулярный pentest.</td></tr><tr><td>R-04</td><td>Деградация качества генерации на русском</td><td>Средняя</td><td>Высокое</td><td>Высокий</td><td>Тестирование моделей на RU corpus. Fine-tuning на деловых текстах RU. Постпроцессор с RU-специфичными фильтрами.</td></tr><tr><td>R-05</td><td>Быстрый выход Microsoft Copilot / Google Gemini с аналогом</td><td>Высокая</td><td>Критическое</td><td>Высокий</td><td>Фокус на нише (консалтинг, корпоративные данные). On-premise как барьер для Enterprise. Скорость итераций > BigTech.</td></tr><tr><td>R-06</td><td>Производительность Qdrant при росте > 10M векторов</td><td>Средняя</td><td>Среднее</td><td>Средний</td><td>Horizontal sharding Qdrant. Индексирование HNSW. Автоматическая очистка старых embeddings (TTL 90 дней).</td></tr><tr><td>R-07</td><td>Пользователи не готовы платить (AI fatigue)</td><td>Средняя</td><td>Среднее</td><td>Средний</td><td>Агрессивный Free tier с реальной ценностью. ROI-калькулятор. NPS-мониторинг.</td></tr><tr><td>R-08</td><td>Проблемы с авторским правом на дизайн-ассеты</td><td>Низкая</td><td>Среднее</td><td>Низкий</td><td>Только лицензированные библиотеки (Shutterstock, Getty). AI-генерация изображений только по явному consent. Юридическая проверка.</td></tr><tr><td>R-09</td><td>Сложность on-premise деплоя для Enterprise</td><td>Средняя</td><td>Высокое</td><td>Средний</td><td>Docker Compose + Helm Chart. Поддержка air-gapped установки. Цель: &lt; 4 часов с документацией.</td></tr><tr><td>R-10</td><td>Несоответствие требованиям 152-ФЗ / GDPR</td><td>Низкая</td><td>Критическое</td><td>Высокий</td><td>Данные граждан РФ — только в RU-регионе. DPA-соглашения. Right to erasure. Консультация с DPO.</td></tr></tbody></table><hr><h2 id=инфраструктурная-схема-развёртывания>Инфраструктурная схема развёртывания<a href=#%d0%b8%d0%bd%d1%84%d1%80%d0%b0%d1%81%d1%82%d1%80%d1%83%d0%ba%d1%82%d1%83%d1%80%d0%bd%d0%b0%d1%8f-%d1%81%d1%85%d0%b5%d0%bc%d0%b0-%d1%80%d0%b0%d0%b7%d0%b2%d1%91%d1%80%d1%82%d1%8b%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f class=anchor>#</a></h2><pre tabindex=0><code class=language-mermaid data-lang=mermaid>flowchart TB
+    USERS[&#34;Пользователи&#34;]
+    CDN_N[&#34;CloudFront / CDN\nстатика Next.js&#34;]
+    EXT_SYS[&#34;External Systems\nSlack, Teams, CRM&#34;]
+
+    subgraph CLOUD[&#34;Cloud Region (EU / RU)&#34;]
+        WAF[&#34;WAF - OWASP rules&#34;]
+        ALB[&#34;Application\nLoad Balancer&#34;]
+
+        subgraph K8S[&#34;Kubernetes Cluster (EKS/GKE)&#34;]
+            subgraph NS_APP[&#34;Namespace: app&#34;]
+                API_POD[&#34;API Service\n3-10 pods&#34;]
+                RAG_POD[&#34;RAG Service\n2-6 pods&#34;]
+                GEN_POD[&#34;Generation Service\n3-8 pods&#34;]
+                EXP_POD[&#34;Export Service\n2-4 pods&#34;]
+                WORKER_POD[&#34;Celery Workers\n2-10 pods&#34;]
+            end
+
+            subgraph NS_INFRA[&#34;Namespace: infra&#34;]
+                KONG_POD[&#34;Kong API Gateway&#34;]
+                WS_POD[&#34;WebSocket Hub&#34;]
+                WH_POD[&#34;Webhook Dispatcher&#34;]
+            end
+        end
+
+        subgraph MANAGED[&#34;Managed Services&#34;]
+            RDS_PG[&#34;RDS PostgreSQL 16\nMulti-AZ&#34;]
+            REDIS_MS[&#34;ElastiCache Redis 7\nCluster mode&#34;]
+            S3_MS[&#34;S3 Object Storage\nPer-tenant buckets&#34;]
+            QDRANT_MS[&#34;Qdrant\nSelf-hosted in K8s&#34;]
+        end
+
+        subgraph OPS[&#34;Operations&#34;]
+            PROM_OPS[&#34;Prometheus&#34;]
+            GRAFANA_OPS[&#34;Grafana&#34;]
+            JAEGER_OPS[&#34;Jaeger&#34;]
+            ES_OPS[&#34;Elasticsearch&#34;]
+            VAULT_OPS[&#34;HashiCorp Vault\nSecrets&#34;]
+        end
+    end
+
+    subgraph ON_PREM[&#34;Enterprise On-Premise&#34;]
+        K8S_OP[&#34;Kubernetes\nклиентский контур&#34;]
+        LLAMA[&#34;vLLM + Llama 3\nлокальная LLM&#34;]
+        PG_OP[&#34;PostgreSQL&#34;]
+        QDRANT_OP[&#34;Qdrant&#34;]
+    end
+
+    USERS --&gt; CDN_N
+    USERS --&gt; WAF
+    WAF --&gt; ALB
+    ALB --&gt; KONG_POD
+    KONG_POD --&gt; API_POD
+    KONG_POD --&gt; WS_POD
+    API_POD --&gt; RAG_POD
+    API_POD --&gt; GEN_POD
+    API_POD --&gt; EXP_POD
+    API_POD --&gt; WORKER_POD
+    API_POD --&gt; RDS_PG
+    API_POD --&gt; REDIS_MS
+    RAG_POD --&gt; QDRANT_MS
+    RAG_POD --&gt; S3_MS
+    WORKER_POD --&gt; S3_MS
+    WORKER_POD --&gt; RDS_PG
+    WH_POD --&gt; EXT_SYS
+    API_POD --&gt; VAULT_OPS
+    RAG_POD --&gt; VAULT_OPS
+    GEN_POD --&gt; VAULT_OPS
+</code></pre><p><strong>Конфигурация autoscaling:</strong></p><table><thead><tr><th>Сервис</th><th>Min pods</th><th>Max pods</th><th>HPA trigger</th></tr></thead><tbody><tr><td>API Service</td><td>3</td><td>10</td><td>CPU > 60%</td></tr><tr><td>Generation Service</td><td>3</td><td>8</td><td>Queue depth > 50</td></tr><tr><td>RAG Service</td><td>2</td><td>6</td><td>CPU > 70%</td></tr><tr><td>Celery Workers</td><td>2</td><td>10</td><td>Queue depth > 100</td></tr><tr><td>Export Service</td><td>2</td><td>4</td><td>CPU > 70%</td></tr></tbody></table><hr><h2 id=приложение-описание-ключевых-компонентов>Приложение: Описание ключевых компонентов<a href=#%d0%bf%d1%80%d0%b8%d0%bb%d0%be%d0%b6%d0%b5%d0%bd%d0%b8%d0%b5-%d0%be%d0%bf%d0%b8%d1%81%d0%b0%d0%bd%d0%b8%d0%b5-%d0%ba%d0%bb%d1%8e%d1%87%d0%b5%d0%b2%d1%8b%d1%85-%d0%ba%d0%be%d0%bc%d0%bf%d0%be%d0%bd%d0%b5%d0%bd%d1%82%d0%be%d0%b2 class=anchor>#</a></h2><h3 id=api-service-fastapi>API Service (FastAPI)<a href=#api-service-fastapi class=anchor>#</a></h3><p>Центральный оркестратор. Отвечает за: аутентификацию и авторизацию (JWT + RBAC), маршрутизацию запросов к downstream сервисам, управление состоянием проектов и презентаций в PostgreSQL, WebSocket-соединения для стриминга прогресса генерации.</p><h3 id=rag-service-langchain>RAG Service (LangChain)<a href=#rag-service-langchain class=anchor>#</a></h3><p>Отвечает за весь пайплайн работы с данными пользователя: ingestion документов (Tika/unstructured), chunking, генерацию embeddings, хранение в Qdrant с per-tenant изоляцией, retrieval с re-ranking при генерации.</p><h3 id=generation-service-langgraph>Generation Service (LangGraph)<a href=#generation-service-langgraph class=anchor>#</a></h3><p>Реализует stateful граф генерации: <code>outline_node → [slide_gen_node × N] → postprocess_node → verify_node</code>. Поддерживает: checkpoint-based recovery, streaming output через WebSocket, итеративное улучшение в рамках сессии (AI-003).</p><h3 id=export-service-python-pptx>Export Service (python-pptx)<a href=#export-service-python-pptx class=anchor>#</a></h3><p>Рендеринг финального PPTX с нативными объектами PowerPoint: встроенными шрифтами, редактируемыми диаграммами Matplotlib, Brand Kit-параметрами. Конвертация в PDF через LibreOffice headless. Интеграция с Google Slides API.</p><h3 id=task-workers-celery>Task Workers (Celery)<a href=#task-workers-celery class=anchor>#</a></h3><p>Асинхронная обработка тяжёлых задач: ingestion больших файлов (> 5 МБ), генерация полных презентаций (non-interactive mode), массовый экспорт, отправка webhook-событий с retry.</p><hr><p><em>Документ подготовлен на основе PRD «Бизнес-контекст и БТ» для хакатона Axenix, трек «Промпт-инжиниринг», 2026.</em></p><script lang=js>const innerPages=document.getElementById("inner-pages");innerPages&&innerPages.querySelectorAll("li").forEach(e=>{e.addEventListener("click",()=>{const t=e.innerText.trim();if(openedMenu){if(openedMenu.includes(t)){const e=openedMenu.findIndex(e=>e===t);openedMenu.splice(e,1)}else openedMenu.push(t);localStorage.setItem("openedMenu",JSON.stringify(openedMenu))}else localStorage.setItem("openedMenu","["+t+"]")})})</script><nav class=pagination><a class="nav nav-prev" href=https://example.org/00_overview/01_br/01_br/ title="Бизнес-контекст и БТ"><i class="fa fa-arrow-left" aria-hidden=true></i> Предыдущее - Бизнес-контекст и БТ</a>
+<a class="nav nav-next" href=https://example.org/03_backend/ title=Backend>Следующее - Backend <i class="fa fa-arrow-right" aria-hidden=true></i></a></nav></div><div class="column is-sticky is-paddingless" id=tocWrapper><div class=is-paddingless id=tocContainer><div id=tocContent><div class=additionalinfo><span id=method_name>Архитектура</span>
+<strong>Описание:</strong> Назначение раздела и принятые архитектурные решения системы.</div><div class=toc-header><h6 class="toc-title is-marginless">Содержание:On this page:</h6><i title="Back to top" id=tocBackToTop class="fa-solid fa-circle-arrow-up"></i></div><div id=toc><nav id=TableOfContents><ul><li><a href=#executive-summary>Executive Summary</a></li><li><a href=#этап-0-анализ-бизнес-контекста-и-архитектурных-драйверов>Этап 0. Анализ бизнес-контекста и архитектурных драйверов</a><ul><li><a href=#прогнозируемые-нагрузки>Прогнозируемые нагрузки</a></li><li><a href=#ранжирование-атрибутов-качества>Ранжирование атрибутов качества</a></li></ul></li><li><a href=#этап-1-архитектурные-требования-и-ограничения>Этап 1. Архитектурные требования и ограничения</a><ul><li><a href=#мультитенантность-и-изоляция-данных>Мультитенантность и изоляция данных</a></li><li><a href=#безопасность-и-соответствие-стандартам>Безопасность и соответствие стандартам</a></li><li><a href=#интеграция-с-внешними-экосистемами>Интеграция с внешними экосистемами</a></li></ul></li><li><a href=#этап-2-технологический-стек>Этап 2. Технологический стек</a><ul><li><a href=#итоговый-выбор-технологий>Итоговый выбор технологий</a></li></ul></li><li><a href=#этап-3-детальное-проектирование-архитектуры>Этап 3. Детальное проектирование архитектуры</a><ul><li><a href=#31-высокоуровневая-диаграмма-c4-уровень-1--system-context>3.1 Высокоуровневая диаграмма C4 (уровень 1 — System Context)</a></li><li><a href=#32-диаграмма-c4-уровень-2--контейнеры>3.2 Диаграмма C4 (уровень 2 — Контейнеры)</a></li><li><a href=#33-диаграмма-высокоуровневой-архитектуры-компоненты>3.3 Диаграмма высокоуровневой архитектуры (компоненты)</a></li></ul></li><li><a href=#34-rag-пайплайн-и-обработка-данных>3.4 RAG-пайплайн и обработка данных</a><ul><li><a href=#приём-и-обработка-источников-данных>Приём и обработка источников данных</a></li><li><a href=#механизмы-обеспечения-достоверности-и-борьба-с-галлюцинациями>Механизмы обеспечения достоверности и борьба с галлюцинациями</a></li></ul></li><li><a href=#35-интеграционная-архитектура-для-enterprise>3.5 Интеграционная архитектура для Enterprise</a><ul><li><a href=#публичный-api>Публичный API</a></li><li><a href=#webhook-система-с-гарантиями-доставки>Webhook-система с гарантиями доставки</a></li><li><a href=#адаптеры-экспорта>Адаптеры экспорта</a></li></ul></li><li><a href=#этап-4-операционные-аспекты>Этап 4. Операционные аспекты</a><ul><li><a href=#observability>Observability</a></li><li><a href=#паттерны-отказоустойчивости>Паттерны отказоустойчивости</a></li><li><a href=#резервное-копирование-и-восстановление>Резервное копирование и восстановление</a></li><li><a href=#управление-затратами-cost-aware-architecture>Управление затратами (Cost-Aware Architecture)</a></li></ul></li><li><a href=#этап-5-развёртывание-и-жизненный-цикл>Этап 5. Развёртывание и жизненный цикл</a><ul><li><a href=#инфраструктура-как-код>Инфраструктура как код</a></li><li><a href=#cicd-pipeline>CI/CD Pipeline</a></li><li><a href=#стратегии-обновления-без-простоя>Стратегии обновления без простоя</a></li></ul></li><li><a href=#этап-6-альтернативные-решения-и-анализ-компромиссов>Этап 6. Альтернативные решения и анализ компромиссов</a><ul><li><a href=#альтернатива-1-микросервисы-vs-модульный-монолит>Альтернатива 1: Микросервисы vs Модульный монолит</a></li><li><a href=#альтернатива-2-векторное-хранилище>Альтернатива 2: Векторное хранилище</a></li><li><a href=#альтернатива-3-подход-к-генерации-изображений>Альтернатива 3: Подход к генерации изображений</a></li></ul></li><li><a href=#этап-7-план-верификации-архитектуры>Этап 7. План верификации архитектуры</a><ul><li><a href=#виды-тестирования>Виды тестирования</a></li><li><a href=#пилотное-внедрение>Пилотное внедрение</a></li></ul></li><li><a href=#этап-8-матрица-рисков-и-митигация>Этап 8. Матрица рисков и митигация</a></li><li><a href=#инфраструктурная-схема-развёртывания>Инфраструктурная схема развёртывания</a></li><li><a href=#приложение-описание-ключевых-компонентов>Приложение: Описание ключевых компонентов</a><ul><li><a href=#api-service-fastapi>API Service (FastAPI)</a></li><li><a href=#rag-service-langchain>RAG Service (LangChain)</a></li><li><a href=#generation-service-langgraph>Generation Service (LangGraph)</a></li><li><a href=#export-service-python-pptx>Export Service (python-pptx)</a></li><li><a href=#task-workers-celery>Task Workers (Celery)</a></li></ul></li></ul></nav></div><ul class=info style="line-height:1.2;list-style-type:none;border:1px solid;border-radius:1px;padding:5px;margin:16px 10px 0;color:#000"></ul><div id=taxonomies><div class=taxonomy-wrapper></div><div class=taxonomy-wrapper></div></div><div class=toc-header><div class=edit-meta></div></div></div></div><div class=is-paddingless id=tocCollapsible title="Collapse/Uncollapse table of contents"><i class="fa-solid fa-angles-right fa-lg"></i></div></div></div></div><script type=text/javascript>const baseUrl="https://example.org/",codeCopyBefore="Copy to clipboard",codeCopyAfter="Copied to clipboard",svgDownloadLabel="Download as SVG",helperLoadingLabel="Loading",searchNoResults="No result found",introNextLabel="Next",introPrevLabel="Previous",introSkipLabel="✗",introDoneLabel="Done",printLabel="Print current page",qrCodeLabel="Show current page QR code",naCommonLabel="Not available"</script><script type=module src=/js/theme/modules/const.min.js></script><script type=module src=/js/theme/modules/helpers.min.js></script><script type=module src=/js/theme/modules/helpersGlobal.min.js></script><script type=module src=/js/theme/init.min.js></script><script type=module src=/js/theme/navbar.min.js></script><script type=module src=/js/theme/print.min.js></script><script type=module src=/js/theme/qrcode.min.js></script><script type=module src=/js/theme/search.min.js></script><script type=module src=/js/theme/shortcuts.min.js></script><script type=module src=/js/theme/sidebar.min.js></script><script type=module src=/js/theme/toc.min.js></script><script type=module src=/js/external/mermaid/mermaid.min.js></script><script type=module src=/js/fencedcodes/mermaid.min.js></script><script type=text/javascript src=/js/external/jquery/jquery-3.6.3.min.js></script><script type=text/javascript src=/js/external/tippy/popper.min.js></script><script type=text/javascript src=/js/external/tippy/tippy-bundle.umd.min.js></script><script type=text/javascript src=/js/external/markmap/markmap-autoloader.min.js></script><script type=text/javascript src=/js/theme/browserCompatibility.min.js></script><script type=text/javascript src=/js/external/flexsearch/flexsearch.bundle.min.js></script><script type=text/javascript src=/js/external/qrious/qrious.min.js></script><script type=text/javascript src=/js/external/overlay-scrollbars/overlayscrollbars.min.js></script><script type=text/javascript src=/js/external/markmap/markmap.min.js></script><script type=text/javascript src=/js/external/readfile/rawdeflate.min.js></script><script type=text/javascript src=/js/external/1ce05b4b.min.js></script><script type=text/javascript src=/js/external/techradar/d3.v4.min.js></script><script type=text/javascript src=/js/external/techradar/radar.min.js></script><script type=text/javascript src=/js/external/bpmn-visualization/bpmn-visualization.min.js></script><script type=text/javascript src=/js/external/sorttable/sorttable.min.js></script><script type=text/javascript src=/js/external/mermaid/svg-pan-zoom.min.js></script><script type=text/javascript src=/js/external/simplesearch/simplesearch.min.js></script><script>$("table").addClass("sortable")</script></body></html>
