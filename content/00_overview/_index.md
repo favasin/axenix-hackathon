@@ -26,7 +26,7 @@ titleIcon: "fa-solid fa-circle-info"
 
 ## Выбор LLM
 
-В рамках решения задачи мы сравнили модели ChatGPT 5.2, Mistral, Claude, DeepSeek и Gemini.
+В рамках исследования был выполнен сравнительный анализ современных больших языковых моделей: GPT-5.2, Claude Opus / Sonnet, Gemini 3 / Gemini 3.1 Pro, DeepSeek-V3 / DeepSeek-R1 и Mistral Large / Mixtral.
 Цель сравнения: выбрать LLM, в которую команда будет отправлять промпты для подготовки системного дизайна сервиса по генерации презентаций.
 
 Важно: это выбор модели для этапа **аналитики и проектирования**, а не выбор LLM, которая будет работать внутри конечного продукта в production.
@@ -34,11 +34,11 @@ titleIcon: "fa-solid fa-circle-info"
 Для подготовки документации и системного дизайна выбрана модель **Claude**.
 
 Отчеты о взаимодействии с ИИ:
-- ChatGPT: https://chatgpt.com/share/69a2ee3a-f5bc-8010-a884-8c208a90f67c
-- Claude: https://claude.ai/share/5b420602-1eda-431d-a929-64b3977d8aef
-- Gemini: https://gemini.google.com/share/5010cc2be7c6 
-- Deepseek: https://chat.deepseek.com/share/qkn0g0mk5m2ovmqwxm 
-- Mistral:  https://chat.mistral.ai/chat/10287d2f-d7ce-414d-8c07-e30f2c4f9048
+- GPT-5.2 (OpenAI): https://chatgpt.com/share/69a2ee3a-f5bc-8010-a884-8c208a90f67c
+- Claude Opus / Sonnet (Anthropic): https://claude.ai/share/5b420602-1eda-431d-a929-64b3977d8aef
+- Gemini 3 / Gemini 3.1 Pro (Google DeepMind): https://gemini.google.com/share/5010cc2be7c6 
+- DeepSeek-V3 / DeepSeek-R1 (DeepSeek): https://chat.deepseek.com/share/qkn0g0mk5m2ovmqwxm 
+- Mistral Large / Mixtral (Mistral AI):  https://chat.mistral.ai/chat/10287d2f-d7ce-414d-8c07-e30f2c4f9048
 
 
 ## Почему выбрали Claude для документирования решения

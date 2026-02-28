@@ -1,7 +1,7 @@
 ---
 title: "REST API"
 description: "Справочная информация по HTTP-эндпоинтам сервиса."
-weight: 1
+weight: 2
 draft: false
 slug: ""
 titleIcon: "fa-solid fa-route"
