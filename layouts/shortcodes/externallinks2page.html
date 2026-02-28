@@ -1,0 +1,56 @@
+{{ $pageName := .Page.File.BaseFileName }}
+
+<table id="externallinks2pagetable" style="display:none" />
+    <thead>
+        <th >Страницы ссылающиеся на текущую</th>
+    </thead>
+    <tbody>
+        {{ template "read-dir" dict "pathurl" .Site.BaseURL "currentpath" "content" "pageName" $pageName }}
+    </tbody>
+</table>
+
+{{ define "read-dir" }}
+
+    {{ $pathURL := .pathurl }}
+	{{ $currentPath := .currentpath }}
+    {{ $pageName := .pageName}}
+	{{ $files := readDir $currentPath }}
+
+    {{ range $files }}
+
+        {{ $fstat := os.Stat (printf "%s/%s" $currentPath .Name ) }}
+        {{ $file_or_dir := printf "%s/%s" $currentPath .Name }}
+        {{ $fullpath2file := replace $file_or_dir "content" "" }}
+        {{ $fullpath2file := replace $fullpath2file ".md" "" }}
+        {{ $fullpath2file := printf "%s%s" $pathURL $fullpath2file }}
+        {{ $fullpath2file := replace $fullpath2file "/_index" "" }}
+        {{ $fullpath2file := lower $fullpath2file }}
+
+        {{ if $fstat.IsDir }}
+            
+            {{/* recursive call */}}
+            {{ template "read-dir" dict "pathurl" $pathURL "currentpath" $file_or_dir "pageName" $pageName }}
+
+        {{ else }}
+
+            {{ $filecontent := os.ReadFile $file_or_dir }}
+            {{ $filecontent := lower $filecontent }}
+            {{ $pageName := lower $pageName }}
+            {{ $currentPath := lower $currentPath }}
+
+            {{ $pageNameInFileContent := strings.Contains $filecontent $pageName }}
+            {{ $itIsMe := strings.Contains $fullpath2file $pageName }}
+            {{ $filename := lower .Name }}
+
+            {{- if not (eq $filename $pageName) -}}
+                {{ if $pageNameInFileContent }}
+                    <tr><td style="text-align:left;"><a href="{{ $fullpath2file }}">{{ $fullpath2file }}</a></td></tr>
+                    <script language="javascript">
+                        document.getElementById('externallinks2pagetable').style.display="";
+                    </script>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+

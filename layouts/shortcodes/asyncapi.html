@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://unpkg.com/@asyncapi/react-component@1.2.11/styles/default.min.css">
+
+<div id="asyncapi"></div>
+
+<script src="https://unpkg.com/@asyncapi/react-component@1.2.11/browser/standalone/index.js"></script>
+<script>
+    AsyncApiStandalone.render({
+        schema: {
+            url: '{{ .Get "src" }}'
+        }, 
+        config: {
+            show: {
+                sidebar: false,
+            }
+        },
+    }, document.getElementById('asyncapi'));
+</script>

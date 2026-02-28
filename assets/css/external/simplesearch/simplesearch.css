@@ -1,0 +1,25 @@
+#elbi-results {
+    width: 90%;
+}
+.elbi-results-item {
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 5px;
+    margin: 1px;
+    border: 2px solid lightgray;
+    /*height: 300px;*/
+    overflow: auto;
+    border-radius: 10px;
+}
+#elbi-input{
+    color: #000;
+}
+mark {
+    all: revert;
+}
+hr {
+    background: linear-gradient(90deg, #ddd 0%, transparent 100%);
+    border-radius: .25rem;
+    margin: 1rem 0;
+    height: .25rem;
+}

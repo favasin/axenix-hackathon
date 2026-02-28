@@ -1,0 +1,20 @@
+{{- $imagecount := .Page.Scratch.Get "imagecount" | default 0 -}}
+{{- $imagecount = add $imagecount 1 -}}
+{{- .Page.Scratch.Set "imagecount" $imagecount -}}
+{{- $summary := .Get "summary" | default (i18n "state_tag_details") -}}
+{{- $state := .Get "state" | default "close" -}}
+{{- $caption := .Get "caption" | default (i18n "image_caption") -}}
+{{- $width := .Get "width" | default "100%" -}}
+{{- $source := .Get "source" -}}
+{{- $id := .Get "id" -}}
+
+<!-- Создаём изображение внутри блока details с заданными стилями -->
+<details {{ if .Get 0 | eq $state "open"}} open {{ end }} id="details-{{ $imagecount }}" class="details_hugo" style="border: 1px solid #dbdbd6; padding: 0.75em; background: #f3f3f2; border-radius: 4px; margin-top: 15px;">
+    <summary>{{ $summary }}</summary>
+    <div id="image-container-{{ $imagecount }}" style="margin-top: 15px;">
+        <img id="{{ $id }}" src="{{ $source }}" alt="{{ $summary }}" style="width:{{ $width }}">
+        <p></p>
+        <div style="margin-top: 15px;">{{- i18n "image" -}}&nbsp;{{ $imagecount }}: {{ $caption }}</div>
+    </div>
+</details>
+

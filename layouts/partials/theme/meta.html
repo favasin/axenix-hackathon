@@ -1,0 +1,41 @@
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Hugo head information -->
+{{- hugo.Generator -}}
+<!-- User specific information -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{{- with .Description -}}
+  <meta name="description" content="{{- . -}}" />
+{{- end -}}
+<!-- Title -->
+{{- $title := .Title }}
+<!--
+{- if not .IsHome -}
+  {- $title = printf "%s | %s" $title .Site.Title }
+{- end -}
+-->
+<title>
+  {{- $title -}}
+</title>
+<!-- Favicon -->
+{{- $faviconPath := .Site.Params.favicon | default "images/favicon.png" -}}
+{{- $faviconSrc := "" -}}
+{{- $faviconIntegrity := "" -}}
+{{- if or (hasPrefix $faviconPath "http://") (hasPrefix $faviconPath "https://") (hasPrefix $faviconPath "//") -}}
+  {{- $faviconSrc = $faviconPath -}}
+{{- else -}}
+  {{- $faviconRes := resources.Get (strings.TrimPrefix "/" $faviconPath) -}}
+  {{- if $faviconRes -}}
+    {{- $faviconRes = $faviconRes | fingerprint -}}
+    {{- $faviconSrc = $faviconRes.RelPermalink -}}
+    {{- $faviconIntegrity = $faviconRes.Data.Integrity -}}
+  {{- else -}}
+    {{- $faviconSrc = printf "%s?v=%d" ($faviconPath | relURL) now.Unix -}}
+  {{- end -}}
+{{- end -}}
+<link
+  rel="icon"
+  href="{{- $faviconSrc -}}"
+  type="image/x-icon"
+  {{- if $faviconIntegrity -}} integrity="{{- $faviconIntegrity -}}"{{- end -}}
+/>

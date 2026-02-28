@@ -1,0 +1,1 @@
+table.sortable thead{background-color:#eee;color:#123;font-weight:700;cursor:default}table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after{content:" \25B4\25BE"}

@@ -1,0 +1,200 @@
+{{ $file := .Get "file" }}
+{{ $height := .Get "height" | default "100%" }}
+{{ $widthinternaldiagram := .Get "widthinternaldiagram" | default "100%" }}
+{{ $width := .Get "width" | default "100%" }}
+{{ $uniqueId := now.UnixNano }}
+{{ $plantumlServer := .Site.Params.plantumlServer | default "https://plantuml.com/svg/" }}
+{{ if not (strings.Contains $plantumlServer "/svg") }}
+  {{ $plantumlServer = printf "%s/svg/" (strings.TrimSuffix "/" $plantumlServer) }}
+{{ else }}
+  {{ $plantumlServer = printf "%s/" (strings.TrimSuffix "/" $plantumlServer) }}
+{{ end }}
+
+<style type="text/css">
+  .plantuml-container {
+    border: 1px solid #C1C1C1;
+    overflow: auto;
+    text-align: -webkit-center;
+</style>
+
+</br><a href="{{ $file }}" download>Скачать исходный файл PlantUML</a></br></br>
+
+<div id="container{{ $uniqueId }}" class="plantuml-container" style="height:{{ $height }};width:{{ $width }}">
+  <div id="plantuml-{{ $uniqueId }}" type="image/svg+xml" style="width:{{ $widthinternaldiagram }}">
+    Не удалось загрузить схему
+  </div>
+</div>
+
+<script language="javascript">
+  window.addEventListener('DOMContentLoaded', (event) => {
+
+    function encode64(data) {
+      r = "";
+      for (i=0; i<data.length; i+=3) {
+        if (i+2==data.length) {
+          r +=append3bytes(data.charCodeAt(i), data.charCodeAt(i+1), 0);
+        } else if (i+1==data.length) {
+          r += append3bytes(data.charCodeAt(i), 0, 0);
+        } else {
+          r += append3bytes(data.charCodeAt(i), data.charCodeAt(i+1),
+            data.charCodeAt(i+2));
+        }
+      }
+      return r;
+    }
+
+    function append3bytes(b1, b2, b3) {
+      c1 = b1 >> 2;
+      c2 = ((b1 & 0x3) << 4) | (b2 >> 4);
+      c3 = ((b2 & 0xF) << 2) | (b3 >> 6);
+      c4 = b3 & 0x3F;
+      r = "";
+      r += encode6bit(c1 & 0x3F);
+      r += encode6bit(c2 & 0x3F);
+      r += encode6bit(c3 & 0x3F);
+      r += encode6bit(c4 & 0x3F);
+      return r;
+    }
+
+    function encode6bit(b) {
+      if (b < 10) {
+        return String.fromCharCode(48 + b);
+      }
+      b -= 10;
+      if (b < 26) {
+        return String.fromCharCode(65 + b);
+      }
+      b -= 26;
+      if (b < 26) {
+        return String.fromCharCode(97 + b);
+      }
+      b -= 26;
+      if (b == 0) {
+        return '-';
+      }
+      if (b == 1) {
+        return '_';
+      }
+      return '?';
+    }
+
+    function done_deflating(e) {
+
+      // const container = document.getElementById("container{{ $uniqueId }}");
+      const container = document.getElementById("plantuml-{{ $uniqueId }}");
+      const request = new Request("{{ $plantumlServer }}", {
+        method: "POST",
+        body: e.data
+      });
+
+      fetch(request)
+        .then(response => response.text())
+        .then(svgContent => {
+          container.innerHTML = svgContent.replace(/[ ]*max-width:[ 0-9\.]*px;/i , '');
+          const svg = container.querySelector('svg');
+
+          if (svg)
+            svg.setAttribute("style", "height:100%;width:100%");
+        })
+        .catch(error => { console.error('Error fetching SVG:', error); });
+    }
+
+    function compress(source) {
+      //UTF8
+      
+      // source = unescape(encodeURIComponent(source));
+
+      if (deflater) {
+        if (deflater.port && deflater.port.postMessage) {
+          deflater.port.postMessage(source);
+        } else {
+          deflater.postMessage(source);
+        }
+      } else {
+        setTimeout(function() {
+          done_deflating(source);
+        }, 100);
+      }
+    }
+
+    const file = '{{ $file }}';
+
+    function readFile()
+    {
+      var source = "";
+      var rawFile = new XMLHttpRequest();
+      rawFile.open("GET", file, false);
+
+      rawFile.onreadystatechange = function () {
+          if (rawFile.readyState === 4) {
+              if (rawFile.status === 200 || rawFile.status == 0) {
+                source = rawFile.responseText;
+              }
+          }
+      };
+
+      rawFile.send(null);
+
+      return source;
+    }
+
+    var deflater = window.SharedWorker && new SharedWorker('/js/external/readfile/rawdeflate.min.js');
+    if (deflater) {
+      deflater.port.addEventListener('message', done_deflating, false);
+      deflater.port.start();
+    } else if (window.Worker) {
+      deflater = new Worker('/js/external/readfile/rawdeflate.min.js');
+      deflater.onmessage = done_deflating;
+    }
+
+    compress(readFile());
+
+  });
+  
+  var elements = document.getElementsByClassName("plantuml-container");
+  var testDivs = Array.prototype.filter.call(
+      elements,
+      function (element) {
+          const container = document.querySelector('#' + element.id);
+
+          let startY;
+          let startX;
+          let scrollLeft;
+          let scrollTop;
+          let isDown;
+
+          container.addEventListener('mousedown',e => mouseIsDown(e));
+          container.addEventListener('mouseup',e => mouseUp(e));
+          container.addEventListener('mouseleave',e=>mouseLeave(e));
+          container.addEventListener('mousemove',e=>mouseMove(e));
+
+          function mouseIsDown(e){
+              isDown = true;
+              startY = e.pageY - container.offsetTop;
+              startX = e.pageX - container.offsetLeft;
+              scrollLeft = container.scrollLeft;
+              scrollTop = container.scrollTop; 
+          }
+          function mouseUp(e){
+              isDown = false;
+          }
+          function mouseLeave(e){
+              isDown = false;
+          }
+          function mouseMove(e){
+              if(isDown){
+                  e.preventDefault();
+                  // Move vertcally
+                  const y = e.pageY - container.offsetTop;
+                  const walkY = y - startY;
+                  container.scrollTop = scrollTop - walkY;
+
+                  // Move Horizontally
+                  const x = e.pageX - container.offsetLeft;
+                  const walkX = x - startX;
+                  container.scrollLeft = scrollLeft - walkX;
+              }
+          }
+      },
+  );
+</script>  

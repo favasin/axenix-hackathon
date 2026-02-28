@@ -1,0 +1,9 @@
+{{ .Scratch.Set "lastp" (sub (.Params | len) 1) }}
+<div class = "details_hugo" style="border: 1px solid #dbdbd6;padding: 0.75em;background: #f3f3f2;border-radius: 4px;margin-top: 15px">
+    <details {{ if .Get 0 | eq "open"}} open {{ end }}>
+        <summary>
+            {{ .Get (.Scratch.Get "lastp") }}
+        </summary>
+        {{ .Inner | markdownify }}
+    </details>
+</div>

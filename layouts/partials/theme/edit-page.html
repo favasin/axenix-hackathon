@@ -1,0 +1,3 @@
+{{- if and .Site.Params.github_doc_repository .File -}}
+<a href="{{ .Site.Params.github_doc_repository }}/edit/main/content/{{ .File.Path }}" target="_blank" class="edit-page"><i class="fa fa-pen-square"></i>Редактировать в GitLab</a>
+{{- end -}}

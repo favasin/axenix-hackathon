@@ -1,0 +1,58 @@
+<div class="column is-sticky is-paddingless" id="tocWrapper">
+  <div class="is-paddingless" id="tocContainer">
+    <div id="tocContent">
+      <div class="additionalinfo">
+        {{- partial "theme/additional.html" . -}}
+      </div>
+      <div class="toc-header">
+        <h6 class="toc-title is-marginless">Содержание:{{- i18n "toc_title" -}}</h6>
+        <i
+          title="{{- i18n "toc_backtotop" -}}"
+          id="tocBackToTop"
+          class="fa-solid fa-circle-arrow-up"
+        ></i>      
+      </div>
+      <div id="toc">
+        {{- if in (string .TableOfContents) "<ul>" -}}
+          {{- .TableOfContents -}}
+        {{- else -}}
+          <nav id="TableOfContents">
+            <p><strong>{{- i18n "no_data" -}}</strong></p>
+          </nav>
+        {{- end -}}
+      </div>
+      {{- partial "theme/development-info.html" . -}}
+      {{- partial "theme/gitinfo.html" . -}}
+      <div id="taxonomies">
+        {{- with .Site.Taxonomies -}}
+          {{- range $taxonomy, $pages := . -}}
+            <div class="taxonomy-wrapper">
+              {{- with ($.GetTerms $taxonomy) -}}
+                <div class="toc-header">
+                  <h6 class="toc-title is-marginless">
+                    {{- humanize $taxonomy -}}
+                  </h6>
+                </div>
+                {{- range . -}}
+                  <a href="{{- .RelPermalink | safeURL -}}" class="taxonomy"
+                    ><i class="fa-solid fa-circle-dot"></i>{{- .Title -}}</a
+                  >
+                {{- end -}}
+              {{- end -}}
+            </div>
+          {{- end -}}
+        {{- end -}}
+      </div>
+      <div class="toc-header">
+        {{- partial "theme/edit-meta.html" . -}}
+      </div>
+    </div>
+  </div>
+  <div
+    class="is-paddingless"
+    id="tocCollapsible"
+    title="{{- i18n "6_toggletoc_wording" -}}"
+  >
+    <i class="fa-solid fa-angles-right fa-lg"></i>
+  </div>
+</div>

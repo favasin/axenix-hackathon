@@ -1,0 +1,86 @@
+{{- if .Pages.ByTitle -}}
+<div id="inner-pages" class="inner-pages">
+  <br>
+  <p><b>Вложенные статьи:</b></p>
+  <table style="font-size: 14px;">
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+    <tr>
+    {{ range .Pages.ByWeight }}
+    <tr>
+      <td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
+      <td>{{ .Description }}</td>
+    </tr>
+    {{ end }}
+  </tr>
+</table>
+</div>
+{{- end -}}
+
+<script lang="js">
+  const innerPages = document.getElementById("inner-pages");
+  if (innerPages) {
+    innerPages.querySelectorAll("li").forEach(listElement => {
+      listElement.addEventListener("click", () => {
+        const name = listElement.innerText.trim();
+        if (openedMenu) {
+          if (openedMenu.includes(name)) {
+            const index = openedMenu.findIndex(item => item === name);
+            openedMenu.splice(index, 1);
+          } else {
+            openedMenu.push(name);
+          }
+          localStorage.setItem("openedMenu", JSON.stringify(openedMenu));
+        } else {
+          localStorage.setItem("openedMenu", "[" + name + "]")
+        }
+      });
+    });
+  }
+</script>
+
+{{- $currentNode := . -}}
+<nav class="pagination">
+  {{- template "pagination" dict "menu" .Site.Home "currentnode" $currentNode "menu_exclusion" .Site.Params.menu_exclusion -}}
+  {{- with ($.Scratch.Get "prevPage") -}}
+  <a class="nav nav-prev" href="{{ .Permalink }}" title="{{ .Title }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - {{ .Title }}</a>
+  {{ end -}}
+  {{- with ($.Scratch.Get "nextPage") -}}
+  <a class="nav nav-next" href="{{ .Permalink }}" title="{{ .Title }}">Следующее - {{ .Title }} <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+  {{- end }}
+</nav>
+
+{{- define "pagination" -}}
+{{- $currentNode := .currentnode -}}
+{{- $menu_exclusion := .menu_exclusion -}}
+
+{{- if hasPrefix $currentNode.Permalink .menu.Permalink -}}
+  {{- $currentNode.Scratch.Set "NextPageOK" "OK" -}}
+  {{- if .menu.IsHome -}}
+    {{- $currentNode.Scratch.Set "prevPage" "" -}}
+  {{- else -}}
+    {{- $currentNode.Scratch.Set "prevPage" ($currentNode.Scratch.Get "prevPageTmp") -}}
+  {{- end -}}
+{{- else -}}
+  {{- if eq ($currentNode.Scratch.Get "NextPageOK") "OK" -}}
+    {{- $currentNode.Scratch.Set "NextPageOK" nil -}}
+    {{ if in $menu_exclusion .menu.Section }}
+    {{- else -}}
+      {{- $currentNode.Scratch.Set "nextPage" .menu -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $currentNode.Scratch.Set "prevPageTmp" .menu -}}
+{{- $currentNode.Scratch.Set "pages" .menu.Pages -}}
+{{- if .menu.IsHome -}}
+  {{- $currentNode.Scratch.Set "pages" .menu.Sections -}}
+{{- else if .menu.Sections -}}
+  {{- $currentNode.Scratch.Set "pages" (.menu.Pages | union .menu.Sections) -}}
+{{- end -}}
+{{- $pages := ($currentNode.Scratch.Get "pages") -}}
+{{- range $pages.ByWeight -}}
+  {{- template "pagination" dict "menu" . "currentnode" $currentNode "menu_exclusion" $menu_exclusion -}}
+{{- end -}}
+{{- end -}}

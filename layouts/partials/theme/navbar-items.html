@@ -1,0 +1,45 @@
+<div class="navbar-item">
+  <a
+    id="listDocuments"
+    class="button navbar-item-standard"
+    href="/listdocuments/"
+  >
+    <span class="icon">
+      <i class="fa-solid fa-list"></i>
+    </span>
+    <span class="icon-text">&nbsp;Список документов</span>
+  </a>
+</div><div class="navbar-item">
+  <a
+    id="searchButton"
+    class="button navbar-item-standard"
+    href="/search/"
+  >
+    <span class="icon">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </span>
+    <span class="icon-text">&nbsp;Поиск</span>
+  </a>
+</div>
+<div class="navbar-item">
+  <a
+    id="printButton{{- $.Scratch.Get "navbarExtendIdSuffix" -}}"
+    class="button navbar-item-standard"
+  >
+    <span class="icon-text">{{- i18n "navbar_label_print" -}}</span>
+    <span class="icon">
+      <i class="fa-solid fa-print fa-lg"></i>
+    </span>
+  </a>
+</div>
+{{- range $taxonomyname, $taxonomy := .Site.Taxonomies -}}
+  {{- $.Scratch.Add "taxonomyCount" (len $taxonomy) -}}
+{{- end -}}
+{{- if gt ($.Scratch.Get "taxonomyCount") 0 -}}
+  <div class="navbar-item">
+    {{- partial "theme/taxonomy-selector.html" . -}}
+  </div>
+{{- end -}}
+
+
+

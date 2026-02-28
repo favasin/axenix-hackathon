@@ -1,0 +1,122 @@
+{{ $spec := .Get "spec" }}
+{{ $baseURL := .Site.BaseURL }}
+<div class="redoc-wrapper" style="width:100%;">
+  <iframe id="redoc-iframe" srcdoc='
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>ReDoc</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            #redoc {
+                width: 100%;
+            }
+            div[class$="api-info"] {
+                display: none !important;
+            }
+            div[id^="tag"]:not([id*="path"]) {
+                display: none !important;
+            }
+            h2, h2 + div {
+                display: none !important;
+            }
+            div[class*="menu-content"] + div {
+                display: none !important;
+            }
+        </style>
+      </head>
+      <body>
+        <div id="redoc"></div>
+        <div id="error"></div>
+        <script>
+          const baseUrl = "{{ $baseURL | safeJS }}";
+          const specUrl = "{{ $spec | safeJS }}";
+          
+          const fullSpecUrl = specUrl.startsWith("http") ? specUrl : `${baseUrl}${specUrl}`;
+
+          function initializeRedoc() {
+            if (typeof Redoc === "undefined") {
+              console.error("ReDoc library is not loaded.");
+              document.getElementById("error").textContent = "ReDoc library failed to load.";
+              return;
+            }
+            
+            console.log("Loading spec from:", fullSpecUrl);
+            Redoc.init(
+              fullSpecUrl,
+              {
+                expandResponses: "200,201",
+                hideDownloadButton: true,
+                disableSearch: false,
+                menuToggle: false,
+                jsonSampleExpandLevel: "all",
+                schemaExpansionLevel: "all",
+                showExtensions: true, 
+                theme: {
+                    sidebar: {
+                       width: "1px"
+                    },
+                    breakpoints: {
+                        small: "50rem",
+                        medium: "85rem",
+                        large: "105rem"
+                    }
+                }
+              },
+              document.getElementById("redoc")
+            ).catch(error => {
+              console.error("Redoc error:", error);
+              document.getElementById("error").textContent = "Error loading spec: " + error.message;
+            });
+          }
+
+          window.onload = initializeRedoc;
+        </script>
+      </body>
+    </html>
+  '
+  style="width:100%; border:none;"
+  allowfullscreen>
+  </iframe>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.getElementById('redoc-iframe');
+    
+    function setIframeHeight(iframe) {
+        if (iframe.contentWindow) {
+            iframe.style.height = 
+                iframe.contentWindow.document.documentElement.getBoundingClientRect().height + 'px';
+        }
+    }
+
+    iframe.onload = function() {
+        // Initial height setting
+        setIframeHeight(iframe);
+
+        // Set up observer for content changes
+        const observer = new MutationObserver(() => {
+            setIframeHeight(iframe);
+        });
+
+        // Observe changes in the iframe's document
+        observer.observe(iframe.contentWindow.document.documentElement, {
+            childList: true,
+            subtree: true
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            setIframeHeight(iframe);
+        });
+    };
+});
+</script>

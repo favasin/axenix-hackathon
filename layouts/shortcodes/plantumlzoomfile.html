@@ -1,0 +1,103 @@
+{{ $file := .Get "file" }}
+{{ $height := .Get "height" | default "100%" }}
+{{ $width := .Get "width" | default "100%" }}
+{{ $scale := .Get "scale" | default 1 }}
+{{ $uniqueId := now.UnixNano }}
+{{ $plantumlServer := .Site.Params.plantumlServer | default "https://plantuml.com/svg/" }}
+{{ if not (strings.Contains $plantumlServer "/svg") }}
+  {{ $plantumlServer = printf "%s/svg/" (strings.TrimSuffix "/" $plantumlServer) }}
+{{ else }}
+  {{ $plantumlServer = printf "%s/" (strings.TrimSuffix "/" $plantumlServer) }}
+{{ end }}
+
+<style type="text/css">
+  .plantuml-zoom-container {
+    border: 2px solid grey
+</style>
+
+</br><a href="{{ $file }}" download>Скачать исходный файл PlantUML</a></br></br>
+
+<div id="container{{ $uniqueId }}" class="plantuml-zoom-container" style="height:{{ $height }};width:{{ $width }}"></div>
+
+<script language="javascript">
+  window.addEventListener('DOMContentLoaded', (event) => {
+    
+    var deflater = window.SharedWorker && new SharedWorker('/js/external/readfile/rawdeflate.min.js');
+    if (deflater) {
+      deflater.port.addEventListener('message', done_deflating, false);
+      deflater.port.start();
+    } else if (window.Worker) {
+      deflater = new Worker('/js/external/readfile/rawdeflate.min.js');
+      deflater.onmessage = done_deflating;
+    }    
+
+    function done_deflating(e) {
+
+      const container = document.getElementById("container{{ $uniqueId }}");
+      const request = new Request("{{ $plantumlServer }}", {
+        method: "POST",
+        body: e.data
+      });
+
+      fetch(request)
+        .then(response => response.text())
+        .then(svgContent => {
+          container.innerHTML = svgContent.replace(/[ ]*max-width:[ 0-9\.]*px;/i , '');
+          const svgElement = container.querySelector('svg');
+
+          if (svgElement) {
+              svgElement.setAttribute('style', 'width:100%;height:100%;');
+              
+              var panZoom = svgPanZoom(svgElement, {
+                  zoomEnabled: true,
+                  controlIconsEnabled: true,
+                  center: true
+              });
+              panZoom.zoom('{{ $scale }}');
+          } else {
+              console.error("SVG element not found in the fetched content.");
+          }
+        })
+        .catch(error => { console.error('Error fetching SVG:', error); });
+    }
+
+    function compress(source) {
+      // source = unescape(encodeURIComponent(source));
+
+      if (deflater) {
+        if (deflater.port && deflater.port.postMessage) {
+          deflater.port.postMessage(source);
+        } else {
+          deflater.postMessage(source);
+        }
+      } else {
+        setTimeout(function() {
+          done_deflating(source);
+        }, 0);
+      }
+    }
+
+    const file = '{{ $file }}';
+
+    function readFile() {
+      let source = "";
+      const rawFile = new XMLHttpRequest();
+      rawFile.open("GET", file, false);
+
+      rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4) {
+          if (rawFile.status === 200 || rawFile.status == 0) {
+            source = rawFile.responseText;
+          }
+        }
+      };
+
+      rawFile.send(null);
+
+      return source;
+    }
+
+    compress(readFile());
+
+  });
+</script>

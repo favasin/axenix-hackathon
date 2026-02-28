@@ -1,0 +1,19 @@
+{{ if .Site.Params.markmap.enable -}}
+<style>
+.markmap > svg {
+  width: 100%;
+  height: 1380px;
+}
+</style>
+<script>
+window.markmap = {
+  autoLoader: {
+      manual: true,
+      onReady() {
+        const { autoLoader, builtInPlugins } = window.markmap;
+        autoLoader.transformPlugins = builtInPlugins.filter(plugin => plugin.name !== 'prism');
+      },
+  },
+};
+</script>
+{{ end -}}

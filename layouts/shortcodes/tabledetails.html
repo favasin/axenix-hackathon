@@ -1,0 +1,18 @@
+{{- $tablecount := .Page.Scratch.Get "tablecount" | default 0 -}}
+{{- $tablecount = add $tablecount 1 -}}
+{{- .Page.Scratch.Set "tablecount" $tablecount -}}
+{{- $summary := .Get "summary" | default (i18n "state_tag_details") -}}
+{{- $state := .Get "state" | default "close" -}}
+{{- $caption := .Get "caption" | default (i18n "table_caption") -}}
+
+<details {{ if .Get 0 | eq $state "open"}} open {{ end }} id="details-table-{{ $tablecount }}" class="details_hugo" style="border: 1px solid #dbdbd6; padding: 0.75em; background: #f3f3f2; border-radius: 4px; margin-top: 15px;">
+    <summary>{{ $summary }}</summary>
+    <div id="table-container-{{ $tablecount }}">
+        <div style="margin-top: 15px;">
+            {{ i18n "table" }}&nbsp;{{ $tablecount }}: {{ $caption }}
+        </div>
+        <table id="{{ .Get "id" }}">
+            {{ .Inner | markdownify }}
+        </table>
+    </div>
+</details>

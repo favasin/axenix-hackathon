@@ -1,0 +1,10 @@
+{{ if .Page.GitInfo }}
+
+<ul class="info" style="line-height: 1.5; list-style-type: none; border: 1px solid; border-radius: 1px; padding: 5px; margin: 16px 10px 0; color: black;">
+    <li><strong>last change:</strong> <a href="mailto:{{ .GitInfo.AuthorEmail }}" target="_blank">{{ .Page.GitInfo.AuthorName }}</a></li>
+    <li><strong>commit desc:</strong><a href="https://jira.rlf-tech.com/browse/{{ .Page.GitInfo.Subject }}" target="_blank">{{ .Page.GitInfo.Subject }}</a> </li>
+    <li><strong>commit hash:</strong> <a href="{{ .Site.Params.github_doc_repository }}/-/commit/{{ .Page.GitInfo.Hash }}" target="_blank">{{ .Page.GitInfo.AbbreviatedHash }}</a></li> 
+    <li><strong>date:</strong> {{ .Page.GitInfo.AuthorDate.Format "02.01.2006" }}</li>
+</ul>
+
+{{ end }}

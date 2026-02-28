@@ -1,0 +1,7 @@
+{{ if .Page.GitInfo }}
+<ul class="info" style="line-height: 1.2; list-style-type: none; border: 1px solid #555; border-radius: 1px; padding:5px; float:right; margin: 0px; color: #555;">
+    <li><b>Author:</b> {{ .Page.GitInfo.AuthorName }}</li>
+    <li><b>Date:</b> {{ .Page.GitInfo.AuthorDate.Format "02.01.2006" }}</li>
+    <li><b>Commit:</b> <a href="{{ .Site.Params.github_doc_repository }}/-/commit/{{ .Page.GitInfo.Hash }}" target="_blank">{{ .Page.GitInfo.AbbreviatedHash }}</a></li> 
+</ul>
+{{ end }}

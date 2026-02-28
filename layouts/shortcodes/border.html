@@ -1,0 +1,6 @@
+{{- $borderColor := .Get "borderColor" | default "#ff0000" -}}
+{{- $borderWidth := .Get "borderWidth" | default "3px" -}}
+{{- $padding := .Get "padding" | default "15px" -}}
+<div style="border: {{ $borderWidth }} solid {{ $borderColor }}; padding: {{ $padding }};">
+  {{ .Inner | markdownify }}
+</div>

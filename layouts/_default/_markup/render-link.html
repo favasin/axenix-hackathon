@@ -1,0 +1,78 @@
+{{- $simpleLink := true -}}
+{{- with (findRE `(?s)<img.*>` .Text) -}}
+  {{- $simpleLink = false -}}
+{{- end -}}
+<a
+  href="{{- partial "theme/helpers/hrefResolver.html" (dict "this" .) -}}"
+  {{- with .Title -}}
+    title="{{- . -}}" id="{{- . | anchorize -}}"
+  {{- end -}}
+  {{- with $simpleLink }}
+    class="is-pretty-link"
+  {{- end -}}
+  {{ if or (strings.HasPrefix .Destination "http") (strings.HasPrefix .Destination "https") }} target="_blank"
+  {{- end -}}
+  >{{- .Text | safeHTML -}}</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+      /*width: 200px;
+      height: 200px;*/
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); // 'key' – это имя целевого параметра
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script>

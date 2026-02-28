@@ -1,0 +1,30 @@
+<nav id="navbar" class="navbar" role="navigation" aria-label="main navigation">
+  <div id="navbarItemsContainer" class="navbar-brand">
+    {{- partial "theme/logo.html" . -}}
+    <div id="navbarItems" class="is-flex">
+      <div id="navbarItemsStart" class="is-flex">
+        {{ if .Site.Params.topmenu }}
+          {{ range .Site.Params.topmenu }}
+            <div class="navbar-item">
+              <a
+                id="{{ .id }}"
+                class="button navbar-item-standard"
+                href="{{ .url }}"
+              >
+                <span class="icon">
+                  <i class="{{ .icon }}"></i>
+                </span>
+                <span class="icon-text">&nbsp;{{ .name }}</span>
+              </a>
+            </div>
+          {{ end }}
+        {{ end }}
+      </div>
+      <div id="navbarItemsEnd" class="is-flex">
+        {{- $.Scratch.Set "navbarExtendIdSuffix" "" -}}
+        {{- partial "theme/navbar-items.html" . -}}
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="navbarOverlay"></div>

@@ -1,0 +1,40 @@
+<div
+  id="langsSelectorContainer{{- $.Scratch.Get "navbarExtendIdSuffix" -}}"
+  class="dropdown is-right"
+>
+  <div class="dropdown-trigger">
+    <button
+      id="langsSelector{{- $.Scratch.Get "navbarExtendIdSuffix" -}}"
+      class="button navbar-item-standard"
+      aria-haspopup="true"
+      aria-controls="dropdown-menu"
+    >
+      <span class="icon-text">{{- $.Site.Language.LanguageName -}}</span>
+      <span class="icon">
+        <i class="fa-solid fa-globe fa-lg"></i>
+      </span>
+    </button>
+  </div>
+  <div
+    id="dropdown-menu-langs{{- $.Scratch.Get "navbarExtendIdSuffix" -}}"
+    class="dropdown-menu"
+    role="menu"
+  >
+    <div class="dropdown-content is-paddingless">
+      {{- range $.Page.AllTranslations -}}
+        {{- if eq $.Site.Language.LanguageName .Language.LanguageName -}}
+          <div class="dropdown-item is-selected has-text-weight-bold">
+            {{- .Language.LanguageName -}}
+          </div>
+        {{- else -}}
+          <a
+            href="{{- .RelPermalink | safeURL -}}"
+            class="dropdown-item has-text-weight-bold"
+          >
+            {{- .Language.LanguageName -}}
+          </a>
+        {{- end -}}
+      {{- end -}}
+    </div>
+  </div>
+</div>

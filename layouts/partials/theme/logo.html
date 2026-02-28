@@ -1,0 +1,60 @@
+<div id="globalLogoContainer" class="is-flex">
+  {{- $logoPath := .Site.Params.logo | default "images/logo.png" -}}
+  {{- $logoSrc := "" -}}
+  {{- $logoIntegrity := "" -}}
+  {{- if or (hasPrefix $logoPath "http://") (hasPrefix $logoPath "https://") (hasPrefix $logoPath "//") -}}
+    {{- $logoSrc = $logoPath -}}
+  {{- else -}}
+    {{- $logoRes := resources.Get (strings.TrimPrefix "/" $logoPath) -}}
+    {{- if $logoRes -}}
+      {{- $logoRes = $logoRes | fingerprint -}}
+      {{- $logoSrc = $logoRes.RelPermalink -}}
+      {{- $logoIntegrity = $logoRes.Data.Integrity -}}
+    {{- else -}}
+      {{- $logoSrc = printf "%s?v=%d" ($logoPath | relURL) now.Unix -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $logoTouchPath := .Site.Params.logoTouch | default "images/logoTouch.png" -}}
+  {{- $logoTouchSrc := "" -}}
+  {{- $logoTouchIntegrity := "" -}}
+  {{- if or (hasPrefix $logoTouchPath "http://") (hasPrefix $logoTouchPath "https://") (hasPrefix $logoTouchPath "//") -}}
+    {{- $logoTouchSrc = $logoTouchPath -}}
+  {{- else -}}
+    {{- $logoTouchRes := resources.Get (strings.TrimPrefix "/" $logoTouchPath) -}}
+    {{- if $logoTouchRes -}}
+      {{- $logoTouchRes = $logoTouchRes | fingerprint -}}
+      {{- $logoTouchSrc = $logoTouchRes.RelPermalink -}}
+      {{- $logoTouchIntegrity = $logoTouchRes.Data.Integrity -}}
+    {{- else -}}
+      {{- $logoTouchSrc = printf "%s?v=%d" ($logoTouchPath | relURL) now.Unix -}}
+    {{- end -}}
+  {{- end -}}
+
+  <a
+    id="globalLogo"
+    class="navbar-item navbar-item-standard is-paddingless"
+    href="{{- urls.JoinPath (.Site.BaseURL | relLangURL) "/" -}}"
+  >
+    <img
+      id="globalLogoImg"
+      alt="{{- i18n "homepage_title" -}}"
+      src="{{- $logoSrc -}}"
+      {{- if $logoIntegrity -}} integrity="{{- $logoIntegrity -}}"{{- end -}}
+    />
+    <div class="logo-header-container">
+      <span>{{ .Site.Title }}</span>
+    </div>
+  </a>
+  <a
+    id="globalTouchLogo"
+    class="navbar-item navbar-item-standard is-paddingless"
+    href="{{- urls.JoinPath (.Site.BaseURL | relLangURL) "/" -}}"
+  >
+    <img
+      alt="{{- i18n "homepage_title" -}}"
+      src="{{- $logoTouchSrc -}}"
+      {{- if $logoTouchIntegrity -}} integrity="{{- $logoTouchIntegrity -}}"{{- end -}}
+    />
+  </a>
+</div>

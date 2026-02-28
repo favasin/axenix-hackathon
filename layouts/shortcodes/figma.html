@@ -1,0 +1,12 @@
+
+{{- $figmaWidth := .Get "width" | default "100%" -}}
+{{- $figmaHeight := .Get "height" | default "650px" -}}
+
+<p align="center">
+    <iframe
+        width="{{$figmaWidth}}"
+        height="{{$figmaHeight}}"
+        src="https://www.figma.com/embed?embed_host=share&embed_origin=share.here&url={{.Inner}}"
+        allowfullscreen>
+    </iframe>
+</p>

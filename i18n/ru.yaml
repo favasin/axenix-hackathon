@@ -1,0 +1,32 @@
+- id: warning
+  translation: "Внимание!"
+- id: note
+  translation: "Заметка"
+- id: info
+  translation: "Информация"
+- id: tip
+  translation: "Совет"
+- id: intro_error_title
+  translation: 'Ошибка !!'
+- id: intro_error
+  translation: "Некорректный JSON. Проверьте JSON данные передаваемые шорткоду 'intro'."
+- id: intro_empty
+  translation: "Attribute <strong><i>steps</i></strong> not found. Please check the JSON definition given inside the 'intro' shortcode"
+- id: intro_prevlabel
+  translation: 'Предыдущий'
+- id: intro_nextlabel
+  translation: 'Следующий'
+- id: intro_skiplabel
+  translation: '✗'
+- id: intro_donelabel
+  translation: 'Завершить'
+- id: image
+  translation: 'Рисунок'
+- id: table
+  translation: 'Таблица'
+- id: state_tag_details
+  translation: 'Развернуть/Свернуть'
+- id: table_caption
+  translation: 'Название таблицы'
+- id: image_caption
+  translation: 'Название рисунка'
