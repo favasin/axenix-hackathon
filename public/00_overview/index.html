@@ -3,9 +3,9 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="generator" content="Hugo 0.126.1">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Общее описание задачи" />
 
-<title>Categories</title>
+<title>Общее описание</title>
 <link
   rel="icon"
   href="/images/favicon.png?v=1772285837"
@@ -195,14 +195,14 @@
   <div id="sidebarWrapper" class="is-fixed">
     <div id="sidebar" class="is-marginless">
       <aside class="menu is-paddingless is-marginless">
-        <ul class="menu-list is-marginless is-paddingless"><div class="card is-fs-expandable-icon"><div class="card-header is-single-link">
+        <ul class="menu-list is-marginless is-paddingless"><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header is-single-link">
       <a
         href='/00_overview/'
         class='card-header-title'>
         <i class='fa-solid fa-circle-info fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless"><div
-            class="card"><div class="card-header is-single-link">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active"><div
+            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header is-single-link">
       <a
         href='/00_overview/'
         class='card-header-title'
@@ -309,12 +309,151 @@
   </div>
 </div>
 <div id="sidebarMobileWrapper" class="column is-narrow is-hidden-desktop"></div>
-<div class="column is-marginless" id="contentContainer"><div id="contentTitle">Categories</div><div class="tabs-container">
-      <nav class="tabs-triggers">
-        <ul></ul>
-      </nav>
-      <div class="tabs-results"></div>
-    </div></div>
+<div class="columns is-mobile is-marginless is-scroll-smooth has-toc is-toc-collapsed" id="contentContainer">
+  <div class="column" id="content" data-pagefind-body><style>
+    ul.breadcrumb {
+      padding: 10px 15px;
+      list-style: none;
+      background-color: #eee;
+    }
+    ul.breadcrumb li {
+      display: inline;
+      font-size: 14px;
+    }
+    ul.breadcrumb li+li:before {
+      padding: 8px;
+      color: black;
+      content: "/\00a0";
+    }
+    ul.breadcrumb li a {
+      color: #0275d8;
+      text-decoration: none;
+    }
+    ul.breadcrumb li a:hover {
+      color: #01447e;
+      text-decoration: underline;
+    }
+</style>
+<ul id="breadcrumbs" class="breadcrumb">
+        <li> <a href="/">Промпт-инжиниринг</a> </li>
+    <li> <a href="/00_overview/">Общее описание</a></li>
+</ul>
+<div id="contentTitle">Общее описание</div><h1 id='хакатон-axenix'>Хакатон Axenix<a href='#%d1%85%d0%b0%d0%ba%d0%b0%d1%82%d0%be%d0%bd-axenix' class='anchor'>#</a>
+</h1><p>Репозиторий содержит документацию для сервиса, написанную в рамках хакатона Axenix, трек «Промпт-инжиниринг».</p>
+<p>Команда &ldquo;It Depends&rdquo;.</p>
+<p>Участники:</p>
+<ul>
+<li>Васин Фёдор</li>
+<li>Галеева Диана</li>
+<li>Зашкола Алина</li>
+<li>Кертиева Сабина</li>
+<li>Скоморохов Александр</li>
+</ul>
+<h2 id='контекст-задачи'>Контекст задачи<a href='#%d0%ba%d0%be%d0%bd%d1%82%d0%b5%d0%ba%d1%81%d1%82-%d0%b7%d0%b0%d0%b4%d0%b0%d1%87%d0%b8' class='anchor'>#</a>
+</h2><p>С помощью промптинга разработать системный дизайн сервиса по генерации презентаций с учётом бизнес, функциональных и технических требований.</p>
+<h2 id='выбор-llm'>Выбор LLM<a href='#%d0%b2%d1%8b%d0%b1%d0%be%d1%80-llm' class='anchor'>#</a>
+</h2><p>В рамках решения задачи мы сравнили модели ChatGPT 5.2, Mistral, Claude, DeepSeek и Gemini.
+Цель сравнения: выбрать LLM, в которую команда будет отправлять промпты для подготовки системного дизайна сервиса по генерации презентаций.</p>
+<p>Важно: это выбор модели для этапа <strong>аналитики и проектирования</strong>, а не выбор LLM, которая будет работать внутри конечного продукта в production.</p>
+<p>Для подготовки документации и системного дизайна выбрана модель <strong>Claude</strong>.</p>
+<h2 id='почему-выбрали-claude-для-документирования-решения'>Почему выбрали Claude для документирования решения<a href='#%d0%bf%d0%be%d1%87%d0%b5%d0%bc%d1%83-%d0%b2%d1%8b%d0%b1%d1%80%d0%b0%d0%bb%d0%b8-claude-%d0%b4%d0%bb%d1%8f-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d1%8f' class='anchor'>#</a>
+</h2><ul>
+<li>Лучше сохраняет структуру длинных материалов: от бизнес-требований до технической архитектуры.</li>
+<li>Стабильно следует сложным инструкциям к формату (разделы, таблицы, матрицы трассировки, критерии приемки, готовые шаблоны).</li>
+<li>Дает более связные и логически непротиворечивые артефакты по архитектуре и функциональным сценариям.</li>
+<li>Удобно поддерживает итеративный режим работы: уточнение требований, ревизии, детализация по шагам.</li>
+<li>Качество текста подходит для быстрой передачи в работу аналитикам, архитекторам и разработке.</li>
+</ul>
+<h2 id='какие-артефакты-формируем-через-выбранную-llm'>Какие артефакты формируем через выбранную LLM<a href='#%d0%ba%d0%b0%d0%ba%d0%b8%d0%b5-%d0%b0%d1%80%d1%82%d0%b5%d1%84%d0%b0%d0%ba%d1%82%d1%8b-%d1%84%d0%be%d1%80%d0%bc%d0%b8%d1%80%d1%83%d0%b5%d0%bc-%d1%87%d0%b5%d1%80%d0%b5%d0%b7-%d0%b2%d1%8b%d0%b1%d1%80%d0%b0%d0%bd%d0%bd%d1%83%d1%8e-llm' class='anchor'>#</a>
+</h2><ul>
+<li>Vision и scope решения.</li>
+<li>Бизнес-требования и ограничения.</li>
+<li>Функциональные и нефункциональные требования.</li>
+<li>Системный дизайн сервиса генерации презентаций.</li>
+<li>Описание модулей, интеграций и API-контрактов.</li>
+<li>Пользовательские сценарии, user stories, критерии приемки.</li>
+<li>Риски, допущения, roadmap и план валидации.</li>
+</ul>
+<h2 id='отдельно-про-выбор-llm-в-самом-продукте'>Отдельно про выбор LLM в самом продукте<a href='#%d0%be%d1%82%d0%b4%d0%b5%d0%bb%d1%8c%d0%bd%d0%be-%d0%bf%d1%80%d0%be-%d0%b2%d1%8b%d0%b1%d0%be%d1%80-llm-%d0%b2-%d1%81%d0%b0%d0%bc%d0%be%d0%bc-%d0%bf%d1%80%d0%be%d0%b4%d1%83%d0%ba%d1%82%d0%b5' class='anchor'>#</a>
+</h2><p>Выбор LLM для сервиса генерации презентаций выполняется отдельным этапом на основе иных критериев (качество генерации слайдов, latency, стоимость, надежность, безопасность, масштабируемость).</p>
+<script lang="js">
+  const innerPages = document.getElementById("inner-pages");
+  if (innerPages) {
+    innerPages.querySelectorAll("li").forEach(listElement => {
+      listElement.addEventListener("click", () => {
+        const name = listElement.innerText.trim();
+        if (openedMenu) {
+          if (openedMenu.includes(name)) {
+            const index = openedMenu.findIndex(item => item === name);
+            openedMenu.splice(index, 1);
+          } else {
+            openedMenu.push(name);
+          }
+          localStorage.setItem("openedMenu", JSON.stringify(openedMenu));
+        } else {
+          localStorage.setItem("openedMenu", "[" + name + "]")
+        }
+      });
+    });
+  }
+</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/" title="Промпт-инжиниринг"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - Промпт-инжиниринг</a>
+  <a class="nav nav-next" href="http://localhost:1313/01_architecture/" title="Архитектура">Следующее - Архитектура <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</nav></div><div class="column is-sticky is-paddingless" id="tocWrapper">
+  <div class="is-paddingless" id="tocContainer">
+    <div id="tocContent">
+      <div class="additionalinfo">
+    <span id="method_name">Общее описание</span>
+
+
+
+
+
+
+
+    <strong>Описание:</strong> Общее описание задачи
+</div>
+      <div class="toc-header">
+        <h6 class="toc-title is-marginless">Содержание:On this page:</h6>
+        <i
+          title="Back to top"
+          id="tocBackToTop"
+          class="fa-solid fa-circle-arrow-up"
+        ></i>      
+      </div>
+      <div id="toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#контекст-задачи">Контекст задачи</a></li>
+    <li><a href="#выбор-llm">Выбор LLM</a></li>
+    <li><a href="#почему-выбрали-claude-для-документирования-решения">Почему выбрали Claude для документирования решения</a></li>
+    <li><a href="#какие-артефакты-формируем-через-выбранную-llm">Какие артефакты формируем через выбранную LLM</a></li>
+    <li><a href="#отдельно-про-выбор-llm-в-самом-продукте">Отдельно про выбор LLM в самом продукте</a></li>
+  </ul>
+</nav></div>
+<ul class="info" style="line-height: 1.2; list-style-type: none; border: 1px solid; border-radius: 1px; padding: 5px; margin: 16px 10px 0; color: black;">
+    
+    
+    
+    
+    
+    
+    
+    
+    </ul>
+    
+<div id="taxonomies"><div class="taxonomy-wrapper"></div><div class="taxonomy-wrapper"></div></div>
+      <div class="toc-header"><div class="edit-meta"></div>
+</div>
+    </div>
+  </div>
+  <div
+    class="is-paddingless"
+    id="tocCollapsible"
+    title="Collapse/Uncollapse table of contents"
+  >
+    <i class="fa-solid fa-angles-right fa-lg"></i>
+  </div>
+</div>
+</div>
 </div><script type='text/javascript'>
   const baseUrl = 'http:\/\/localhost:1313\/';
   const codeCopyBefore = 'Copy to clipboard';

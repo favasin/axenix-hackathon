@@ -3,9 +3,9 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="generator" content="Hugo 0.126.1">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Описание сущностей, связей и принципов хранения данных." />
 
-<title>Categories</title>
+<title>Модель данных и базы данных</title>
 <link
   rel="icon"
   href="/images/favicon.png?v=1772285837"
@@ -225,23 +225,23 @@
         <i class='fa-solid fa-diagram-project fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Архитектура</p></a></div>
           </div></li>
       </div>
-    </div><div class="card is-fs-expandable-icon"><div class="card-header">
+    </div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
       <a
         href='/03_backend/'
         class='card-header-title'>
         <i class='fa-solid fa-server fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
             class="card"><div class="card-header">
       <a
         href='/03_backend/'
         class='card-header-title'
           title='Backend'>
-        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
                 <span class='icon'></span>
               </a>
             </div>
-          </div><ul class="is-marginless"><div class="">
+          </div><ul class="is-marginless is-tree-active"><div class="">
       <div class=""><li class="is-marginless"><div
             class="card"><div class="card-header is-single-link">
       <a
@@ -253,7 +253,7 @@
       </div>
     </div><div class="">
       <div class=""><li class="is-marginless"><div
-            class="card"><div class="card-header is-single-link">
+            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header is-single-link">
       <a
         href='/03_backend/01_info_models/'
         class='card-header-title'
@@ -309,12 +309,110 @@
   </div>
 </div>
 <div id="sidebarMobileWrapper" class="column is-narrow is-hidden-desktop"></div>
-<div class="column is-marginless" id="contentContainer"><div id="contentTitle">Categories</div><div class="tabs-container">
-      <nav class="tabs-triggers">
-        <ul></ul>
-      </nav>
-      <div class="tabs-results"></div>
-    </div></div>
+<div class="columns is-mobile is-marginless is-scroll-smooth has-toc is-toc-collapsed" id="contentContainer">
+  <div class="column" id="content" data-pagefind-body><style>
+    ul.breadcrumb {
+      padding: 10px 15px;
+      list-style: none;
+      background-color: #eee;
+    }
+    ul.breadcrumb li {
+      display: inline;
+      font-size: 14px;
+    }
+    ul.breadcrumb li+li:before {
+      padding: 8px;
+      color: black;
+      content: "/\00a0";
+    }
+    ul.breadcrumb li a {
+      color: #0275d8;
+      text-decoration: none;
+    }
+    ul.breadcrumb li a:hover {
+      color: #01447e;
+      text-decoration: underline;
+    }
+</style>
+<ul id="breadcrumbs" class="breadcrumb">
+        <li> <a href="/">Промпт-инжиниринг</a> </li>
+        <li> <a href="/03_backend/">Backend</a> </li>
+    <li> <a href="/03_backend/01_info_models/">Модель данных и базы данных</a></li>
+</ul>
+<div id="contentTitle">Модель данных и базы данных</div><p>Раздел фиксирует информационную модель, структуру хранилища и правила целостности данных. Здесь описываются ключевые сущности, связи, ограничения и атрибуты, необходимые для согласованной реализации.</p>
+<p>Материалы используются для проектирования схемы, миграций и контроля совместимости изменений на уровне данных.</p>
+<script lang="js">
+  const innerPages = document.getElementById("inner-pages");
+  if (innerPages) {
+    innerPages.querySelectorAll("li").forEach(listElement => {
+      listElement.addEventListener("click", () => {
+        const name = listElement.innerText.trim();
+        if (openedMenu) {
+          if (openedMenu.includes(name)) {
+            const index = openedMenu.findIndex(item => item === name);
+            openedMenu.splice(index, 1);
+          } else {
+            openedMenu.push(name);
+          }
+          localStorage.setItem("openedMenu", JSON.stringify(openedMenu));
+        } else {
+          localStorage.setItem("openedMenu", "[" + name + "]")
+        }
+      });
+    });
+  }
+</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/03_backend/02_rest_methods/" title="REST API"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - REST API</a>
+  <a class="nav nav-next" href="http://localhost:1313/02_frontend/" title="Frontend">Следующее - Frontend <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</nav></div><div class="column is-sticky is-paddingless" id="tocWrapper">
+  <div class="is-paddingless" id="tocContainer">
+    <div id="tocContent">
+      <div class="additionalinfo">
+    <span id="method_name">Модель данных и базы данных</span>
+
+
+
+
+
+
+
+    <strong>Описание:</strong> Описание сущностей, связей и принципов хранения данных.
+</div>
+      <div class="toc-header">
+        <h6 class="toc-title is-marginless">Содержание:On this page:</h6>
+        <i
+          title="Back to top"
+          id="tocBackToTop"
+          class="fa-solid fa-circle-arrow-up"
+        ></i>      
+      </div>
+      <div id="toc"><nav id="TableOfContents">
+            <p><strong>No data available</strong></p>
+          </nav></div>
+<ul class="info" style="line-height: 1.2; list-style-type: none; border: 1px solid; border-radius: 1px; padding: 5px; margin: 16px 10px 0; color: black;">
+    
+    
+    
+    
+    
+    
+    
+    
+    </ul>
+    
+<div id="taxonomies"><div class="taxonomy-wrapper"></div><div class="taxonomy-wrapper"></div></div>
+      <div class="toc-header"><div class="edit-meta"></div>
+</div>
+    </div>
+  </div>
+  <div
+    class="is-paddingless"
+    id="tocCollapsible"
+    title="Collapse/Uncollapse table of contents"
+  >
+    <i class="fa-solid fa-angles-right fa-lg"></i>
+  </div>
+</div>
+</div>
 </div><script type='text/javascript'>
   const baseUrl = 'http:\/\/localhost:1313\/';
   const codeCopyBefore = 'Copy to clipboard';
