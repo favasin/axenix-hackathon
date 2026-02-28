@@ -1,0 +1,3767 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "PresentAI API",
+    "description": "REST API для AI-сервиса генерации презентаций PresentAI.\n\n## Аутентификация\nПоддерживаются два способа аутентификации:\n- **Bearer JWT** — для веб-приложения (после OAuth 2.0 / SSO)\n- **API Key** — для интеграторов (заголовок `X-API-Key`)\n\n## Rate Limiting\n| Тариф | Лимит |\n|-------|-------|\n| Free | 10 req/min |\n| Pro | 60 req/min |\n| Enterprise | Custom |\n\nЗаголовки ответа: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`\n\n## Версионирование\nТекущая версия: `v1`. Путь: `/api/v1/...`\n\n## Коды ошибок\nВсе ошибки возвращаются в формате `ErrorResponse`.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "PresentAI API Support",
+      "email": "api@presentai.io"
+    },
+    "license": {
+      "name": "Proprietary"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.presentai.io/api/v1",
+      "description": "Production"
+    },
+    {
+      "url": "https://staging-api.presentai.io/api/v1",
+      "description": "Staging"
+    },
+    {
+      "url": "http://localhost:8000/api/v1",
+      "description": "Local development"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    },
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Аутентификация и управление сессиями"
+    },
+    {
+      "name": "Users",
+      "description": "Управление профилем пользователя"
+    },
+    {
+      "name": "Organizations",
+      "description": "Управление организацией и участниками"
+    },
+    {
+      "name": "Projects",
+      "description": "Проекты (группировка презентаций)"
+    },
+    {
+      "name": "Presentations",
+      "description": "Создание и управление презентациями"
+    },
+    {
+      "name": "Generation",
+      "description": "AI-генерация контента (outline, слайды, тональность)"
+    },
+    {
+      "name": "Files",
+      "description": "Загрузка и управление исходными файлами"
+    },
+    {
+      "name": "BrandKit",
+      "description": "Управление Brand Kit организации"
+    },
+    {
+      "name": "Export",
+      "description": "Экспорт презентаций в различные форматы"
+    },
+    {
+      "name": "Sharing",
+      "description": "Публикация и совместный доступ"
+    },
+    {
+      "name": "Webhooks",
+      "description": "Управление webhook-подписками"
+    },
+    {
+      "name": "Usage",
+      "description": "Статистика использования и биллинг"
+    }
+  ],
+  "paths": {
+    "/auth/token": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Получить JWT-токен (email + password)",
+        "operationId": "authGetToken",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthCredentials"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Успешная аутентификация",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Обновить access-токен по refresh-токену",
+        "operationId": "authRefreshToken",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["refresh_token"],
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Новая пара токенов",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Завершить сессию (инвалидировать токен)",
+        "operationId": "authLogout",
+        "responses": {
+          "204": {
+            "description": "Сессия завершена"
+          }
+        }
+      }
+    },
+    "/auth/sso/{provider}": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Инициировать OAuth 2.0 / SAML SSO",
+        "operationId": "authSsoRedirect",
+        "security": [],
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["google", "microsoft", "okta"]
+            }
+          },
+          {
+            "name": "redirect_uri",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Редирект на Identity Provider"
+          }
+        }
+      }
+    },
+    "/auth/sso/{provider}/callback": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Callback от Identity Provider",
+        "operationId": "authSsoCallback",
+        "security": [],
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["google", "microsoft", "okta"]
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JWT-токены после успешной аутентификации",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Получить профиль текущего пользователя",
+        "operationId": "getUserMe",
+        "responses": {
+          "200": {
+            "description": "Профиль пользователя",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Обновить профиль",
+        "operationId": "updateUserMe",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Обновлённый профиль",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/me/preferences": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Получить пользовательские настройки (язык, тональность по умолчанию и т.д.)",
+        "operationId": "getUserPreferences",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPreferences"
+                }
+              }
+            },
+            "description": "Настройки пользователя"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Обновить пользовательские настройки",
+        "operationId": "updateUserPreferences",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPreferences"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPreferences"
+                }
+              }
+            },
+            "description": "Обновлённые настройки"
+          }
+        }
+      }
+    },
+    "/users/me/delete": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Запрос на удаление аккаунта (GDPR right to erasure)",
+        "operationId": "requestUserDeletion",
+        "responses": {
+          "202": {
+            "description": "Запрос принят, аккаунт будет удалён в течение 30 дней"
+          }
+        }
+      }
+    },
+    "/organizations": {
+      "post": {
+        "tags": ["Organizations"],
+        "summary": "Создать организацию",
+        "operationId": "createOrganization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Организация создана",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Organization"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{org_id}": {
+      "get": {
+        "tags": ["Organizations"],
+        "summary": "Получить информацию об организации",
+        "operationId": "getOrganization",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Organization"
+                }
+              }
+            },
+            "description": "Данные организации"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Organizations"],
+        "summary": "Обновить организацию",
+        "operationId": "updateOrganization",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrganizationUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Organization"
+                }
+              }
+            },
+            "description": "Обновлённая организация"
+          }
+        }
+      }
+    },
+    "/organizations/{org_id}/members": {
+      "get": {
+        "tags": ["Organizations"],
+        "summary": "Список участников организации",
+        "operationId": "listOrgMembers",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          },
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Участники организации",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MemberList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Organizations"],
+        "summary": "Пригласить пользователя в организацию",
+        "operationId": "inviteOrgMember",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberInvite"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Приглашение отправлено",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Member"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{org_id}/members/{user_id}": {
+      "patch": {
+        "tags": ["Organizations"],
+        "summary": "Изменить роль участника",
+        "operationId": "updateOrgMember",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["role"],
+                "properties": {
+                  "role": {
+                    "$ref": "#/components/schemas/OrgRole"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Роль обновлена",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Member"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Organizations"],
+        "summary": "Удалить участника из организации",
+        "operationId": "removeOrgMember",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Участник удалён"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Список проектов пользователя",
+        "operationId": "listProjects",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitParam"
+          },
+          {
+            "name": "org_id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Фильтр по организации"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список проектов",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Projects"],
+        "summary": "Создать проект",
+        "operationId": "createProject",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Проект создан",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}": {
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Получить проект",
+        "operationId": "getProject",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProjectId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Данные проекта",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Projects"],
+        "summary": "Обновить проект",
+        "operationId": "updateProject",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProjectId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Обновлённый проект",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Projects"],
+        "summary": "Удалить проект",
+        "operationId": "deleteProject",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProjectId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Проект удалён"
+          }
+        }
+      }
+    },
+    "/presentations": {
+      "get": {
+        "tags": ["Presentations"],
+        "summary": "Список презентаций",
+        "operationId": "listPresentations",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitParam"
+          },
+          {
+            "name": "project_id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/PresentationStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список презентаций",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresentationList"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Presentations"],
+        "summary": "Создать новую презентацию (черновик)",
+        "operationId": "createPresentation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PresentationCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Черновик презентации создан",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Presentation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}": {
+      "get": {
+        "tags": ["Presentations"],
+        "summary": "Получить презентацию со слайдами",
+        "operationId": "getPresentation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Презентация",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresentationDetail"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Presentations"],
+        "summary": "Обновить метаданные презентации",
+        "operationId": "updatePresentation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PresentationUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Обновлённая презентация",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Presentation"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Presentations"],
+        "summary": "Удалить презентацию",
+        "operationId": "deletePresentation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Презентация удалена"
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/slides/{slide_id}": {
+      "patch": {
+        "tags": ["Presentations"],
+        "summary": "Обновить содержимое слайда (inline-редактирование)",
+        "operationId": "updateSlide",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          },
+          {
+            "name": "slide_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SlideUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Обновлённый слайд",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Slide"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/slides/reorder": {
+      "post": {
+        "tags": ["Presentations"],
+        "summary": "Изменить порядок слайдов (drag-and-drop)",
+        "operationId": "reorderSlides",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["slide_ids"],
+                "properties": {
+                  "slide_ids": {
+                    "type": "array",
+                    "description": "Упорядоченный массив ID слайдов",
+                    "items": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Новый порядок применён",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresentationDetail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/versions": {
+      "get": {
+        "tags": ["Presentations"],
+        "summary": "История версий презентации (до 20)",
+        "operationId": "listVersions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список версий",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "versions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PresentationVersion"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/versions/{version_id}/restore": {
+      "post": {
+        "tags": ["Presentations"],
+        "summary": "Восстановить версию презентации",
+        "operationId": "restoreVersion",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          },
+          {
+            "name": "version_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Версия восстановлена",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresentationDetail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/comments": {
+      "get": {
+        "tags": ["Presentations"],
+        "summary": "Получить комментарии к презентации",
+        "operationId": "listComments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список комментариев",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "comments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Comment"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Presentations"],
+        "summary": "Добавить комментарий к слайду",
+        "operationId": "addComment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Комментарий добавлен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/generate/outline": {
+      "post": {
+        "tags": ["Generation"],
+        "summary": "Сгенерировать outline (структуру) презентации",
+        "description": "Первый шаг генерации. Возвращает список слайдов с заголовками и ключевыми тезисами.\nРезультат отображается пользователю для проверки перед финальной генерацией.\nВремя ответа: < 10 сек. Операция синхронная.",
+        "operationId": "generateOutline",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateOutlineRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Outline сгенерирован",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Outline"
+                }
+              }
+            }
+          },
+          "402": {
+            "$ref": "#/components/responses/PaymentRequired"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Generation"],
+        "summary": "Сохранить отредактированный outline",
+        "operationId": "updateOutline",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Outline"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Outline сохранён",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Outline"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/generate/slides": {
+      "post": {
+        "tags": ["Generation"],
+        "summary": "Запустить полную генерацию слайдов по outline",
+        "description": "Асинхронная операция. Возвращает `task_id`.\nПрогресс можно отслеживать через WebSocket (`/ws/presentations/{id}`)\nили polling `/tasks/{task_id}`.\nСлайды появляются по мере готовности (streaming через WebSocket).",
+        "operationId": "generateSlides",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateSlidesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Задача генерации принята",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "$ref": "#/components/responses/PaymentRequired"
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/generate/slide/{slide_id}": {
+      "post": {
+        "tags": ["Generation"],
+        "summary": "Перегенерировать или улучшить один слайд",
+        "description": "Синхронная операция. Изменяет только указанный слайд, остальные не затрагиваются.\nВремя ответа: < 5 сек.",
+        "operationId": "regenerateSlide",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          },
+          {
+            "name": "slide_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegenerateSlideRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Слайд перегенерирован",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Slide"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/generate/tone": {
+      "post": {
+        "tags": ["Generation"],
+        "summary": "Изменить тональность всей презентации",
+        "description": "Асинхронная операция. Затрагивает только текст, не меняет данные и структуру.\nВремя обработки: < 30 сек.",
+        "operationId": "changeTone",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["tone"],
+                "properties": {
+                  "tone": {
+                    "$ref": "#/components/schemas/ToneType"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Задача смены тональности принята",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/generate/adapt": {
+      "post": {
+        "tags": ["Generation"],
+        "summary": "Адаптировать презентацию под профиль клиента",
+        "description": "AI переформулирует акценты и примеры под указанный профиль клиента\nбез изменения базовой структуры.",
+        "operationId": "adaptPresentation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdaptRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Задача адаптации принята",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/generate/ai-comment": {
+      "post": {
+        "tags": ["Generation"],
+        "summary": "Выполнить AI-инструкцию из комментария к слайду",
+        "description": "Пользователь тегает @AI в комментарии с инструкцией.\nAI отвечает на комментарий и обновляет слайд.",
+        "operationId": "executeAiComment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["comment_id"],
+                "properties": {
+                  "comment_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Слайд обновлён по инструкции AI",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Slide"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}": {
+      "get": {
+        "tags": ["Generation"],
+        "summary": "Получить статус асинхронной задачи",
+        "operationId": "getTask",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Статус задачи",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskStatus"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/files": {
+      "post": {
+        "tags": ["Files"],
+        "summary": "Загрузить файл-источник данных",
+        "description": "Поддерживаемые форматы: PDF, DOCX, XLSX, CSV, PPTX, PNG, JPG.\nМаксимальный размер: 50 МБ.\nФайл асинхронно обрабатывается (chunking + embedding).",
+        "operationId": "uploadFile",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file"],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "presentation_id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Привязать к презентации"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Файл принят на обработку",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileUploadResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "$ref": "#/components/responses/PayloadTooLarge"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          }
+        }
+      }
+    },
+    "/files/url": {
+      "post": {
+        "tags": ["Files"],
+        "summary": "Добавить URL как источник данных",
+        "operationId": "addUrlSource",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["url"],
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "presentation_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "URL принят на обработку",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileUploadResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
+          }
+        }
+      }
+    },
+    "/files/{file_id}": {
+      "get": {
+        "tags": ["Files"],
+        "summary": "Получить метаданные и статус обработки файла",
+        "operationId": "getFile",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Метаданные файла",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/File"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Files"],
+        "summary": "Удалить файл",
+        "operationId": "deleteFile",
+        "parameters": [
+          {
+            "name": "file_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Файл удалён"
+          }
+        }
+      }
+    },
+    "/organizations/{org_id}/brand-kit": {
+      "get": {
+        "tags": ["BrandKit"],
+        "summary": "Получить Brand Kit организации",
+        "operationId": "getBrandKit",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Brand Kit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrandKit"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": ["BrandKit"],
+        "summary": "Создать или полностью заменить Brand Kit",
+        "operationId": "upsertBrandKit",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BrandKitUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Brand Kit сохранён",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrandKit"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["BrandKit"],
+        "summary": "Частично обновить Brand Kit",
+        "operationId": "patchBrandKit",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BrandKitUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Brand Kit обновлён",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BrandKit"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{org_id}/brand-kit/logo": {
+      "post": {
+        "tags": ["BrandKit"],
+        "summary": "Загрузить логотип",
+        "operationId": "uploadLogo",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file"],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "SVG или PNG, макс. 5 МБ"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Логотип загружен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "logo_url": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{org_id}/brand-kit/fonts": {
+      "post": {
+        "tags": ["BrandKit"],
+        "summary": "Загрузить шрифт",
+        "operationId": "uploadFont",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["file", "role"],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "TTF или OTF"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": ["heading", "body"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Шрифт загружен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FontAsset"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{org_id}/brand-kit/style-training": {
+      "post": {
+        "tags": ["BrandKit"],
+        "summary": "Загрузить образцовые презентации для обучения стилю (AI-004)",
+        "description": "Enterprise-функция. Администратор загружает 5–20 образцовых PPTX.\nAI анализирует структуру, словарный запас, паттерны аргументации.\nЗадача асинхронная, может занимать до 10 минут.",
+        "operationId": "trainStyle",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["files"],
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "minItems": 5,
+                    "maxItems": 20
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Обучение запущено",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/export": {
+      "post": {
+        "tags": ["Export"],
+        "summary": "Инициировать экспорт презентации",
+        "description": "Асинхронная операция. Для форматов PPTX и PDF — задача создаётся в очереди.\nРезультат доступен по `download_url` после завершения.\nДля экспорта в Google Slides — требуется OAuth-токен пользователя.",
+        "operationId": "exportPresentation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Задача экспорта принята",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          },
+          "402": {
+            "$ref": "#/components/responses/PaymentRequired"
+          }
+        }
+      }
+    },
+    "/exports/{export_id}/download": {
+      "get": {
+        "tags": ["Export"],
+        "summary": "Скачать готовый экспорт",
+        "operationId": "downloadExport",
+        "parameters": [
+          {
+            "name": "export_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Редирект на presigned S3 URL (TTL 15 мин)"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "425": {
+            "description": "Экспорт ещё не готов"
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/share": {
+      "post": {
+        "tags": ["Sharing"],
+        "summary": "Создать ссылку для доступа к презентации",
+        "operationId": "createShareLink",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ShareLinkCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Ссылка создана",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShareLink"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Sharing"],
+        "summary": "Список активных ссылок доступа",
+        "operationId": "listShareLinks",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список ссылок",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "links": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ShareLink"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presentations/{presentation_id}/share/{link_id}": {
+      "delete": {
+        "tags": ["Sharing"],
+        "summary": "Отозвать ссылку доступа",
+        "operationId": "revokeShareLink",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PresentationId"
+          },
+          {
+            "name": "link_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Ссылка отозвана"
+          }
+        }
+      }
+    },
+    "/share/{token}": {
+      "get": {
+        "tags": ["Sharing"],
+        "summary": "Публичный просмотр презентации по ссылке",
+        "operationId": "viewSharedPresentation",
+        "security": [],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Данные презентации для публичного просмотра",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PresentationPublicView"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/webhooks": {
+      "get": {
+        "tags": ["Webhooks"],
+        "summary": "Список webhook-подписок",
+        "operationId": "listWebhooks",
+        "responses": {
+          "200": {
+            "description": "Список подписок",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "webhooks": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Webhook"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Webhooks"],
+        "summary": "Создать webhook-подписку",
+        "operationId": "createWebhook",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Подписка создана",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webhooks/{webhook_id}": {
+      "get": {
+        "tags": ["Webhooks"],
+        "summary": "Получить подписку",
+        "operationId": "getWebhook",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/WebhookId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Данные подписки",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Webhooks"],
+        "summary": "Обновить подписку",
+        "operationId": "updateWebhook",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/WebhookId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Подписка обновлена",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Webhook"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Webhooks"],
+        "summary": "Удалить подписку",
+        "operationId": "deleteWebhook",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/WebhookId"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Подписка удалена"
+          }
+        }
+      }
+    },
+    "/webhooks/{webhook_id}/test": {
+      "post": {
+        "tags": ["Webhooks"],
+        "summary": "Отправить тестовое событие на endpoint",
+        "operationId": "testWebhook",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/WebhookId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Результат отправки тестового события",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookDelivery"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webhooks/{webhook_id}/deliveries": {
+      "get": {
+        "tags": ["Webhooks"],
+        "summary": "История доставок webhook-событий",
+        "operationId": "listWebhookDeliveries",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/WebhookId"
+          },
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "История доставок",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deliveries": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/WebhookDelivery"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/me": {
+      "get": {
+        "tags": ["Usage"],
+        "summary": "Статистика использования текущего пользователя",
+        "operationId": "getMyUsage",
+        "parameters": [
+          {
+            "name": "period",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["current_month", "last_month", "last_30_days"],
+              "default": "current_month"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Статистика использования",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageSummary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usage/organizations/{org_id}": {
+      "get": {
+        "tags": ["Usage"],
+        "summary": "Статистика использования организации (Admin only)",
+        "operationId": "getOrgUsage",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrgId"
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["current_month", "last_month", "last_30_days"],
+              "default": "current_month"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Статистика организации",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrgUsageSummary"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    },
+    "parameters": {
+      "OrgId": {
+        "name": "org_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "ProjectId": {
+        "name": "project_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "PresentationId": {
+        "name": "presentation_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "WebhookId": {
+        "name": "webhook_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "PageParam": {
+        "name": "page",
+        "in": "query",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        }
+      },
+      "LimitParam": {
+        "name": "limit",
+        "in": "query",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 20
+        }
+      }
+    },
+    "responses": {
+      "Unauthorized": {
+        "description": "Не аутентифицирован",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Нет доступа",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Ресурс не найден",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "PaymentRequired": {
+        "description": "Превышен лимит тарифного плана",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "TooManyRequests": {
+        "description": "Rate limit превышен",
+        "headers": {
+          "Retry-After": {
+            "schema": {
+              "type": "integer"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "PayloadTooLarge": {
+        "description": "Файл превышает допустимый размер (50 МБ)",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "UnsupportedMediaType": {
+        "description": "Формат файла не поддерживается",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "UnprocessableEntity": {
+        "description": "Невалидные данные запроса",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error", "message"],
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Машиночитаемый код ошибки",
+            "example": "PRESENTATION_NOT_FOUND"
+          },
+          "message": {
+            "type": "string",
+            "description": "Человекочитаемое описание",
+            "example": "Presentation with id '...' not found"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Дополнительные детали (поля валидации и т.д.)"
+          },
+          "request_id": {
+            "type": "string",
+            "description": "ID запроса для трассировки"
+          }
+        }
+      },
+      "Pagination": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "total_pages": {
+            "type": "integer"
+          }
+        }
+      },
+      "TaskResponse": {
+        "type": "object",
+        "required": ["task_id", "status"],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatusEnum"
+          },
+          "estimated_seconds": {
+            "type": "integer",
+            "description": "Оценочное время выполнения в секундах"
+          }
+        }
+      },
+      "TaskStatus": {
+        "type": "object",
+        "required": ["task_id", "status"],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatusEnum"
+          },
+          "progress": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Прогресс в процентах"
+          },
+          "result": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Результат задачи после завершения"
+          },
+          "error": {
+            "type": "string",
+            "description": "Сообщение об ошибке при статусе failed"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "TaskStatusEnum": {
+        "type": "string",
+        "enum": ["pending", "running", "completed", "failed", "cancelled"]
+      },
+      "AuthCredentials": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          }
+        }
+      },
+      "TokenResponse": {
+        "type": "object",
+        "required": ["access_token", "refresh_token", "token_type", "expires_in"],
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "refresh_token": {
+            "type": "string"
+          },
+          "token_type": {
+            "type": "string",
+            "example": "bearer"
+          },
+          "expires_in": {
+            "type": "integer",
+            "description": "Срок действия access_token в секундах",
+            "example": 3600
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "required": ["id", "email", "created_at"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string"
+          },
+          "avatar_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/PlanType"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UserUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "avatar_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "UserPreferences": {
+        "type": "object",
+        "properties": {
+          "default_language": {
+            "type": "string",
+            "example": "ru",
+            "description": "ISO 639-1 код языка"
+          },
+          "default_tone": {
+            "$ref": "#/components/schemas/ToneType"
+          },
+          "default_audience": {
+            "$ref": "#/components/schemas/AudienceType"
+          },
+          "email_notifications": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "PlanType": {
+        "type": "string",
+        "enum": ["free", "pro", "team", "enterprise"]
+      },
+      "Organization": {
+        "type": "object",
+        "required": ["id", "name", "plan", "created_at"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/PlanType"
+          },
+          "member_count": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "OrganizationCreate": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "OrganizationUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "OrgRole": {
+        "type": "string",
+        "enum": ["admin", "editor", "viewer"]
+      },
+      "Member": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/OrgRole"
+          },
+          "joined_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "MemberList": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Member"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/Pagination"
+          }
+        }
+      },
+      "MemberInvite": {
+        "type": "object",
+        "required": ["email", "role"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "role": {
+            "$ref": "#/components/schemas/OrgRole"
+          }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "required": ["id", "name", "created_at"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "presentation_count": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ProjectCreate": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ProjectUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "ProjectList": {
+        "type": "object",
+        "properties": {
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/Pagination"
+          }
+        }
+      },
+      "PresentationStatus": {
+        "type": "string",
+        "enum": ["draft", "outline_ready", "generating", "ready", "error"]
+      },
+      "Presentation": {
+        "type": "object",
+        "required": ["id", "title", "status", "created_at"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PresentationStatus"
+          },
+          "project_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slide_count": {
+            "type": "integer"
+          },
+          "language": {
+            "type": "string",
+            "example": "ru"
+          },
+          "tone": {
+            "$ref": "#/components/schemas/ToneType"
+          },
+          "goal": {
+            "$ref": "#/components/schemas/PresentationGoal"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/AudienceType"
+          },
+          "brand_kit_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PresentationDetail": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Presentation"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "slides": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Slide"
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SourceReference"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "PresentationCreate": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "project_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "language": {
+            "type": "string",
+            "default": "ru"
+          },
+          "tone": {
+            "$ref": "#/components/schemas/ToneType"
+          },
+          "goal": {
+            "$ref": "#/components/schemas/PresentationGoal"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/AudienceType"
+          },
+          "brand_kit_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 2000,
+            "description": "Описание темы и цели в свободной форме"
+          }
+        }
+      },
+      "PresentationUpdate": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "tone": {
+            "$ref": "#/components/schemas/ToneType"
+          },
+          "brand_kit_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "PresentationList": {
+        "type": "object",
+        "properties": {
+          "presentations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Presentation"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/Pagination"
+          }
+        }
+      },
+      "PresentationVersion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "presentation_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version_number": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_by": {
+            "type": "string",
+            "description": "ID пользователя или \"ai\""
+          },
+          "change_summary": {
+            "type": "string"
+          }
+        }
+      },
+      "PresentationPublicView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "slides": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Slide"
+            }
+          },
+          "access_level": {
+            "type": "string",
+            "enum": ["view", "comment"]
+          }
+        }
+      },
+      "PresentationGoal": {
+        "type": "string",
+        "enum": [
+          "investor_pitch",
+          "management_report",
+          "client_adaptation",
+          "educational",
+          "consulting_report",
+          "internal_pitch",
+          "custom"
+        ]
+      },
+      "Slide": {
+        "type": "object",
+        "required": ["id", "position", "title"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "position": {
+            "type": "integer",
+            "description": "Порядковый номер (1-based)"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content_type": {
+            "$ref": "#/components/schemas/SlideContentType"
+          },
+          "content": {
+            "$ref": "#/components/schemas/SlideContent"
+          },
+          "attribution": {
+            "type": "array",
+            "description": "Список источников данных для слайда",
+            "items": {
+              "$ref": "#/components/schemas/AttributionItem"
+            }
+          },
+          "has_unverified_facts": {
+            "type": "boolean",
+            "description": "Содержит ли слайд утверждения с флагом «знания модели»"
+          }
+        }
+      },
+      "SlideContentType": {
+        "type": "string",
+        "enum": ["text", "chart", "table", "image", "quote", "mixed"]
+      },
+      "SlideContent": {
+        "type": "object",
+        "properties": {
+          "bullets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "body_text": {
+            "type": "string"
+          },
+          "chart": {
+            "$ref": "#/components/schemas/ChartData"
+          },
+          "table": {
+            "$ref": "#/components/schemas/TableData"
+          },
+          "image_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "speaker_notes": {
+            "type": "string"
+          }
+        }
+      },
+      "ChartData": {
+        "type": "object",
+        "properties": {
+          "chart_type": {
+            "type": "string",
+            "enum": ["bar", "line", "pie", "area", "scatter", "combo"]
+          },
+          "title": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "datasets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "TableData": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "SlideUpdate": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "$ref": "#/components/schemas/SlideContent"
+          }
+        }
+      },
+      "AttributionItem": {
+        "type": "object",
+        "properties": {
+          "fact_text": {
+            "type": "string",
+            "description": "Текст утверждения, к которому относится источник"
+          },
+          "source_type": {
+            "type": "string",
+            "enum": ["user_file", "url", "model_knowledge"]
+          },
+          "source_file_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "page_number": {
+            "type": "integer"
+          },
+          "excerpt": {
+            "type": "string",
+            "description": "Цитата из исходного фрагмента"
+          }
+        }
+      },
+      "SourceReference": {
+        "type": "object",
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "file_name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["file", "url"]
+          }
+        }
+      },
+      "Outline": {
+        "type": "object",
+        "required": ["presentation_id", "slides"],
+        "properties": {
+          "presentation_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "structure_rationale": {
+            "type": "string",
+            "description": "Объяснение выбранной структуры (NFR-202)",
+            "example": "Для питч-дека инвестора применена структура Problem→Solution→Market, так как она соответствует стандарту Y Combinator"
+          },
+          "slides": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OutlineSlide"
+            }
+          }
+        }
+      },
+      "OutlineSlide": {
+        "type": "object",
+        "required": ["position", "title", "key_thesis"],
+        "properties": {
+          "position": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "key_thesis": {
+            "type": "string",
+            "description": "Ключевой тезис слайда"
+          },
+          "content_type": {
+            "$ref": "#/components/schemas/SlideContentType"
+          },
+          "suggested_data_source": {
+            "type": "string",
+            "description": "Какой загруженный файл будет использован как источник"
+          }
+        }
+      },
+      "GenerateOutlineRequest": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 2000,
+            "description": "Тема и цель в свободной форме"
+          },
+          "goal": {
+            "$ref": "#/components/schemas/PresentationGoal"
+          },
+          "audience": {
+            "$ref": "#/components/schemas/AudienceType"
+          },
+          "language": {
+            "type": "string",
+            "example": "ru"
+          },
+          "slide_count_hint": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 30,
+            "description": "Желаемое примерное количество слайдов"
+          },
+          "source_file_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Файлы-источники для RAG"
+          }
+        }
+      },
+      "GenerateSlidesRequest": {
+        "type": "object",
+        "properties": {
+          "tone": {
+            "$ref": "#/components/schemas/ToneType"
+          },
+          "include_speaker_notes": {
+            "type": "boolean",
+            "default": false
+          },
+          "brand_kit_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "RegenerateSlideRequest": {
+        "type": "object",
+        "required": ["instruction"],
+        "properties": {
+          "instruction": {
+            "type": "string",
+            "description": "Инструкция для AI в свободной форме",
+            "example": "Сделай этот слайд короче, убери все слова, которые звучат как ИИ написал"
+          },
+          "instruction_type": {
+            "type": "string",
+            "enum": ["shorten", "expand", "change_tone", "add_data", "rewrite", "custom"],
+            "default": "custom"
+          }
+        }
+      },
+      "AdaptRequest": {
+        "type": "object",
+        "required": ["client_profile"],
+        "properties": {
+          "client_profile": {
+            "type": "object",
+            "properties": {
+              "industry": {
+                "type": "string"
+              },
+              "pain_points": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "priorities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "company_name": {
+                "type": "string"
+              },
+              "additional_context": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ToneType": {
+        "type": "string",
+        "enum": ["formal", "business", "persuasive", "technical", "educational"]
+      },
+      "AudienceType": {
+        "type": "string",
+        "enum": ["investor", "management", "client", "team", "student", "custom"]
+      },
+      "FileUploadResponse": {
+        "type": "object",
+        "required": ["file_id", "status"],
+        "properties": {
+          "file_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/FileStatus"
+          },
+          "task_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "ID задачи обработки (для polling)"
+          }
+        }
+      },
+      "File": {
+        "type": "object",
+        "required": ["id", "name", "status", "created_at"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["pdf", "docx", "xlsx", "csv", "pptx", "png", "jpg", "url"]
+          },
+          "size_bytes": {
+            "type": "integer"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "status": {
+            "$ref": "#/components/schemas/FileStatus"
+          },
+          "chunk_count": {
+            "type": "integer",
+            "description": "Количество векторных чанков после обработки"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "processed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "FileStatus": {
+        "type": "string",
+        "enum": ["uploading", "processing", "ready", "error"]
+      },
+      "BrandKit": {
+        "type": "object",
+        "required": ["id", "org_id"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "org_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "logo_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "colors": {
+            "$ref": "#/components/schemas/BrandColors"
+          },
+          "fonts": {
+            "$ref": "#/components/schemas/BrandFonts"
+          },
+          "forbidden_words": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "required_terms": {
+            "type": "array",
+            "description": "Обязательные термины бренда",
+            "items": {
+              "type": "string"
+            }
+          },
+          "style_trained": {
+            "type": "boolean",
+            "description": "Обучен ли AI на образцовых презентациях"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "BrandKitUpdate": {
+        "type": "object",
+        "properties": {
+          "colors": {
+            "$ref": "#/components/schemas/BrandColors"
+          },
+          "fonts": {
+            "$ref": "#/components/schemas/BrandFonts"
+          },
+          "forbidden_words": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "required_terms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "BrandColors": {
+        "type": "object",
+        "properties": {
+          "primary": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$",
+            "example": "#1A73E8"
+          },
+          "secondary": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "accent": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "background": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "text": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          }
+        }
+      },
+      "BrandFonts": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "$ref": "#/components/schemas/FontAsset"
+          },
+          "body": {
+            "$ref": "#/components/schemas/FontAsset"
+          }
+        }
+      },
+      "FontAsset": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Inter"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Presigned URL для скачивания файла шрифта"
+          }
+        }
+      },
+      "ExportFormat": {
+        "type": "string",
+        "enum": ["pptx", "pdf", "google_slides", "png", "markdown"]
+      },
+      "ExportRequest": {
+        "type": "object",
+        "required": ["format"],
+        "properties": {
+          "format": {
+            "$ref": "#/components/schemas/ExportFormat"
+          },
+          "slide_ids": {
+            "type": "array",
+            "description": "Экспортировать только указанные слайды. Если не указано — все.",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "include_speaker_notes": {
+            "type": "boolean",
+            "default": false
+          },
+          "google_drive_folder_id": {
+            "type": "string",
+            "description": "Для format=google_slides — ID папки в Google Drive"
+          }
+        }
+      },
+      "ShareLinkCreate": {
+        "type": "object",
+        "required": ["access_level"],
+        "properties": {
+          "access_level": {
+            "type": "string",
+            "enum": ["view", "comment", "edit"]
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Срок действия ссылки (опционально)"
+          },
+          "password_protected": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "ShareLink": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "token": {
+            "type": "string"
+          },
+          "access_level": {
+            "type": "string",
+            "enum": ["view", "comment", "edit"]
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "view_count": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "required": ["id", "slide_id", "body", "created_at"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slide_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "body": {
+            "type": "string"
+          },
+          "is_ai_instruction": {
+            "type": "boolean",
+            "description": "Содержит ли комментарий @AI-инструкцию"
+          },
+          "ai_response": {
+            "type": "string",
+            "description": "Ответ AI на инструкцию (если is_ai_instruction=true)"
+          },
+          "author": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CommentCreate": {
+        "type": "object",
+        "required": ["slide_id", "body"],
+        "properties": {
+          "slide_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 2000
+          }
+        }
+      },
+      "WebhookEventType": {
+        "type": "string",
+        "enum": [
+          "presentation.generation.started",
+          "presentation.generation.completed",
+          "presentation.generation.failed",
+          "presentation.exported",
+          "file.processing.completed",
+          "file.processing.failed"
+        ]
+      },
+      "Webhook": {
+        "type": "object",
+        "required": ["id", "url", "events", "active", "created_at"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookEventType"
+            }
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "secret": {
+            "type": "string",
+            "description": "HMAC-SHA256 secret для верификации подписи (показывается только при создании)"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "WebhookCreate": {
+        "type": "object",
+        "required": ["url", "events"],
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "events": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/WebhookEventType"
+            }
+          }
+        }
+      },
+      "WebhookUpdate": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookEventType"
+            }
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "WebhookDelivery": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "webhook_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "event_type": {
+            "$ref": "#/components/schemas/WebhookEventType"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["delivered", "failed", "pending"]
+          },
+          "http_status": {
+            "type": "integer"
+          },
+          "attempt_count": {
+            "type": "integer"
+          },
+          "next_retry_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "delivered_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "payload": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "UsageSummary": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string",
+            "example": "2026-02"
+          },
+          "presentations_generated": {
+            "type": "integer"
+          },
+          "slides_generated": {
+            "type": "integer"
+          },
+          "files_processed": {
+            "type": "integer"
+          },
+          "exports_count": {
+            "type": "integer"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/PlanType"
+          },
+          "presentations_limit": {
+            "type": "integer",
+            "description": "null означает безлимит"
+          },
+          "presentations_remaining": {
+            "type": "integer"
+          }
+        }
+      },
+      "OrgUsageSummary": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UsageSummary"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "by_user": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "user_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "user_name": {
+                      "type": "string"
+                    },
+                    "presentations_generated": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              },
+              "storage_used_bytes": {
+                "type": "integer"
+              },
+              "storage_limit_bytes": {
+                "type": "integer"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
