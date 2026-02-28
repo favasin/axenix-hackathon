@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // Render all mermaid graphs of the page
 function renderMermaids() {
-  let divm = document.getElementsByClassName('language-mermaid');
+  let divm = Array.from(document.getElementsByClassName('language-mermaid'));
   for (let i = 0; i < divm.length; i++) {
     const mermaidId = `scMermaid${i}`;
     const graphDefinition = divm[i].textContent;
@@ -28,7 +28,7 @@ function renderMermaids() {
     renderMermaid(mermaidId, graphDefinition);
   }
 }
-function renderMermaid(mermaidId, graphDefinition) {
+async function renderMermaid(mermaidId, graphDefinition) {
   const mermaidSvgId = `${mermaidId}-svg`;
   const mermaidWrapper = document.getElementById(mermaidId);
   const mermaidFragment = document.createDocumentFragment();
@@ -45,11 +45,24 @@ function renderMermaid(mermaidId, graphDefinition) {
   mermaidSvgExport.appendChild(mermaidSvgExportIcon);
   mermaidWrapper.appendChild(mermaidFragment);
   try {
-    let insertSvg = function (svgCode) {
-      mermaidContainer.insertAdjacentHTML('afterbegin', svgCode);
-    };
-    mermaid.mermaidAPI.render(mermaidSvgId, graphDefinition, insertSvg);
+    // Mermaid v10+ may render asynchronously; support both sync and async return values.
+    const renderResult = await mermaid.mermaidAPI.render(
+      mermaidSvgId,
+      graphDefinition
+    );
+    const svgCode =
+      typeof renderResult === 'string' ? renderResult : renderResult?.svg;
+    if (!svgCode) {
+      throw new Error('Mermaid render returned empty SVG');
+    }
+    mermaidContainer.insertAdjacentHTML('afterbegin', svgCode);
     let mermaidRendered = document.getElementById(mermaidSvgId);
+    if (!mermaidRendered) {
+      throw new Error('Rendered Mermaid SVG was not found in DOM');
+    }
+    if (renderResult?.bindFunctions) {
+      renderResult.bindFunctions(mermaidRendered);
+    }
     let svgBlob = new Blob([mermaidRendered.outerHTML], {
       type: 'image/svg+xml;charset=utf-8',
     });
@@ -72,7 +85,7 @@ function renderMermaid(mermaidId, graphDefinition) {
   } catch (error) {
     const ed = document.createElement('div');
     ed.classList.add('sc-alert', 'sc-alert-error');
-    ed.innerHTML = error;
+    ed.textContent = error?.message || String(error);
     ed.id = `${mermaidId}-error`;
     mermaidSvgExport.classList.toggle('is-hidden', true);
     mermaidWrapper.classList.toggle('is-loading', false);
