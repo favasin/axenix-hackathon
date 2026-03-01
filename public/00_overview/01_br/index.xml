@@ -29,25 +29,25 @@
       <description>Содержание# US-001: Загрузка файла через браузер US-002: Импорт документа по URL US-003: Импорт из Google Drive US-004: Импорт из Microsoft OneDrive / SharePoint US-005: Импорт из Notion / Confluence US-006: Просмотр и управление загруженными источниками Нумерация: FR-001 — FR-009. Продолжение в 04_fr_rag.md с FR-010.&#xA;US-001: Загрузка файла через браузер# Как пользователь, я хочу загрузить файл со своего компьютера, чтобы система использовала его данные при генерации презентации.&#xA;Источник: source_documents — поля file_type, s3_key, file_size_bytes, content_hash; document_ingestion_jobs ; vector_store.</description>
     </item>
     <item>
-      <title>FR: RAG-поиск и генерация презентаций</title>
+      <title>FR_02: RAG-поиск и генерация презентаций</title>
       <link>http://localhost:1313/00_overview/01_br/04_fr_rag/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/00_overview/01_br/04_fr_rag/</guid>
-      <description>&amp;ndash;&#xA;Содержание# US-010: Создание структуры презентации (outline) US-011: Генерация слайдов с атрибуцией источников US-012: Итеративное редактирование и смена тональности US-013: Экспорт презентации US-014: Публичная ссылка и аналитика просмотров Нумерация: FR-010 — FR-024. Продолжение в 05_fr_users.md с FR-025.&#xA;US-010: Создание структуры презентации (outline)# Как пользователь, я хочу задать цель презентации и аудиторию, чтобы система автоматически сгенерировала логичную структуру слайдов на основе моих данных.&#xA;Источник: presentations — поля tone, target_audience, status; generation_jobs ; documents.</description>
+      <description>Содержание# US-010: Создание структуры презентации (outline) US-011: Генерация слайдов с атрибуцией источников US-012: Итеративное редактирование и смена тональности US-013: Экспорт презентации US-014: Публичная ссылка и аналитика просмотров Нумерация: FR-010 — FR-024. Продолжение в 05_fr_users.md с FR-025.&#xA;US-010: Создание структуры презентации (outline)# Как пользователь, я хочу задать цель презентации и аудиторию, чтобы система автоматически сгенерировала логичную структуру слайдов на основе моих данных.&#xA;Источник: presentations — поля tone, target_audience, status; generation_jobs ; documents.</description>
     </item>
     <item>
-      <title>FR: Управление пользователями</title>
+      <title>FR_03: Управление пользователями</title>
       <link>http://localhost:1313/00_overview/01_br/05_fr_users/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/00_overview/01_br/05_fr_users/</guid>
-      <description>&amp;ndash;&#xA;Содержание# US-025: Регистрация и вход в систему US-026: Управление организацией и приглашения US-027: Управление проектами US-028: Управление профилем пользователя US-029: Управление презентациями Нумерация: FR-025 — FR-040. Продолжение в 06_fr_admin.md с FR-041.&#xA;US-025: Регистрация и вход в систему# Как пользователь, я хочу зарегистрироваться и войти в систему через корпоративный SSO или email, чтобы получить доступ к сервису.&#xA;Источник: users — email, is_email_verified, last_login_at; oauth_connections — provider; cache.md — session:{id}, user_sessions:{user_id}; 01_architecture/_index.</description>
+      <description>Содержание# US-025: Регистрация и вход в систему US-026: Управление организацией и приглашения US-027: Управление проектами US-028: Управление профилем пользователя US-029: Управление презентациями Нумерация: FR-025 — FR-040. Продолжение в 06_fr_admin.md с FR-041.&#xA;US-025: Регистрация и вход в систему# Как пользователь, я хочу зарегистрироваться и войти в систему через корпоративный SSO или email, чтобы получить доступ к сервису.&#xA;Источник: users — email, is_email_verified, last_login_at; oauth_connections — provider; cache.md — session:{id}, user_sessions:{user_id}; 01_architecture/_index.md — SSO</description>
     </item>
     <item>
-      <title>FR: Администрирование</title>
+      <title>FR_04: Администрирование</title>
       <link>http://localhost:1313/00_overview/01_br/06_fr_admin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/00_overview/01_br/06_fr_admin/</guid>
-      <description>&amp;ndash;&#xA;Содержание# US-041: Управление Brand Kit US-042: Управление API-ключами US-043: Webhook-система US-044: Аудит-лог US-045: Управление промпт-шаблонами Нумерация: FR-041 — FR-055. Сквозная нумерация завершена.&#xA;US-041: Управление Brand Kit# Как администратор организации, я хочу настроить корпоративный стиль (Brand Kit), чтобы все презентации автоматически соответствовали фирменному стилю компании.&#xA;Источник: brand_kits — primary_color, font_heading, logo_url, template_s3_key; presentations — brand_kit_id&#xA;FR-041: CRUD Brand Kit# Описание:&#xA;POST /brand-kits — создание Brand Kit организации. Поля: name, primary_color (HEX #RRGGBB), secondary_color, background_color, accent_color, text_color, font_heading, font_body, logo_url (загружается в S3).</description>
+      <description>Содержание# US-041: Управление Brand Kit US-042: Управление API-ключами US-043: Webhook-система US-044: Аудит-лог US-045: Управление промпт-шаблонами Нумерация: FR-041 — FR-055. Сквозная нумерация завершена.&#xA;US-041: Управление Brand Kit# Как администратор организации, я хочу настроить корпоративный стиль (Brand Kit), чтобы все презентации автоматически соответствовали фирменному стилю компании.&#xA;Источник: brand_kits — primary_color, font_heading, logo_url, template_s3_key; presentations — brand_kit_id&#xA;FR-041: CRUD Brand Kit# Описание:&#xA;POST /brand-kits — создание Brand Kit организации. Поля: name, primary_color (HEX #RRGGBB), secondary_color, background_color, accent_color, text_color, font_heading, font_body, logo_url (загружается в S3).</description>
     </item>
     <item>
       <title>Нефункциональные требования</title>

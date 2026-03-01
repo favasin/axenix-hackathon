@@ -8,7 +8,7 @@
 <title>POST /presentations/{id}/generate/slide/{slide_id}</title>
 <link
   rel="icon"
-  href="/images/favicon.png?v=1772348601"
+  href="/images/favicon.png?v=1772348693"
   type="image/x-icon"/>
 <link
     rel="stylesheet"
@@ -129,7 +129,7 @@
     <img
       id="globalLogoImg"
       alt="Homepage"
-      src="/images/logo.png?v=1772348601"/>
+      src="/images/logo.png?v=1772348693"/>
     <div class="logo-header-container">
       <span>Сервис генерации презентаций</span>
     </div>
@@ -141,7 +141,7 @@
   >
     <img
       alt="Homepage"
-      src="/images/logoTouch.png?v=1772348601"/>
+      src="/images/logoTouch.png?v=1772348693"/>
   </a>
 </div>
 <div id="navbarItems" class="is-flex">
@@ -258,8 +258,8 @@
       <a
         href='/00_overview/01_br/04_fr_rag/'
         class='card-header-title'
-          title='FR: RAG-поиск и генерация презентаций'>
-        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: RAG-поиск и генерация презентаций</p></a></div>
+          title='FR_02: RAG-поиск и генерация презентаций'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR_02: RAG-поиск и генерация презентаций</p></a></div>
           </div></li>
       </div>
     </div><div class="">
@@ -268,8 +268,8 @@
       <a
         href='/00_overview/01_br/05_fr_users/'
         class='card-header-title'
-          title='FR: Управление пользователями'>
-        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: Управление пользователями</p></a></div>
+          title='FR_03: Управление пользователями'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR_03: Управление пользователями</p></a></div>
           </div></li>
       </div>
     </div><div class="">
@@ -278,8 +278,8 @@
       <a
         href='/00_overview/01_br/06_fr_admin/'
         class='card-header-title'
-          title='FR: Администрирование'>
-        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: Администрирование</p></a></div>
+          title='FR_04: Администрирование'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR_04: Администрирование</p></a></div>
           </div></li>
       </div>
     </div><div class="">
@@ -1425,41 +1425,6 @@
 </tbody>
 </table>
 <hr>
-<h2 id='диаграмма-последовательности'>Диаграмма последовательности<a href='#%d0%b4%d0%b8%d0%b0%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b0-%d0%bf%d0%be%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8c%d0%bd%d0%be%d1%81%d1%82%d0%b8' class='anchor'>#</a>
-</h2><pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">sequenceDiagram
-    autonumber
-    participant Client as Клиент
-    participant API as FastAPI
-    participant Redis as Redis
-    participant Mongo as MongoDB
-    participant LLM as LLM API (Claude Sonnet)
-    participant LLMh as Claude Haiku (постпроц.)
-    participant PG as PostgreSQL
-
-    Client-&gt;&gt;API: POST /presentations/{id}/generate/slide/{slide_id}
-    API-&gt;&gt;PG: Проверка статуса презентации (ready) и прав
-    API-&gt;&gt;PG: Проверка принадлежности slide_id
-    API-&gt;&gt;Redis: Rate limit check
-
-    API-&gt;&gt;Mongo: Загрузка контекста слайда из generation_traces
-    Mongo--&gt;&gt;API: RAG-чанки, key_thesis, текущий контент
-
-    API-&gt;&gt;LLM: Промпт (текущий слайд + чанки + instruction + instruction_type)
-    alt LLM доступен
-        LLM--&gt;&gt;API: Обновлённый SlideContent + AttributionItems
-    else Circuit Breaker (NFR-011)
-        API-&gt;&gt;LLM: Fallback to GPT-4o
-        LLM--&gt;&gt;API: Обновлённый SlideContent
-    end
-
-    API-&gt;&gt;LLMh: Постпроцессинг (AI-cliché filter, forbidden_words)
-    LLMh--&gt;&gt;API: Очищенный контент + has_unverified_facts
-
-    API-&gt;&gt;PG: Обновление слайда; создание записи в presentation_versions
-    API-&gt;&gt;Mongo: Обновление generation_traces (новый вариант слайда)
-
-    API--&gt;&gt;Client: 200 OK — Slide
-</code></pre><hr>
 <h2 id='безопасность'>Безопасность<a href='#%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c' class='anchor'>#</a>
 </h2><ul>
 <li><strong>Аутентификация:</strong> Bearer JWT (TTL 15 мин) или <code>X-API-Key</code>.</li>
@@ -1530,7 +1495,6 @@
       </ul>
     </li>
     <li><a href="#валидации">Валидации</a></li>
-    <li><a href="#диаграмма-последовательности">Диаграмма последовательности</a></li>
     <li><a href="#безопасность">Безопасность</a></li>
   </ul>
 </nav></div>
@@ -1607,12 +1571,6 @@
     ></script><script
       type="module"
       src="/js/theme/toc.min.js"
-    ></script><script
-      type="module"
-      src="/js/external/mermaid/mermaid.min.js"
-    ></script><script
-      type="module"
-      src="/js/fencedcodes/mermaid.min.js"
     ></script><script
       type="text/javascript"
       src="/js/external/jquery/jquery-3.6.3.min.js"

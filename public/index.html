@@ -8,7 +8,7 @@
 <title>Промпт-инжиниринг</title>
 <link
   rel="icon"
-  href="/images/favicon.png?v=1772344202"
+  href="/images/favicon.png?v=1772348693"
   type="image/x-icon"/>
 <link
     rel="stylesheet"
@@ -129,7 +129,7 @@
     <img
       id="globalLogoImg"
       alt="Homepage"
-      src="/images/logo.png?v=1772344202"/>
+      src="/images/logo.png?v=1772348693"/>
     <div class="logo-header-container">
       <span>Сервис генерации презентаций</span>
     </div>
@@ -141,7 +141,7 @@
   >
     <img
       alt="Homepage"
-      src="/images/logoTouch.png?v=1772344202"/>
+      src="/images/logoTouch.png?v=1772348693"/>
   </a>
 </div>
 <div id="navbarItems" class="is-flex">
@@ -206,8 +206,8 @@
       <a
         href='/00_overview/'
         class='card-header-title'
-          title='Общее описание'>
-        <i class='fa-solid fa-circle-info fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Общее описание</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+          title='Описание и артефакты анализа'>
+        <i class='fa-solid fa-circle-info fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Описание и артефакты анализа</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
                 <span class='icon'></span>
               </a>
             </div>
@@ -217,8 +217,8 @@
       <a
         href='/00_overview/01_br/'
         class='card-header-title'
-          title='Описание БТ'>
-        <i class='fa-solid fa-folder-open'></i><p class="pt-0 pb-0 pr-2 pl-1">Описание БТ</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+          title='Требования'>
+        <i class='fa-solid fa-folder-open'></i><p class="pt-0 pb-0 pr-2 pl-1">Требования</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
                 <span class='icon'></span>
               </a>
             </div>
@@ -248,8 +248,8 @@
       <a
         href='/00_overview/01_br/03_fr_documents/'
         class='card-header-title'
-          title='FR: Загрузка и индексация документов'>
-        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: Загрузка и индексация документов</p></a></div>
+          title='FR_01: Загрузка и индексация документов'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR_01: Загрузка и индексация документов</p></a></div>
           </div></li>
       </div>
     </div><div class="">
@@ -258,8 +258,8 @@
       <a
         href='/00_overview/01_br/04_fr_rag/'
         class='card-header-title'
-          title='FR: RAG-поиск и генерация презентаций'>
-        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: RAG-поиск и генерация презентаций</p></a></div>
+          title='FR_02: RAG-поиск и генерация презентаций'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR_02: RAG-поиск и генерация презентаций</p></a></div>
           </div></li>
       </div>
     </div><div class="">
@@ -268,8 +268,8 @@
       <a
         href='/00_overview/01_br/05_fr_users/'
         class='card-header-title'
-          title='FR: Управление пользователями'>
-        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: Управление пользователями</p></a></div>
+          title='FR_03: Управление пользователями'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR_03: Управление пользователями</p></a></div>
           </div></li>
       </div>
     </div><div class="">
@@ -278,8 +278,8 @@
       <a
         href='/00_overview/01_br/06_fr_admin/'
         class='card-header-title'
-          title='FR: Администрирование'>
-        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: Администрирование</p></a></div>
+          title='FR_04: Администрирование'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR_04: Администрирование</p></a></div>
           </div></li>
       </div>
     </div><div class="">
@@ -411,31 +411,150 @@
     </div></ul></li>
       </div>
     </div><div class="">
-      <div class=""><li class="is-marginless"><div
-            class="card"><div class="card-header is-single-link">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
       <a
         href='/03_backend/02_rest_methods/'
         class='card-header-title'
           title='REST API'>
-        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a></div>
+        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/createproject/'
+        class='card-header-title'
+          title='POST /projects'>
+        <i class='fa-solid fa-folder-plus'></i><p class="pt-0 pb-0 pr-2 pl-1">POST /projects</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/createpresentation/'
+        class='card-header-title'
+          title='POST /presentations'>
+        <i class='fa-solid fa-file-powerpoint'></i><p class="pt-0 pb-0 pr-2 pl-1">POST /presentations</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/generateoutline/'
+        class='card-header-title'
+          title='POST /presentations/{id}/generate/outline'>
+        <i class='fa-solid fa-list-ol'></i><p class="pt-0 pb-0 pr-2 pl-1">POST /presentations/{id}/generate/outline</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/generateslides/'
+        class='card-header-title'
+          title='POST /presentations/{id}/generate/slides'>
+        <i class='fa-solid fa-wand-magic-sparkles'></i><p class="pt-0 pb-0 pr-2 pl-1">POST /presentations/{id}/generate/slides</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/regenerateslide/'
+        class='card-header-title'
+          title='POST /presentations/{id}/generate/slide/{slide_id}'>
+        <i class='fa-solid fa-rotate-right'></i><p class="pt-0 pb-0 pr-2 pl-1">POST /presentations/{id}/generate/slide/{slide_id}</p></a></div>
           </div></li>
       </div>
     </div></ul></li>
       </div>
-    </div><div class="card is-fs-expandable-icon"><div class="card-header is-single-link">
+    </div></ul></li>
+      </div>
+    </div><div class="card is-fs-expandable-icon"><div class="card-header">
       <a
         href='/02_frontend/'
         class='card-header-title'>
         <i class='fa-solid fa-display fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless"><div
-            class="card"><div class="card-header is-single-link">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
       <a
         href='/02_frontend/'
         class='card-header-title'
           title='Frontend'>
-        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a></div>
+        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
+      <a
+        href='/02_frontend/screens/'
+        class='card-header-title'
+          title='Экраны'>
+        <i class='fa-solid fa-window-restore'></i><p class="pt-0 pb-0 pr-2 pl-1">Экраны</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/screens/landing/'
+        class='card-header-title'
+          title='Лендинг'>
+        <i class='fa-solid fa-house'></i><p class="pt-0 pb-0 pr-2 pl-1">Лендинг</p></a></div>
           </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/screens/wizard_step1/'
+        class='card-header-title'
+          title='Wizard — Шаг 1: Данные и контент'>
+        <i class='fa-solid fa-upload'></i><p class="pt-0 pb-0 pr-2 pl-1">Wizard — Шаг 1: Данные и контент</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/screens/wizard_step2/'
+        class='card-header-title'
+          title='Wizard — Шаг 2: Аудитория и цель'>
+        <i class='fa-solid fa-bullseye'></i><p class="pt-0 pb-0 pr-2 pl-1">Wizard — Шаг 2: Аудитория и цель</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/components/'
+        class='card-header-title'
+          title='Реестр компонентов'>
+        <i class='fa-solid fa-cubes'></i><p class="pt-0 pb-0 pr-2 pl-1">Реестр компонентов</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/user_flows/'
+        class='card-header-title'
+          title='Пользовательские сценарии'>
+        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">Пользовательские сценарии</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
       </div>
     </div></ul>
       </aside>
@@ -507,8 +626,8 @@
     <tr>
     
     <tr>
-      <td><a href="http://localhost:1313/00_overview/">Общее описание</a></td>
-      <td>Общее описание задачи</td>
+      <td><a href="http://localhost:1313/00_overview/">Описание и артефакты анализа</a></td>
+      <td>Описание и артефакты анализа</td>
     </tr>
     
     <tr>
@@ -548,7 +667,7 @@
       });
     });
   }
-</script><nav class="pagination"><a class="nav nav-next" href="http://localhost:1313/00_overview/" title="Общее описание">Следующее - Общее описание <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</script><nav class="pagination"><a class="nav nav-next" href="http://localhost:1313/00_overview/" title="Описание и артефакты анализа">Следующее - Описание и артефакты анализа <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 </nav></div></div>
 </div><script type='text/javascript'>
   const baseUrl = 'http:\/\/localhost:1313\/';
