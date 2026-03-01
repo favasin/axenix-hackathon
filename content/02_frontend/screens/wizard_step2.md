@@ -84,8 +84,6 @@ graph TD
 - `selected` — одна карточка подсвечена (border фиолетовый / filled-фон).
 - `disabled` — всё поле заблокировано (например, во время API-вызова).
 
-> ⚠️ **ТРЕБУЕТ УТОЧНЕНИЯ:** Значение `Консалтинг` в API-схеме `AudienceType` = `"investor" | "management" | "client" | "team" | "student" | "custom"`. Нет явного значения `consulting`. Необходимо уточнить у backend-команды — использовать `"custom"` или расширить enum.
-
 ---
 
 ### `GoalTextarea`
@@ -107,8 +105,6 @@ graph TD
 **Состояния компонента:**
 - `idle` — поле пустое, placeholder отображается.
 - `filling` — пользователь вводит текст.
-
-> ⚠️ **ТРЕБУЕТ УТОЧНЕНИЯ:** На скриншоте у `GoalTextarea` нет счётчика символов. Ограничение по длине не отображается. Уточнить наличие `maxLength` у этого поля.
 
 ---
 
@@ -196,7 +192,7 @@ const step2 = {
 };
 
 const body: PresentationCreate = {
-  title: generateTitleFromPrompt(step1.prompt), // ⚠️ ТРЕБУЕТ УТОЧНЕНИЯ: как формируется title
+  title: generateTitleFromPrompt(step1.prompt),
   prompt: step1.prompt,
   audience: step2.audience,
   language: "ru",
@@ -229,11 +225,3 @@ const outlineRequest: GenerateOutlineRequest = {
 | API 429                | Rate limit                                      | Toast: «Слишком много запросов. Повторите через {n} с» |
 
 ---
-
-## Примечания
-
-> ⚠️ **ТРЕБУЕТ УТОЧНЕНИЯ:** Как формируется поле `title` для `POST /presentations`? Из первых N слов `prompt`? Или пользователь задаёт его отдельно (поле не видно на скриншоте)?
-
-> ⚠️ **ТРЕБУЕТ УТОЧНЕНИЯ:** Что происходит с файлами из шага 1 (их `file_id`) — они передаются в `GenerateOutlineRequest.source_file_ids` или связываются с презентацией позже через `POST /presentations/{id}/sources`?
-
-> ⚠️ **ТРЕБУЕТ УТОЧНЕНИЯ:** Поле `goal` (`PresentationGoal` из API) не представлено явно на шаге 2. Вероятно, выводится из `audience` автоматически или не используется в wizard.
