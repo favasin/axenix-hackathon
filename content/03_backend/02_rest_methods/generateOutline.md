@@ -251,45 +251,6 @@ interface Outline {
 
 ---
 
-## Диаграмма последовательности
-
-```mermaid
-sequenceDiagram
-    autonumber
-    participant Client as Клиент
-    participant API as FastAPI
-    participant Redis as Redis
-    participant Qdrant as Qdrant
-    participant LLM as LLM API (Claude / GPT-4o)
-    participant PG as PostgreSQL
-    participant Mongo as MongoDB
-
-    Client->>API: POST /presentations/{id}/generate/outline
-    API->>PG: Проверка статуса презентации и прав
-    API->>Redis: Проверка rate limit (ratelimit:{key_id}:{min})
-    API->>Redis: Проверка семантического кэша (semantic_cache:{hash})
-    alt Кэш найден (cosine ≥ 0.95)
-        Redis-->>API: Cached Outline
-        API-->>Client: 200 OK — Outline (из кэша)
-    else Кэш не найден
-        API->>Qdrant: Embedding-поиск по source_file_ids (top-20 → re-rank → top-10)
-        Qdrant-->>API: Релевантные чанки с атрибуцией
-        API->>LLM: Промпт (RAG-контекст + goal + audience + slide_count_hint)
-        alt LLM доступен
-            LLM-->>API: JSON с Outline
-        else Circuit Breaker (NFR-011)
-            API->>LLM: Fallback → GPT-4o
-            LLM-->>API: JSON с Outline
-        end
-        API->>Mongo: Запись generation_traces (hallucination_flags)
-        API->>PG: Сохранение Outline; статус → outline_ready
-        API->>Redis: Обновление семантического кэша (TTL 24 ч)
-        API-->>Client: 200 OK — Outline
-    end
-```
-
----
-
 ## Безопасность
 
 - **Аутентификация:** Bearer JWT (TTL 15 мин) или `X-API-Key`.

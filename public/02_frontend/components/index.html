@@ -3,9 +3,9 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="generator" content="Hugo 0.126.1">
-<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Создание новой презентации в черновом статусе. Синхронный эндпоинт без участия LLM." />
+<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Каталог всех UI-компонентов приложения DeckAI: тип, экраны использования, props и состояния переиспользуемых компонентов." />
 
-<title>POST /presentations</title>
+<title>Реестр компонентов</title>
 <link
   rel="icon"
   href="/images/favicon.png?v=1772348601"
@@ -341,23 +341,23 @@
         <i class='fa-solid fa-diagram-project fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Архитектура</p></a></div>
           </div></li>
       </div>
-    </div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
+    </div><div class="card is-fs-expandable-icon"><div class="card-header">
       <a
         href='/03_backend/'
         class='card-header-title'>
         <i class='fa-solid fa-server fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
             class="card"><div class="card-header">
       <a
         href='/03_backend/'
         class='card-header-title'
           title='Backend'>
-        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
+        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
                 <span class='icon'></span>
               </a>
             </div>
-          </div><ul class="is-marginless is-tree-active"><div class="">
+          </div><ul class="is-marginless"><div class="">
       <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
             class="card"><div class="card-header">
       <a
@@ -411,13 +411,13 @@
     </div></ul></li>
       </div>
     </div><div class="">
-      <div class=""><li class="is-marginless is-entries-expandable is-entries-expanded"><div
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
             class="card"><div class="card-header">
       <a
         href='/03_backend/02_rest_methods/'
         class='card-header-title'
           title='REST API'>
-        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
+        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
                 <span class='icon'></span>
               </a>
             </div>
@@ -433,7 +433,7 @@
       </div>
     </div><div class="">
       <div class=""><li class="is-marginless"><div
-            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header is-single-link">
+            class="card"><div class="card-header is-single-link">
       <a
         href='/03_backend/02_rest_methods/createpresentation/'
         class='card-header-title'
@@ -475,23 +475,23 @@
       </div>
     </div></ul></li>
       </div>
-    </div><div class="card is-fs-expandable-icon"><div class="card-header">
+    </div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
       <a
         href='/02_frontend/'
         class='card-header-title'>
         <i class='fa-solid fa-display fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
             class="card"><div class="card-header">
       <a
         href='/02_frontend/'
         class='card-header-title'
           title='Frontend'>
-        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
                 <span class='icon'></span>
               </a>
             </div>
-          </div><ul class="is-marginless"><div class="">
+          </div><ul class="is-marginless is-tree-active"><div class="">
       <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
             class="card"><div class="card-header">
       <a
@@ -536,7 +536,7 @@
       </div>
     </div><div class="">
       <div class=""><li class="is-marginless"><div
-            class="card"><div class="card-header is-single-link">
+            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header is-single-link">
       <a
         href='/02_frontend/components/'
         class='card-header-title'
@@ -614,15 +614,14 @@
 </style>
 <ul id="breadcrumbs" class="breadcrumb">
         <li> <a href="/">Промпт-инжиниринг</a> </li>
-        <li> <a href="/03_backend/">Backend</a> </li>
-        <li> <a href="/03_backend/02_rest_methods/">REST API</a> </li>
-    <li> <a href="/03_backend/02_rest_methods/createpresentation/">POST /presentations</a></li>
+        <li> <a href="/02_frontend/">Frontend</a> </li>
+    <li> <a href="/02_frontend/components/">Реестр компонентов</a></li>
 </ul>
-<div id="contentTitle">POST /presentations</div><h2 id='содержание'>Содержание<a href='#%d1%81%d0%be%d0%b4%d0%b5%d1%80%d0%b6%d0%b0%d0%bd%d0%b8%d0%b5' class='anchor'>#</a>
+<div id="contentTitle">Реестр компонентов</div><h2 id='содержание'>Содержание<a href='#%d1%81%d0%be%d0%b4%d0%b5%d1%80%d0%b6%d0%b0%d0%bd%d0%b8%d0%b5' class='anchor'>#</a>
 </h2><ul>
 <li><a
-  href="#%d0%be%d0%b1%d0%b7%d0%be%d1%80"
-    class="is-pretty-link">Обзор</a
+  href="#%d1%81%d0%b2%d0%be%d0%b4%d0%bd%d0%b0%d1%8f-%d1%82%d0%b0%d0%b1%d0%bb%d0%b8%d1%86%d0%b0"
+    class="is-pretty-link">Сводная таблица</a
 >
 
 
@@ -686,8 +685,74 @@
   });
 </script></li>
 <li><a
-  href="#%d0%b0%d0%bb%d0%b3%d0%be%d1%80%d0%b8%d1%82%d0%bc"
-    class="is-pretty-link">Алгоритм</a
+  href="#%d0%bf%d0%b5%d1%80%d0%b5%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d1%83%d0%b5%d0%bc%d1%8b%d0%b5-%d0%ba%d0%be%d0%bc%d0%bf%d0%be%d0%bd%d0%b5%d0%bd%d1%82%d1%8b"
+    class="is-pretty-link">Переиспользуемые компоненты</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script>
+<ul>
+<li><a
+  href="#wizardstepper"
+    class="is-pretty-link">WizardStepper</a
 >
 
 
@@ -751,268 +816,8 @@
   });
 </script></li>
 <li><a
-  href="#%d0%bf%d0%b0%d1%80%d0%b0%d0%bc%d0%b5%d1%82%d1%80%d1%8b"
-    class="is-pretty-link">Параметры</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script></li>
-<li><a
-  href="#%d1%82%d0%b5%d0%bb%d0%be-%d0%b7%d0%b0%d0%bf%d1%80%d0%be%d1%81%d0%b0"
-    class="is-pretty-link">Тело запроса</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script></li>
-<li><a
-  href="#%d0%be%d1%82%d0%b2%d0%b5%d1%82%d1%8b"
-    class="is-pretty-link">Ответы</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script></li>
-<li><a
-  href="#%d0%b2%d0%b0%d0%bb%d0%b8%d0%b4%d0%b0%d1%86%d0%b8%d0%b8"
-    class="is-pretty-link">Валидации</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script></li>
-<li><a
-  href="#%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c"
-    class="is-pretty-link">Безопасность</a
+  href="#fileuploader"
+    class="is-pretty-link">FileUploader</a
 >
 
 
@@ -1076,243 +881,673 @@
   });
 </script></li>
 </ul>
+</li>
+</ul>
 <hr>
-<h2 id='обзор'>Обзор<a href='#%d0%be%d0%b1%d0%b7%d0%be%d1%80' class='anchor'>#</a>
+<h2 id='сводная-таблица'>Сводная таблица<a href='#%d1%81%d0%b2%d0%be%d0%b4%d0%bd%d0%b0%d1%8f-%d1%82%d0%b0%d0%b1%d0%bb%d0%b8%d1%86%d0%b0' class='anchor'>#</a>
 </h2><table>
 <thead>
 <tr>
-<th>Свойство</th>
-<th>Значение</th>
+<th>Компонент</th>
+<th>Тип</th>
+<th>Экраны</th>
+<th style="text-align:center">Переиспользуется</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Метод</td>
-<td><code>POST</code></td>
+<td><code>Navbar</code></td>
+<td>organism</td>
+<td>landing</td>
+<td style="text-align:center">нет</td>
 </tr>
 <tr>
-<td>URL</td>
-<td><code>/presentations</code></td>
+<td><code>HeroSection</code></td>
+<td>organism</td>
+<td>landing</td>
+<td style="text-align:center">нет</td>
 </tr>
 <tr>
-<td>Тип</td>
-<td>Синхронный</td>
+<td><code>AppPreview</code></td>
+<td>molecule</td>
+<td>landing</td>
+<td style="text-align:center">нет</td>
 </tr>
 <tr>
-<td>LLM</td>
-<td>Нет</td>
+<td><code>WizardHeader</code></td>
+<td>organism</td>
+<td>wizard_step1, wizard_step2</td>
+<td style="text-align:center">да</td>
 </tr>
 <tr>
-<td>Успешный код</td>
-<td><code>201 Created</code></td>
+<td><code>WizardStepper</code></td>
+<td>molecule</td>
+<td>wizard_step1, wizard_step2</td>
+<td style="text-align:center">да</td>
 </tr>
 <tr>
-<td>Теги</td>
-<td>Presentations</td>
+<td><code>TopicTextarea</code></td>
+<td>molecule</td>
+<td>wizard_step1</td>
+<td style="text-align:center">нет</td>
 </tr>
 <tr>
-<td>Требования</td>
-<td>FR-010 (инициализация генерации), FR-025 (RBAC)</td>
+<td><code>FileUploader</code></td>
+<td>organism</td>
+<td>wizard_step1</td>
+<td style="text-align:center">да</td>
+</tr>
+<tr>
+<td><code>AudienceSelector</code></td>
+<td>organism</td>
+<td>wizard_step2</td>
+<td style="text-align:center">нет</td>
+</tr>
+<tr>
+<td><code>AudienceCard</code></td>
+<td>atom</td>
+<td>wizard_step2 (внутри Selector)</td>
+<td style="text-align:center">нет</td>
+</tr>
+<tr>
+<td><code>GoalTextarea</code></td>
+<td>molecule</td>
+<td>wizard_step2</td>
+<td style="text-align:center">нет</td>
+</tr>
+<tr>
+<td><code>FooterActions</code></td>
+<td>molecule</td>
+<td>wizard_step2</td>
+<td style="text-align:center">да</td>
 </tr>
 </tbody>
 </table>
-<p>Создаёт новую презентацию в статусе <code>draft</code>. Объект служит контейнером для последующих шагов: загрузки источников, генерации структуры (<code>generateOutline</code>) и слайдов (<code>generateSlides</code>). Поля <code>tone</code>, <code>goal</code>, <code>audience</code> и <code>prompt</code> передаются в LLM на этапе генерации и могут быть уточнены позднее через <code>PATCH /presentations/{id}</code>.</p>
+<p><strong>Типы компонентов (Atomic Design):</strong></p>
+<ul>
+<li><strong>atom</strong> — неделимый UI-элемент: кнопка, иконка, badge.</li>
+<li><strong>molecule</strong> — комбинация атомов с единой логикой.</li>
+<li><strong>organism</strong> — самодостаточный блок экрана, может содержать бизнес-логику.</li>
+<li><strong>layout</strong> — структурный контейнер без бизнес-логики.</li>
+<li><strong>page</strong> — корневой компонент маршрута Next.js.</li>
+</ul>
 <hr>
-<h2 id='алгоритм'>Алгоритм<a href='#%d0%b0%d0%bb%d0%b3%d0%be%d1%80%d0%b8%d1%82%d0%bc' class='anchor'>#</a>
-</h2><ol>
-<li>Проверка Bearer JWT или <code>X-API-Key</code>; извлечение <code>user_id</code> и <code>org_id</code>.</li>
-<li>Проверка RBAC: роли <code>admin</code> и <code>editor</code> могут создавать презентации; <code>viewer</code> — нет.</li>
-<li>Валидация тела запроса по схеме <code>PresentationCreate</code>; поле <code>title</code> обязательно.</li>
-<li>Если передан <code>brand_kit_id</code> — проверка существования Brand Kit в рамках организации.</li>
-<li>Если передан <code>project_id</code> — проверка существования проекта и доступа к нему.</li>
-<li>Вставка строки в таблицу <code>presentations</code> со статусом <code>draft</code> (PostgreSQL, RLS).</li>
-<li>Возврат объекта <code>Presentation</code> с кодом <code>201 Created</code>.</li>
-</ol>
-<hr>
-<h2 id='параметры'>Параметры<a href='#%d0%bf%d0%b0%d1%80%d0%b0%d0%bc%d0%b5%d1%82%d1%80%d1%8b' class='anchor'>#</a>
-</h2><p>Эндпоинт не принимает параметров пути или строки запроса.</p>
-<hr>
-<h2 id='тело-запроса'>Тело запроса<a href='#%d1%82%d0%b5%d0%bb%d0%be-%d0%b7%d0%b0%d0%bf%d1%80%d0%be%d1%81%d0%b0' class='anchor'>#</a>
-</h2><p><strong>Content-Type:</strong> <code>application/json</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ToneType</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;formal&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;business&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;persuasive&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;technical&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;educational&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PresentationGoal</span> <span style="color:#f92672">=</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;investor_pitch&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;management_report&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;client_adaptation&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;educational&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;consulting_report&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;internal_pitch&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;custom&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">AudienceType</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;investor&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;management&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;client&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;team&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;student&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;custom&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PresentationCreate</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/** Заголовок презентации. Обязательное поле. */</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/** UUID проекта-контейнера. Если не указан — презентация создаётся без проекта. */</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">project_id?</span>: <span style="color:#66d9ef">string</span>; <span style="color:#75715e">// uuid
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Язык генерации контента. ISO 639-1.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @default &#34;ru&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">language?</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/** Тон подачи материала. */</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone?</span>: <span style="color:#66d9ef">ToneType</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/** Цель презентации — влияет на структуру, выбираемую LLM. */</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">goal?</span>: <span style="color:#66d9ef">PresentationGoal</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/** Целевая аудитория. */</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">audience?</span>: <span style="color:#66d9ef">AudienceType</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/** UUID корпоративного Brand Kit. */</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">brand_kit_id?</span>: <span style="color:#66d9ef">string</span>; <span style="color:#75715e">// uuid
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Свободное описание темы и цели — передаётся в LLM при generateOutline.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Минимум 10, максимум 2000 символов.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">prompt?</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>Пример запроса:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Ежеквартальный отчёт для совета директоров — Q1 2026&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;project_id&#34;</span>: <span style="color:#e6db74">&#34;c47f1234-89ab-cdef-0123-456789abcdef&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;language&#34;</span>: <span style="color:#e6db74">&#34;ru&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tone&#34;</span>: <span style="color:#e6db74">&#34;formal&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;goal&#34;</span>: <span style="color:#e6db74">&#34;management_report&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;audience&#34;</span>: <span style="color:#e6db74">&#34;management&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;brand_kit_id&#34;</span>: <span style="color:#e6db74">&#34;aabbccdd-1234-5678-9012-aabbccddeeff&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;prompt&#34;</span>: <span style="color:#e6db74">&#34;Обзор результатов Q1 2026: выручка, ключевые метрики, отклонения от плана и прогноз на Q2&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><hr>
-<h2 id='ответы'>Ответы<a href='#%d0%be%d1%82%d0%b2%d0%b5%d1%82%d1%8b' class='anchor'>#</a>
-</h2><h3 id='201-created'>201 Created<a href='#201-created' class='anchor'>#</a>
-</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PresentationStatus</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;draft&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;outline_ready&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;generating&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;ready&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;error&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Presentation</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>;               <span style="color:#75715e">// uuid
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">title</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">status</span>: <span style="color:#66d9ef">PresentationStatus</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">project_id?</span>: <span style="color:#66d9ef">string</span>;      <span style="color:#75715e">// uuid
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">slide_count</span>: <span style="color:#66d9ef">number</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">language?</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone?</span>: <span style="color:#66d9ef">ToneType</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">goal?</span>: <span style="color:#66d9ef">PresentationGoal</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">audience?</span>: <span style="color:#66d9ef">AudienceType</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">brand_kit_id?</span>: <span style="color:#66d9ef">string</span>;    <span style="color:#75715e">// uuid
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">created_at</span>: <span style="color:#66d9ef">string</span>;       <span style="color:#75715e">// ISO 8601
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">updated_at?</span>: <span style="color:#66d9ef">string</span>;      <span style="color:#75715e">// ISO 8601
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;f1a2b3c4-d5e6-7890-abcd-ef1234567890&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Ежеквартальный отчёт для совета директоров — Q1 2026&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;draft&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;project_id&#34;</span>: <span style="color:#e6db74">&#34;c47f1234-89ab-cdef-0123-456789abcdef&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;slide_count&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;language&#34;</span>: <span style="color:#e6db74">&#34;ru&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tone&#34;</span>: <span style="color:#e6db74">&#34;formal&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;goal&#34;</span>: <span style="color:#e6db74">&#34;management_report&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;audience&#34;</span>: <span style="color:#e6db74">&#34;management&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;brand_kit_id&#34;</span>: <span style="color:#e6db74">&#34;aabbccdd-1234-5678-9012-aabbccddeeff&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;created_at&#34;</span>: <span style="color:#e6db74">&#34;2026-03-01T10:05:00Z&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;updated_at&#34;</span>: <span style="color:#e6db74">&#34;2026-03-01T10:05:00Z&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id='401-unauthorized'>401 Unauthorized<a href='#401-unauthorized' class='anchor'>#</a>
-</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;UNAUTHORIZED&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Invalid or expired token&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;request_id&#34;</span>: <span style="color:#e6db74">&#34;req_01HXABCDE&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id='403-forbidden'>403 Forbidden<a href='#403-forbidden' class='anchor'>#</a>
-</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;INSUFFICIENT_ROLE&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Role &#39;viewer&#39; cannot create presentations&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;request_id&#34;</span>: <span style="color:#e6db74">&#34;req_01HXABCDE&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id='404-not-found'>404 Not Found<a href='#404-not-found' class='anchor'>#</a>
-</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;BRAND_KIT_NOT_FOUND&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Brand Kit &#39;aabbccdd-...&#39; not found in your organization&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;request_id&#34;</span>: <span style="color:#e6db74">&#34;req_01HXABCDE&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id='422-unprocessable-entity'>422 Unprocessable Entity<a href='#422-unprocessable-entity' class='anchor'>#</a>
-</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;VALIDATION_ERROR&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Request body validation failed&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;details&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Field required&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;prompt&#34;</span>: <span style="color:#e6db74">&#34;String should have at least 10 characters&#34;</span>
-</span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;request_id&#34;</span>: <span style="color:#e6db74">&#34;req_01HXABCDE&#34;</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><hr>
-<h2 id='валидации'>Валидации<a href='#%d0%b2%d0%b0%d0%bb%d0%b8%d0%b4%d0%b0%d1%86%d0%b8%d0%b8' class='anchor'>#</a>
-</h2><table>
+<h2 id='переиспользуемые-компоненты'>Переиспользуемые компоненты<a href='#%d0%bf%d0%b5%d1%80%d0%b5%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d1%83%d0%b5%d0%bc%d1%8b%d0%b5-%d0%ba%d0%be%d0%bc%d0%bf%d0%be%d0%bd%d0%b5%d0%bd%d1%82%d1%8b' class='anchor'>#</a>
+</h2><hr>
+<h3 id='wizardstepper'><code>WizardStepper</code><a href='#wizardstepper' class='anchor'>#</a>
+</h3><p><strong>Тип:</strong> molecule
+<strong>Назначение:</strong> Визуальный индикатор прогресса многошагового wizard. Отображает текущий шаг, завершённые и предстоящие.</p>
+<p><strong>Экраны:</strong> <a
+  href="/02_frontend/screens/wizard_step1/"
+    class="is-pretty-link">wizard_step1</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script>, <a
+  href="/02_frontend/screens/wizard_step2/"
+    class="is-pretty-link">wizard_step2</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></p>
+<h4 id='props'>Props<a href='#props' class='anchor'>#</a>
+</h4><table>
 <thead>
 <tr>
-<th>Поле</th>
-<th>Правило</th>
-<th>HTTP-код</th>
-<th>Код ошибки</th>
+<th>Prop</th>
+<th>Тип</th>
+<th style="text-align:center">Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>title</code></td>
-<td>Обязательное, непустая строка</td>
-<td>422</td>
-<td><code>VALIDATION_ERROR</code></td>
+<td><code>steps</code></td>
+<td><code>StepConfig[]</code></td>
+<td style="text-align:center">Да</td>
+<td>Конфигурация шагов: <code>{ id: number; label: string; status: StepStatus }</code></td>
 </tr>
 <tr>
-<td><code>prompt</code></td>
-<td>Если передан: длина 10–2000 символов</td>
-<td>422</td>
-<td><code>VALIDATION_ERROR</code></td>
+<td><code>currentStep</code></td>
+<td><code>number</code></td>
+<td style="text-align:center">Да</td>
+<td>Индекс (1-based) активного шага</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">StepStatus</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pending&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;active&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;completed&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">StepConfig</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">label</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">status</span>: <span style="color:#66d9ef">StepStatus</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Пример использования:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Шаг 1 активен
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">steps</span>: <span style="color:#66d9ef">StepConfig</span>[] <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>  { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">1</span>, <span style="color:#a6e22e">label</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Данные и контент&#34;</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;active&#34;</span> },
+</span></span><span style="display:flex;"><span>  { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">label</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Аудитория и цель&#34;</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pending&#34;</span> },
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Шаг 2 активен, шаг 1 завершён
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">steps</span>: <span style="color:#66d9ef">StepConfig</span>[] <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>  { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">1</span>, <span style="color:#a6e22e">label</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Данные и контент&#34;</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;completed&#34;</span> },
+</span></span><span style="display:flex;"><span>  { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">label</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Аудитория и цель&#34;</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;active&#34;</span> },
+</span></span><span style="display:flex;"><span>];
+</span></span></code></pre></div><h4 id='визуальные-состояния-шага'>Визуальные состояния шага<a href='#%d0%b2%d0%b8%d0%b7%d1%83%d0%b0%d0%bb%d1%8c%d0%bd%d1%8b%d0%b5-%d1%81%d0%be%d1%81%d1%82%d0%be%d1%8f%d0%bd%d0%b8%d1%8f-%d1%88%d0%b0%d0%b3%d0%b0' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th><code>StepStatus</code></th>
+<th>Стиль круга</th>
+<th>Стиль коннектора</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pending</code></td>
+<td>Серый круг, белый номер</td>
+<td>Серая линия</td>
 </tr>
 <tr>
-<td><code>project_id</code></td>
-<td>Если передан: UUID, проект должен принадлежать организации</td>
-<td>404</td>
-<td><code>PROJECT_NOT_FOUND</code></td>
+<td><code>active</code></td>
+<td>Фиолетовый круг, белый номер</td>
+<td>Серая линия (к следующему)</td>
 </tr>
 <tr>
-<td><code>brand_kit_id</code></td>
-<td>Если передан: UUID, Brand Kit должен принадлежать организации</td>
-<td>404</td>
-<td><code>BRAND_KIT_NOT_FOUND</code></td>
+<td><code>completed</code></td>
+<td>Фиолетовый круг, белая галочка</td>
+<td>Фиолетовая линия</td>
+</tr>
+</tbody>
+</table>
+<h4 id='состояния-компонента'>Состояния компонента<a href='#%d1%81%d0%be%d1%81%d1%82%d0%be%d1%8f%d0%bd%d0%b8%d1%8f-%d0%ba%d0%be%d0%bc%d0%bf%d0%be%d0%bd%d0%b5%d0%bd%d1%82%d0%b0' class='anchor'>#</a>
+</h4><ul>
+<li><code>step_1_active</code> — круг 1 фиолетовый, круг 2 серый, коннектор серый.</li>
+<li><code>step_2_active</code> — круг 1 фиолетовый (завершён), коннектор фиолетовый, круг 2 фиолетовый (активен).</li>
+</ul>
+<hr>
+<h3 id='fileuploader'><code>FileUploader</code><a href='#fileuploader' class='anchor'>#</a>
+</h3><p><strong>Тип:</strong> organism
+<strong>Назначение:</strong> Drag-and-drop зона загрузки файлов с валидацией типа и размера, очередью загрузки, отображением статуса каждого файла и кнопкой удаления.</p>
+<p><strong>Экраны:</strong> <a
+  href="/02_frontend/screens/wizard_step1/"
+    class="is-pretty-link">wizard_step1</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></p>
+<h4 id='props-1'>Props<a href='#props-1' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Тип</th>
+<th style="text-align:center">Обязательный</th>
+<th>По умолчанию</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>files</code></td>
+<td><code>UploadedFile[]</code></td>
+<td style="text-align:center">Да</td>
+<td><code>[]</code></td>
+<td>Текущий список загруженных файлов</td>
 </tr>
 <tr>
-<td><code>tone</code></td>
-<td>Если передан: одно из перечисленных значений <code>ToneType</code></td>
-<td>422</td>
-<td><code>VALIDATION_ERROR</code></td>
+<td><code>onFilesChange</code></td>
+<td><code>(files: File[]) =&gt; void</code></td>
+<td style="text-align:center">Да</td>
+<td>—</td>
+<td>Коллбек при добавлении новых файлов через диалог/DnD</td>
 </tr>
 <tr>
-<td><code>goal</code></td>
-<td>Если передан: одно из значений <code>PresentationGoal</code></td>
-<td>422</td>
-<td><code>VALIDATION_ERROR</code></td>
+<td><code>onFileRemove</code></td>
+<td><code>(fileId: string) =&gt; void</code></td>
+<td style="text-align:center">Да</td>
+<td>—</td>
+<td>Коллбек удаления файла из списка</td>
 </tr>
 <tr>
-<td><code>audience</code></td>
-<td>Если передан: одно из значений <code>AudienceType</code></td>
-<td>422</td>
-<td><code>VALIDATION_ERROR</code></td>
+<td><code>maxFiles</code></td>
+<td><code>number</code></td>
+<td style="text-align:center">нет</td>
+<td><code>5</code></td>
+<td>Максимальное число файлов</td>
 </tr>
 <tr>
-<td>Роль</td>
-<td><code>admin</code> или <code>editor</code></td>
-<td>403</td>
-<td><code>INSUFFICIENT_ROLE</code></td>
+<td><code>maxSizeMb</code></td>
+<td><code>number</code></td>
+<td style="text-align:center">нет</td>
+<td><code>50</code></td>
+<td>Максимальный размер одного файла в МБ</td>
+</tr>
+<tr>
+<td><code>acceptedFormats</code></td>
+<td><code>string[]</code></td>
+<td style="text-align:center">нет</td>
+<td><code>['pdf','docx','xlsx','csv']</code></td>
+<td>Допустимые MIME / расширения</td>
+</tr>
+<tr>
+<td><code>presentationId</code></td>
+<td><code>string | undefined</code></td>
+<td style="text-align:center">нет</td>
+<td><code>undefined</code></td>
+<td>UUID презентации для <code>POST /files?presentation_id=…</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">UploadedFile</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fileId</span>: <span style="color:#66d9ef">string</span>;       <span style="color:#75715e">// uuid — из FileUploadResponse.file_id
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sizeBytes</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">status</span>: <span style="color:#66d9ef">FileStatus</span>;   <span style="color:#75715e">// uploading | processing | ready | error
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">errorMessage?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">FileStatus</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;uploading&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;processing&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;ready&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;error&#34;</span>;
+</span></span></code></pre></div><h4 id='состояния-компонента-1'>Состояния компонента<a href='#%d1%81%d0%be%d1%81%d1%82%d0%be%d1%8f%d0%bd%d0%b8%d1%8f-%d0%ba%d0%be%d0%bc%d0%bf%d0%be%d0%bd%d0%b5%d0%bd%d1%82%d0%b0-1' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>Состояние</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>empty</code></td>
+<td>Drop-зона отображает иконку + «Нажмите для выбора файлов / или перетащите их сюда»</td>
+</tr>
+<tr>
+<td><code>dragover</code></td>
+<td>Drop-зона подсвечивается (фиолетовый border + фоновый тint) при наведении файла</td>
+</tr>
+<tr>
+<td><code>uploading</code></td>
+<td>Файл в списке с прогресс-баром / спиннером; статус <code>uploading</code></td>
+</tr>
+<tr>
+<td><code>processing</code></td>
+<td>Файл загружен в S3, идёт индексация; статус <code>processing</code>; спиннер</td>
+</tr>
+<tr>
+<td><code>ready</code></td>
+<td>Файл успешно проиндексирован; статус <code>ready</code>; зелёная галочка</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>Ошибка загрузки/индексации; красный крест; <code>errorMessage</code> под именем файла</td>
+</tr>
+<tr>
+<td><code>limit_reached</code></td>
+<td>Кнопка «Добавить ещё» скрыта / drop-зона недоступна после 5 файлов</td>
+</tr>
+</tbody>
+</table>
+<h4 id='алгоритм-загрузки'>Алгоритм загрузки<a href='#%d0%b0%d0%bb%d0%b3%d0%be%d1%80%d0%b8%d1%82%d0%bc-%d0%b7%d0%b0%d0%b3%d1%80%d1%83%d0%b7%d0%ba%d0%b8' class='anchor'>#</a>
+</h4><pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">flowchart TD
+    A[Пользователь выбирает файл] --&gt; B{Валидация}
+    B --&gt;|Невалидный формат| C[Ошибка без API-вызова]
+    B --&gt;|Превышен размер| D[Ошибка без API-вызова]
+    B --&gt;|Превышен лимит| E[Ошибка без API-вызова]
+    B --&gt;|Валидный| F[&#34;POST /files multipart/form-data&#34;]
+    F --&gt;|202| G[&#34;status: uploading — processing&#34;]
+    G --&gt; H{&#34;Polling GET /tasks/task_id&#34;}
+    H --&gt;|completed| I[&#34;status: ready&#34;]
+    H --&gt;|failed| J[&#34;status: error&#34;]
+</code></pre><h4 id='связь-с-api'>Связь с API<a href='#%d1%81%d0%b2%d1%8f%d0%b7%d1%8c-%d1%81-api' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>Действие</th>
+<th>Метод</th>
+<th>Эндпоинт</th>
+<th>Тело</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Добавление файла</td>
+<td>POST</td>
+<td><code>/files</code></td>
+<td><code>multipart/form-data</code>: <code>file</code> (binary) + <code>presentation_id?</code></td>
+</tr>
+<tr>
+<td>Проверка статуса</td>
+<td>GET</td>
+<td><code>/tasks/{task_id}</code></td>
+<td>Опционально: если <code>FileUploadResponse.task_id</code> передан</td>
+</tr>
+<tr>
+<td>Удаление файла</td>
+<td>DELETE</td>
+<td><code>/files/{file_id}</code></td>
+<td>Только если <code>presentationId</code> существует</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h2 id='безопасность'>Безопасность<a href='#%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c' class='anchor'>#</a>
-</h2><ul>
-<li><strong>Аутентификация:</strong> Bearer JWT (TTL 15 мин) или <code>X-API-Key</code> (хранится как SHA-256-хеш).</li>
-<li><strong>Авторизация:</strong> RBAC — роль <code>viewer</code> не имеет права создавать презентации.</li>
-<li><strong>Мультиарендность:</strong> PostgreSQL RLS — созданная презентация автоматически привязана к <code>org_id</code> из JWT; доступ к <code>project_id</code> и <code>brand_kit_id</code> проверяется через ту же политику.</li>
-<li><strong>Транспорт:</strong> TLS 1.3 (NFR-006).</li>
-</ul>
+<h3 id='wizardheader'><code>WizardHeader</code><a href='#wizardheader' class='anchor'>#</a>
+</h3><p><strong>Тип:</strong> organism
+<strong>Назначение:</strong> Упрощённая шапка wizard: логотип + «← Вернуться к дашборду».</p>
+<p><strong>Экраны:</strong> wizard_step1, wizard_step2</p>
+<blockquote>
+<p>Нет сложных состояний. Props: <code>logoHref: string</code>, <code>backLabel: string</code>, <code>backHref: string</code>. Подробнее — в <a
+  href="/02_frontend/screens/wizard_step1/#wizardheader"
+    class="is-pretty-link">wizard_step1.md</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script>.</p>
+</blockquote>
+<hr>
+<h3 id='footeractions'><code>FooterActions</code><a href='#footeractions' class='anchor'>#</a>
+</h3><p><strong>Тип:</strong> molecule
+<strong>Назначение:</strong> Панель кнопок в нижней части страницы wizard с действиями «Назад» и «Далее / Создать структуру».</p>
+<p><strong>Экраны:</strong> wizard_step2 (потенциально переиспользуется на всех шагах)</p>
+<blockquote>
+<p>Props и состояния — в <a
+  href="/02_frontend/screens/wizard_step2/#footeractions"
+    class="is-pretty-link">wizard_step2.md</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script>.</p>
+</blockquote>
 <script lang="js">
   const innerPages = document.getElementById("inner-pages");
   if (innerPages) {
@@ -1333,13 +1568,13 @@
       });
     });
   }
-</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/03_backend/02_rest_methods/createproject/" title="POST /projects"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - POST /projects</a>
-  <a class="nav nav-next" href="http://localhost:1313/03_backend/02_rest_methods/generateoutline/" title="POST /presentations/{id}/generate/outline">Следующее - POST /presentations/{id}/generate/outline <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/02_frontend/screens/wizard_step2/" title="Wizard — Шаг 2: Аудитория и цель"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - Wizard — Шаг 2: Аудитория и цель</a>
+  <a class="nav nav-next" href="http://localhost:1313/02_frontend/user_flows/" title="Пользовательские сценарии">Следующее - Пользовательские сценарии <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 </nav></div><div class="column is-sticky is-paddingless" id="tocWrapper">
   <div class="is-paddingless" id="tocContainer">
     <div id="tocContent">
       <div class="additionalinfo">
-    <span id="method_name">POST /presentations</span>
+    <span id="method_name">Реестр компонентов</span>
 
 
 
@@ -1347,7 +1582,7 @@
 
 
 
-    <strong>Описание:</strong> Создание новой презентации в черновом статусе. Синхронный эндпоинт без участия LLM.
+    <strong>Описание:</strong> Каталог всех UI-компонентов приложения DeckAI: тип, экраны использования, props и состояния переиспользуемых компонентов.
 </div>
       <div class="toc-header">
         <h6 class="toc-title is-marginless">Содержание:On this page:</h6>
@@ -1360,21 +1595,15 @@
       <div id="toc"><nav id="TableOfContents">
   <ul>
     <li><a href="#содержание">Содержание</a></li>
-    <li><a href="#обзор">Обзор</a></li>
-    <li><a href="#алгоритм">Алгоритм</a></li>
-    <li><a href="#параметры">Параметры</a></li>
-    <li><a href="#тело-запроса">Тело запроса</a></li>
-    <li><a href="#ответы">Ответы</a>
+    <li><a href="#сводная-таблица">Сводная таблица</a></li>
+    <li><a href="#переиспользуемые-компоненты">Переиспользуемые компоненты</a>
       <ul>
-        <li><a href="#201-created">201 Created</a></li>
-        <li><a href="#401-unauthorized">401 Unauthorized</a></li>
-        <li><a href="#403-forbidden">403 Forbidden</a></li>
-        <li><a href="#404-not-found">404 Not Found</a></li>
-        <li><a href="#422-unprocessable-entity">422 Unprocessable Entity</a></li>
+        <li><a href="#wizardstepper"><code>WizardStepper</code></a></li>
+        <li><a href="#fileuploader"><code>FileUploader</code></a></li>
+        <li><a href="#wizardheader"><code>WizardHeader</code></a></li>
+        <li><a href="#footeractions"><code>FooterActions</code></a></li>
       </ul>
     </li>
-    <li><a href="#валидации">Валидации</a></li>
-    <li><a href="#безопасность">Безопасность</a></li>
   </ul>
 </nav></div>
 <ul class="info" style="line-height: 1.2; list-style-type: none; border: 1px solid; border-radius: 1px; padding: 5px; margin: 16px 10px 0; color: black;">
@@ -1450,6 +1679,12 @@
     ></script><script
       type="module"
       src="/js/theme/toc.min.js"
+    ></script><script
+      type="module"
+      src="/js/external/mermaid/mermaid.min.js"
+    ></script><script
+      type="module"
+      src="/js/fencedcodes/mermaid.min.js"
     ></script><script
       type="text/javascript"
       src="/js/external/jquery/jquery-3.6.3.min.js"

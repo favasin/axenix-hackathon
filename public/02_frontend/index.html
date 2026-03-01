@@ -8,7 +8,7 @@
 <title>Frontend</title>
 <link
   rel="icon"
-  href="/images/favicon.png?v=1772346347"
+  href="/images/favicon.png?v=1772348601"
   type="image/x-icon"/>
 <link
     rel="stylesheet"
@@ -129,7 +129,7 @@
     <img
       id="globalLogoImg"
       alt="Homepage"
-      src="/images/logo.png?v=1772346347"/>
+      src="/images/logo.png?v=1772348601"/>
     <div class="logo-header-container">
       <span>Сервис генерации презентаций</span>
     </div>
@@ -141,7 +141,7 @@
   >
     <img
       alt="Homepage"
-      src="/images/logoTouch.png?v=1772346347"/>
+      src="/images/logoTouch.png?v=1772348601"/>
   </a>
 </div>
 <div id="navbarItems" class="is-flex">
@@ -475,20 +475,86 @@
       </div>
     </div></ul></li>
       </div>
-    </div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header is-single-link">
+    </div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
       <a
         href='/02_frontend/'
         class='card-header-title'>
         <i class='fa-solid fa-display fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active"><div
-            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header is-single-link">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
+            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header">
       <a
         href='/02_frontend/'
         class='card-header-title'
           title='Frontend'>
-        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a></div>
+        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless is-tree-active"><div class="">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
+      <a
+        href='/02_frontend/screens/'
+        class='card-header-title'
+          title='Экраны'>
+        <i class='fa-solid fa-window-restore'></i><p class="pt-0 pb-0 pr-2 pl-1">Экраны</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/screens/landing/'
+        class='card-header-title'
+          title='Лендинг'>
+        <i class='fa-solid fa-house'></i><p class="pt-0 pb-0 pr-2 pl-1">Лендинг</p></a></div>
           </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/screens/wizard_step1/'
+        class='card-header-title'
+          title='Wizard — Шаг 1: Данные и контент'>
+        <i class='fa-solid fa-upload'></i><p class="pt-0 pb-0 pr-2 pl-1">Wizard — Шаг 1: Данные и контент</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/screens/wizard_step2/'
+        class='card-header-title'
+          title='Wizard — Шаг 2: Аудитория и цель'>
+        <i class='fa-solid fa-bullseye'></i><p class="pt-0 pb-0 pr-2 pl-1">Wizard — Шаг 2: Аудитория и цель</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/components/'
+        class='card-header-title'
+          title='Реестр компонентов'>
+        <i class='fa-solid fa-cubes'></i><p class="pt-0 pb-0 pr-2 pl-1">Реестр компонентов</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/user_flows/'
+        class='card-header-title'
+          title='Пользовательские сценарии'>
+        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">Пользовательские сценарии</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
       </div>
     </div></ul>
       </aside>
@@ -552,7 +618,366 @@
 </ul>
 <div id="contentTitle">Frontend</div><p>Раздел описывает архитектуру фронтенда, структуру приложения и базовые принципы реализации интерфейсов. Здесь фиксируются ключевые пользовательские сценарии и правила взаимодействия с backend API.</p>
 <p>Материалы используются для обеспечения единообразия UI, корректной интеграции с сервисами и контроля влияния изменений на пользовательский опыт.</p>
-<script lang="js">
+<hr>
+<h2 id='содержание-раздела'>Содержание раздела<a href='#%d1%81%d0%be%d0%b4%d0%b5%d1%80%d0%b6%d0%b0%d0%bd%d0%b8%d0%b5-%d1%80%d0%b0%d0%b7%d0%b4%d0%b5%d0%bb%d0%b0' class='anchor'>#</a>
+</h2><h3 id='экраны'>Экраны<a href='#%d1%8d%d0%ba%d1%80%d0%b0%d0%bd%d1%8b' class='anchor'>#</a>
+</h3><ul>
+<li><a
+  href="/02_frontend/screens/landing/"
+    class="is-pretty-link">Лендинг (<code>/</code>)</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — публичная главная страница: Navbar, HeroSection, AppPreview</li>
+<li><a
+  href="/02_frontend/screens/wizard_step1/"
+    class="is-pretty-link">Wizard — Шаг 1: Данные и контент</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — TopicTextarea, FileUploader; <code>POST /files</code></li>
+<li><a
+  href="/02_frontend/screens/wizard_step2/"
+    class="is-pretty-link">Wizard — Шаг 2: Аудитория и цель</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — AudienceSelector, GoalTextarea; <code>POST /presentations</code> + <code>POST .../generate/outline</code></li>
+</ul>
+<h3 id='компоненты-и-флоу'>Компоненты и флоу<a href='#%d0%ba%d0%be%d0%bc%d0%bf%d0%be%d0%bd%d0%b5%d0%bd%d1%82%d1%8b-%d0%b8-%d1%84%d0%bb%d0%be%d1%83' class='anchor'>#</a>
+</h3><ul>
+<li><a
+  href="/02_frontend/components/"
+    class="is-pretty-link">Реестр компонентов</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — сводная таблица всех компонентов, полные описания переиспользуемых (<code>WizardStepper</code>, <code>FileUploader</code>)</li>
+<li><a
+  href="/02_frontend/user_flows/"
+    class="is-pretty-link">Пользовательские сценарии</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — сквозные флоу: happy path, регистрация, граничные случаи, сводная таблица API-вызовов</li>
+</ul>
+<div id="inner-pages" class="inner-pages">
+  <br>
+  <p><b>Вложенные статьи:</b></p>
+  <table style="font-size: 14px;">
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+    <tr>
+    
+    <tr>
+      <td><a href="http://localhost:1313/02_frontend/screens/">Экраны</a></td>
+      <td>Документация по отдельным экранам приложения DeckAI: компоненты, состояния, сценарии, связь с API.</td>
+    </tr>
+    
+    <tr>
+      <td><a href="http://localhost:1313/02_frontend/components/">Реестр компонентов</a></td>
+      <td>Каталог всех UI-компонентов приложения DeckAI: тип, экраны использования, props и состояния переиспользуемых компонентов.</td>
+    </tr>
+    
+    <tr>
+      <td><a href="http://localhost:1313/02_frontend/user_flows/">Пользовательские сценарии</a></td>
+      <td>Сквозные пользовательские флоу от лендинга до экрана результата — happy path и граничные случаи.</td>
+    </tr>
+    
+  </tr>
+</table>
+</div><script lang="js">
   const innerPages = document.getElementById("inner-pages");
   if (innerPages) {
     innerPages.querySelectorAll("li").forEach(listElement => {
@@ -573,7 +998,7 @@
     });
   }
 </script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/03_backend/02_rest_methods/regenerateslide/" title="POST /presentations/{id}/generate/slide/{slide_id}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - POST /presentations/{id}/generate/slide/{slide_id}</a>
-  <a class="nav nav-next" href="http://localhost:1313/00_overview/" title="Описание и артефакты анализа">Следующее - Описание и артефакты анализа <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+  <a class="nav nav-next" href="http://localhost:1313/02_frontend/screens/" title="Экраны">Следующее - Экраны <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 </nav></div><div class="column is-sticky is-paddingless" id="tocWrapper">
   <div class="is-paddingless" id="tocContainer">
     <div id="tocContent">
@@ -597,8 +1022,15 @@
         ></i>      
       </div>
       <div id="toc"><nav id="TableOfContents">
-            <p><strong>No data available</strong></p>
-          </nav></div>
+  <ul>
+    <li><a href="#содержание-раздела">Содержание раздела</a>
+      <ul>
+        <li><a href="#экраны">Экраны</a></li>
+        <li><a href="#компоненты-и-флоу">Компоненты и флоу</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
 <ul class="info" style="line-height: 1.2; list-style-type: none; border: 1px solid; border-radius: 1px; padding: 5px; margin: 16px 10px 0; color: black;">
     
     

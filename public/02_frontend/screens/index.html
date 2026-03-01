@@ -3,9 +3,9 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="generator" content="Hugo 0.126.1">
-<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Справочная информация по HTTP-эндпоинтам сервиса." />
+<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Документация по отдельным экранам приложения DeckAI: компоненты, состояния, сценарии, связь с API." />
 
-<title>REST API</title>
+<title>Экраны</title>
 <link
   rel="icon"
   href="/images/favicon.png?v=1772348601"
@@ -341,23 +341,23 @@
         <i class='fa-solid fa-diagram-project fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Архитектура</p></a></div>
           </div></li>
       </div>
-    </div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
+    </div><div class="card is-fs-expandable-icon"><div class="card-header">
       <a
         href='/03_backend/'
         class='card-header-title'>
         <i class='fa-solid fa-server fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
             class="card"><div class="card-header">
       <a
         href='/03_backend/'
         class='card-header-title'
           title='Backend'>
-        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
+        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
                 <span class='icon'></span>
               </a>
             </div>
-          </div><ul class="is-marginless is-tree-active"><div class="">
+          </div><ul class="is-marginless"><div class="">
       <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
             class="card"><div class="card-header">
       <a
@@ -411,8 +411,8 @@
     </div></ul></li>
       </div>
     </div><div class="">
-      <div class=""><li class="is-marginless is-entries-expandable is-entries-expanded"><div
-            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
       <a
         href='/03_backend/02_rest_methods/'
         class='card-header-title'
@@ -475,25 +475,25 @@
       </div>
     </div></ul></li>
       </div>
-    </div><div class="card is-fs-expandable-icon"><div class="card-header">
+    </div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
       <a
         href='/02_frontend/'
         class='card-header-title'>
         <i class='fa-solid fa-display fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
             class="card"><div class="card-header">
       <a
         href='/02_frontend/'
         class='card-header-title'
           title='Frontend'>
-        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
                 <span class='icon'></span>
               </a>
             </div>
-          </div><ul class="is-marginless"><div class="">
-      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
-            class="card"><div class="card-header">
+          </div><ul class="is-marginless is-tree-active"><div class="">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-expanded"><div
+            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header">
       <a
         href='/02_frontend/screens/'
         class='card-header-title'
@@ -614,31 +614,15 @@
 </style>
 <ul id="breadcrumbs" class="breadcrumb">
         <li> <a href="/">Промпт-инжиниринг</a> </li>
-        <li> <a href="/03_backend/">Backend</a> </li>
-    <li> <a href="/03_backend/02_rest_methods/">REST API</a></li>
+        <li> <a href="/02_frontend/">Frontend</a> </li>
+    <li> <a href="/02_frontend/screens/">Экраны</a></li>
 </ul>
-<div id="contentTitle">REST API</div><p>Раздел содержит спецификацию REST API: ресурсы, методы, параметры, форматы запросов и ответов, а также коды ошибок. Описания предназначены для интеграций, разработки клиентских приложений и тестирования.</p>
-<p>Материалы задают единые правила взаимодействия с сервисом и служат источником истины для внешних и внутренних потребителей API.</p>
-<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
-<div id="swagger-ui"></div>
-
-<script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
-<script>
-    window.addEventListener("load", function () {
-      SwaggerUIBundle({
-        url: "/openapi.json",
-        dom_id: "#swagger-ui",
-        deepLinking: true
-      });
-    });
-</script>
-<hr>
-<h2 id='детальная-документация-эндпоинтов'>Детальная документация эндпоинтов<a href='#%d0%b4%d0%b5%d1%82%d0%b0%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b0%d1%86%d0%b8%d1%8f-%d1%8d%d0%bd%d0%b4%d0%bf%d0%be%d0%b8%d0%bd%d1%82%d0%be%d0%b2' class='anchor'>#</a>
-</h2><h3 id='проекты'>Проекты<a href='#%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d1%8b' class='anchor'>#</a>
-</h3><ul>
+<div id="contentTitle">Экраны</div><p>Раздел содержит описание каждого экрана приложения DeckAI: дерево компонентов, пользовательский сценарий, валидации на фронте и таблицу API-вызовов.</p>
+<h2 id='экраны'>Экраны<a href='#%d1%8d%d0%ba%d1%80%d0%b0%d0%bd%d1%8b' class='anchor'>#</a>
+</h2><ul>
 <li><a
-  href="/03_backend/02_rest_methods/createproject/"
-    class="is-pretty-link">POST /projects</a
+  href="/02_frontend/screens/landing/"
+    class="is-pretty-link">Лендинг (<code>/</code>)</a
 >
 
 
@@ -700,13 +684,10 @@
       method.classList.add('ramka-5');
     }
   });
-</script> — создание нового проекта в организации (sync, без LLM)</li>
-</ul>
-<h3 id='презентации'>Презентации<a href='#%d0%bf%d1%80%d0%b5%d0%b7%d0%b5%d0%bd%d1%82%d0%b0%d1%86%d0%b8%d0%b8' class='anchor'>#</a>
-</h3><ul>
+</script> — публичная главная страница, CTA, AppPreview</li>
 <li><a
-  href="/03_backend/02_rest_methods/createpresentation/"
-    class="is-pretty-link">POST /presentations</a
+  href="/02_frontend/screens/wizard_step1/"
+    class="is-pretty-link">Wizard — Шаг 1: Данные и контент (<code>/create</code>, step 1)</a
 >
 
 
@@ -768,13 +749,10 @@
       method.classList.add('ramka-5');
     }
   });
-</script> — создание презентации в статусе <code>draft</code> (sync, без LLM)</li>
-</ul>
-<h3 id='генерация'>Генерация<a href='#%d0%b3%d0%b5%d0%bd%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d1%8f' class='anchor'>#</a>
-</h3><ul>
+</script> — тема + загрузка файлов</li>
 <li><a
-  href="/03_backend/02_rest_methods/generateoutline/"
-    class="is-pretty-link">POST /presentations/{id}/generate/outline</a
+  href="/02_frontend/screens/wizard_step2/"
+    class="is-pretty-link">Wizard — Шаг 2: Аудитория и цель (<code>/create</code>, step 2)</a
 >
 
 
@@ -836,137 +814,7 @@
       method.classList.add('ramka-5');
     }
   });
-</script> — генерация структуры через RAG + LLM (sync, p95 ≤ 10 с)</li>
-<li><a
-  href="/03_backend/02_rest_methods/generateslides/"
-    class="is-pretty-link">POST /presentations/{id}/generate/slides</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script> — генерация всех слайдов (async + WebSocket, p95 ≤ 60 с)</li>
-<li><a
-  href="/03_backend/02_rest_methods/regenerateslide/"
-    class="is-pretty-link">POST /presentations/{id}/generate/slide/{slide_id}</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script> — перегенерация одного слайда по инструкции (sync, p95 ≤ 5 с)</li>
+</script> — выбор аудитории, запуск генерации outline</li>
 </ul>
 <div id="inner-pages" class="inner-pages">
   <br>
@@ -978,28 +826,18 @@
     <tr>
     
     <tr>
-      <td><a href="http://localhost:1313/03_backend/02_rest_methods/createproject/">POST /projects</a></td>
-      <td>Создание нового проекта в организации. Синхронный эндпоинт без участия LLM.</td>
+      <td><a href="http://localhost:1313/02_frontend/screens/landing/">Лендинг</a></td>
+      <td>Публичная главная страница DeckAI. Первая точка контакта: заголовок, CTA и превью интерфейса.</td>
     </tr>
     
     <tr>
-      <td><a href="http://localhost:1313/03_backend/02_rest_methods/createpresentation/">POST /presentations</a></td>
-      <td>Создание новой презентации в черновом статусе. Синхронный эндпоинт без участия LLM.</td>
+      <td><a href="http://localhost:1313/02_frontend/screens/wizard_step1/">Wizard — Шаг 1: Данные и контент</a></td>
+      <td>Первый шаг мастера создания презентации: тема в свободной форме и загрузка файлов-источников.</td>
     </tr>
     
     <tr>
-      <td><a href="http://localhost:1313/03_backend/02_rest_methods/generateoutline/">POST /presentations/{id}/generate/outline</a></td>
-      <td>Синхронная генерация структуры (оглавления) презентации через RAG &#43; LLM. Цель: p95 ≤ 10 с.</td>
-    </tr>
-    
-    <tr>
-      <td><a href="http://localhost:1313/03_backend/02_rest_methods/generateslides/">POST /presentations/{id}/generate/slides</a></td>
-      <td>Асинхронная генерация всех слайдов по утверждённой структуре. Результат доставляется через WebSocket. Цель: p95 ≤ 60 с.</td>
-    </tr>
-    
-    <tr>
-      <td><a href="http://localhost:1313/03_backend/02_rest_methods/regenerateslide/">POST /presentations/{id}/generate/slide/{slide_id}</a></td>
-      <td>Синхронная регенерация одного слайда по инструкции пользователя. Цель: p95 ≤ 5 с.</td>
+      <td><a href="http://localhost:1313/02_frontend/screens/wizard_step2/">Wizard — Шаг 2: Аудитория и цель</a></td>
+      <td>Второй шаг мастера: выбор целевой аудитории и описание цели. Запускает создание презентации и генерацию структуры.</td>
     </tr>
     
   </tr>
@@ -1024,13 +862,13 @@
       });
     });
   }
-</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/03_backend/01_info_models/cache/" title="Кэш и очереди (Redis)"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - Кэш и очереди (Redis)</a>
-  <a class="nav nav-next" href="http://localhost:1313/03_backend/02_rest_methods/createproject/" title="POST /projects">Следующее - POST /projects <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/02_frontend/" title="Frontend"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - Frontend</a>
+  <a class="nav nav-next" href="http://localhost:1313/02_frontend/screens/landing/" title="Лендинг">Следующее - Лендинг <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 </nav></div><div class="column is-sticky is-paddingless" id="tocWrapper">
   <div class="is-paddingless" id="tocContainer">
     <div id="tocContent">
       <div class="additionalinfo">
-    <span id="method_name">REST API</span>
+    <span id="method_name">Экраны</span>
 
 
 
@@ -1038,7 +876,7 @@
 
 
 
-    <strong>Описание:</strong> Справочная информация по HTTP-эндпоинтам сервиса.
+    <strong>Описание:</strong> Документация по отдельным экранам приложения DeckAI: компоненты, состояния, сценарии, связь с API.
 </div>
       <div class="toc-header">
         <h6 class="toc-title is-marginless">Содержание:On this page:</h6>
@@ -1050,13 +888,7 @@
       </div>
       <div id="toc"><nav id="TableOfContents">
   <ul>
-    <li><a href="#детальная-документация-эндпоинтов">Детальная документация эндпоинтов</a>
-      <ul>
-        <li><a href="#проекты">Проекты</a></li>
-        <li><a href="#презентации">Презентации</a></li>
-        <li><a href="#генерация">Генерация</a></li>
-      </ul>
-    </li>
+    <li><a href="#экраны">Экраны</a></li>
   </ul>
 </nav></div>
 <ul class="info" style="line-height: 1.2; list-style-type: none; border: 1px solid; border-radius: 1px; padding: 5px; margin: 16px 10px 0; color: black;">

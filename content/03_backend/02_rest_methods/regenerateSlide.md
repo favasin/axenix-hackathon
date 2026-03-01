@@ -255,46 +255,6 @@ interface Slide {
 
 ---
 
-## Диаграмма последовательности
-
-```mermaid
-sequenceDiagram
-    autonumber
-    participant Client as Клиент
-    participant API as FastAPI
-    participant Redis as Redis
-    participant Mongo as MongoDB
-    participant LLM as LLM API (Claude Sonnet)
-    participant LLMh as Claude Haiku (постпроц.)
-    participant PG as PostgreSQL
-
-    Client->>API: POST /presentations/{id}/generate/slide/{slide_id}
-    API->>PG: Проверка статуса презентации (ready) и прав
-    API->>PG: Проверка принадлежности slide_id
-    API->>Redis: Rate limit check
-
-    API->>Mongo: Загрузка контекста слайда из generation_traces
-    Mongo-->>API: RAG-чанки, key_thesis, текущий контент
-
-    API->>LLM: Промпт (текущий слайд + чанки + instruction + instruction_type)
-    alt LLM доступен
-        LLM-->>API: Обновлённый SlideContent + AttributionItems
-    else Circuit Breaker (NFR-011)
-        API->>LLM: Fallback → GPT-4o
-        LLM-->>API: Обновлённый SlideContent
-    end
-
-    API->>LLMh: Постпроцессинг (AI-cliché filter, forbidden_words)
-    LLMh-->>API: Очищенный контент + has_unverified_facts
-
-    API->>PG: Обновление слайда; создание записи в presentation_versions
-    API->>Mongo: Обновление generation_traces (новый вариант слайда)
-
-    API-->>Client: 200 OK — Slide
-```
-
----
-
 ## Безопасность
 
 - **Аутентификация:** Bearer JWT (TTL 15 мин) или `X-API-Key`.
