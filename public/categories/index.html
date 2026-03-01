@@ -8,7 +8,7 @@
 <title>Categories</title>
 <link
   rel="icon"
-  href="/images/favicon.png?v=1772344819"
+  href="/images/favicon.png?v=1772346274"
   type="image/x-icon"/>
 <link
     rel="stylesheet"
@@ -129,7 +129,7 @@
     <img
       id="globalLogoImg"
       alt="Homepage"
-      src="/images/logo.png?v=1772344819"/>
+      src="/images/logo.png?v=1772346274"/>
     <div class="logo-header-container">
       <span>Сервис генерации презентаций</span>
     </div>
@@ -141,7 +141,7 @@
   >
     <img
       alt="Homepage"
-      src="/images/logoTouch.png?v=1772344819"/>
+      src="/images/logoTouch.png?v=1772346274"/>
   </a>
 </div>
 <div id="navbarItems" class="is-flex">
@@ -411,14 +411,57 @@
     </div></ul></li>
       </div>
     </div><div class="">
-      <div class=""><li class="is-marginless"><div
-            class="card"><div class="card-header is-single-link">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
       <a
         href='/03_backend/02_rest_methods/'
         class='card-header-title'
           title='REST API'>
-        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a></div>
+        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/createproject/'
+        class='card-header-title'
+          title='POST /projects'>
+        <i class='fa-solid fa-folder-plus'></i><p class="pt-0 pb-0 pr-2 pl-1">POST /projects</p></a></div>
           </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/createpresentation/'
+        class='card-header-title'
+          title='POST /presentations'>
+        <i class='fa-solid fa-file-powerpoint'></i><p class="pt-0 pb-0 pr-2 pl-1">POST /presentations</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/generateoutline/'
+        class='card-header-title'
+          title='POST /presentations/{id}/generate/outline'>
+        <i class='fa-solid fa-list-ol'></i><p class="pt-0 pb-0 pr-2 pl-1">POST /presentations/{id}/generate/outline</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/generateslides/'
+        class='card-header-title'
+          title='POST /presentations/{id}/generate/slides'>
+        <i class='fa-solid fa-wand-magic-sparkles'></i><p class="pt-0 pb-0 pr-2 pl-1">POST /presentations/{id}/generate/slides</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
       </div>
     </div></ul></li>
       </div>

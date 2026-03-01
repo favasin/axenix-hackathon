@@ -7,5 +7,40 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/03_backend/02_rest_methods/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>POST /projects</title>
+      <link>http://localhost:1313/03_backend/02_rest_methods/createproject/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/03_backend/02_rest_methods/createproject/</guid>
+      <description>Содержание# Обзор Алгоритм Параметры Тело запроса Ответы Валидации Безопасность Обзор# Свойство Значение Метод POST URL /projects Тип Синхронный LLM Нет Успешный код 201 Created Теги Projects Требования FR-041 (управление организацией) Создаёт новый проект в рамках организации. Проект — логический контейнер для группировки презентаций. После создания проект доступен через GET /projects/{project_id} и используется при создании презентаций как project_id.&#xA;Алгоритм# Проверка Bearer JWT или X-API-Key; извлечение user_id и org_id из токена. Проверка RBAC: роль пользователя должна быть admin или editor; роль viewer получает 403.</description>
+    </item>
+    <item>
+      <title>POST /presentations</title>
+      <link>http://localhost:1313/03_backend/02_rest_methods/createpresentation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/03_backend/02_rest_methods/createpresentation/</guid>
+      <description>Содержание# Обзор Алгоритм Параметры Тело запроса Ответы Валидации Безопасность Обзор# Свойство Значение Метод POST URL /presentations Тип Синхронный LLM Нет Успешный код 201 Created Теги Presentations Требования FR-010 (инициализация генерации), FR-025 (RBAC) Создаёт новую презентацию в статусе draft. Объект служит контейнером для последующих шагов: загрузки источников, генерации структуры (generateOutline) и слайдов (generateSlides). Поля tone, goal, audience и prompt передаются в LLM на этапе генерации и могут быть уточнены позднее через PATCH /presentations/{id}.</description>
+    </item>
+    <item>
+      <title>POST /presentations/{id}/generate/outline</title>
+      <link>http://localhost:1313/03_backend/02_rest_methods/generateoutline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/03_backend/02_rest_methods/generateoutline/</guid>
+      <description>Содержание# Обзор Алгоритм Параметры Тело запроса Ответы Валидации Диаграмма последовательности Безопасность Обзор# Свойство Значение Метод POST URL /presentations/{presentation_id}/generate/outline Тип Синхронный (ответ возвращается в теле, не через задачу) LLM Claude Sonnet (primary) / GPT-4o (fallback) RAG Qdrant — поиск по source_file_ids, порог косинусного сходства ≥ 0.72 Успешный код 200 OK SLA p95 ≤ 10 секунд (NFR-001) Теги Generation Требования FR-010 (RAG-поиск), FR-011 (генерация структуры) Генерирует структуру презентации: список слайдов с заголовками, ключевыми тезисами и рекомендуемыми типами контента.</description>
+    </item>
+    <item>
+      <title>POST /presentations/{id}/generate/slides</title>
+      <link>http://localhost:1313/03_backend/02_rest_methods/generateslides/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/03_backend/02_rest_methods/generateslides/</guid>
+      <description>Содержание# Обзор Алгоритм Параметры Тело запроса Ответы Валидации Диаграмма последовательности Безопасность Обзор# Свойство Значение Метод POST URL /presentations/{presentation_id}/generate/slides Тип Асинхронный — возвращает task_id, прогресс через WebSocket LLM Claude Sonnet (primary) / GPT-4o (fallback); Claude Haiku — постпроцессинг RAG Qdrant — по source_file_ids из утверждённой структуры Успешный код 202 Accepted SLA p95 ≤ 60 секунд для 15 слайдов (NFR-002) Теги Generation Требования FR-012 (генерация слайдов), FR-013 (постпроцессинг), FR-014 (checkpoint-восстановление) Запускает генерацию всех слайдов по ранее утверждённому Outline.</description>
+    </item>
+    <item>
+      <title>POST /presentations/{id}/generate/slide/{slide_id}</title>
+      <link>http://localhost:1313/03_backend/02_rest_methods/regenerateslide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/03_backend/02_rest_methods/regenerateslide/</guid>
+      <description>Содержание# Обзор Алгоритм Параметры Тело запроса Ответы Валидации Диаграмма последовательности Безопасность Обзор# Свойство Значение Метод POST URL /presentations/{presentation_id}/generate/slide/{slide_id} Тип Синхронный — ответ возвращается в теле запроса LLM Claude Sonnet (primary) / GPT-4o (fallback) RAG Нет нового поиска — используются чанки текущего слайда из generation_traces Успешный код 200 OK SLA p95 ≤ 5 секунд (NFR-001) Теги Generation Требования FR-015 (итеративное редактирование слайдов) Перегенерирует один конкретный слайд по инструкции в свободной форме. Контекст слайда (RAG-чанки, тезис, attribution) загружается из MongoDB generation_traces — повторный поиск в Qdrant не выполняется.</description>
+    </item>
   </channel>
 </rss>

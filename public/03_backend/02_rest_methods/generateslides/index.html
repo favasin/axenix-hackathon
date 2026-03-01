@@ -3,9 +3,9 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="generator" content="Hugo 0.126.1">
-<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Описание и артефакты анализа" />
+<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Асинхронная генерация всех слайдов по утверждённой структуре. Результат доставляется через WebSocket. Цель: p95 ≤ 60 с." />
 
-<title>Описание и артефакты анализа</title>
+<title>POST /presentations/{id}/generate/slides</title>
 <link
   rel="icon"
   href="/images/favicon.png?v=1772346347"
@@ -195,14 +195,14 @@
   <div id="sidebarWrapper" class="is-fixed">
     <div id="sidebar" class="is-marginless">
       <aside class="menu is-paddingless is-marginless">
-        <ul class="menu-list is-marginless is-paddingless"><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
+        <ul class="menu-list is-marginless is-paddingless"><div class="card is-fs-expandable-icon"><div class="card-header">
       <a
         href='/00_overview/'
         class='card-header-title'>
         <i class='fa-solid fa-circle-info fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
-            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
       <a
         href='/00_overview/'
         class='card-header-title'
@@ -211,7 +211,7 @@
                 <span class='icon'></span>
               </a>
             </div>
-          </div><ul class="is-marginless is-tree-active"><div class="">
+          </div><ul class="is-marginless"><div class="">
       <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
             class="card"><div class="card-header">
       <a
@@ -341,23 +341,23 @@
         <i class='fa-solid fa-diagram-project fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Архитектура</p></a></div>
           </div></li>
       </div>
-    </div><div class="card is-fs-expandable-icon"><div class="card-header">
+    </div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
       <a
         href='/03_backend/'
         class='card-header-title'>
         <i class='fa-solid fa-server fa-lg'></i></a></div>
       </div><div class="is-expandable">
-      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
             class="card"><div class="card-header">
       <a
         href='/03_backend/'
         class='card-header-title'
           title='Backend'>
-        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
                 <span class='icon'></span>
               </a>
             </div>
-          </div><ul class="is-marginless"><div class="">
+          </div><ul class="is-marginless is-tree-active"><div class="">
       <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
             class="card"><div class="card-header">
       <a
@@ -411,13 +411,13 @@
     </div></ul></li>
       </div>
     </div><div class="">
-      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-expanded"><div
             class="card"><div class="card-header">
       <a
         href='/03_backend/02_rest_methods/'
         class='card-header-title'
           title='REST API'>
-        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
                 <span class='icon'></span>
               </a>
             </div>
@@ -453,7 +453,7 @@
       </div>
     </div><div class="">
       <div class=""><li class="is-marginless"><div
-            class="card"><div class="card-header is-single-link">
+            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header is-single-link">
       <a
         href='/03_backend/02_rest_methods/generateslides/'
         class='card-header-title'
@@ -548,23 +548,15 @@
 </style>
 <ul id="breadcrumbs" class="breadcrumb">
         <li> <a href="/">Промпт-инжиниринг</a> </li>
-    <li> <a href="/00_overview/">Описание и артефакты анализа</a></li>
+        <li> <a href="/03_backend/">Backend</a> </li>
+        <li> <a href="/03_backend/02_rest_methods/">REST API</a> </li>
+    <li> <a href="/03_backend/02_rest_methods/generateslides/">POST /presentations/{id}/generate/slides</a></li>
 </ul>
-<div id="contentTitle">Описание и артефакты анализа</div><p>Репозиторий содержит документацию для сервиса, написанную в рамках хакатона Axenix, трек «Промпт-инжиниринг».</p>
-<p>Команда &ldquo;It Depends&rdquo;.</p>
-<p>Участники:</p>
-<ul>
-<li>Васин Фёдор</li>
-<li>Галеева Диана</li>
-<li>Зашкола Алина</li>
-<li>Кертиева Сабина</li>
-<li>Скоморохов Александр</li>
-</ul>
-<h2 id='содержание-раздела'>Содержание раздела<a href='#%d1%81%d0%be%d0%b4%d0%b5%d1%80%d0%b6%d0%b0%d0%bd%d0%b8%d0%b5-%d1%80%d0%b0%d0%b7%d0%b4%d0%b5%d0%bb%d0%b0' class='anchor'>#</a>
+<div id="contentTitle">POST /presentations/{id}/generate/slides</div><h2 id='содержание'>Содержание<a href='#%d1%81%d0%be%d0%b4%d0%b5%d1%80%d0%b6%d0%b0%d0%bd%d0%b8%d0%b5' class='anchor'>#</a>
 </h2><ul>
 <li><a
-  href="/00_overview/01_br/"
-    class="is-pretty-link">Бизнес-требования и требования к системе</a
+  href="#%d0%be%d0%b1%d0%b7%d0%be%d1%80"
+    class="is-pretty-link">Обзор</a
 >
 
 
@@ -626,10 +618,10 @@
       method.classList.add('ramka-5');
     }
   });
-</script> — акторы, FR (FR-001 — FR-055), NFR (NFR-001 — NFR-022)</li>
+</script></li>
 <li><a
-  href="/00_overview/02_constraints/"
-    class="is-pretty-link">Ограничения и допущения</a
+  href="#%d0%b0%d0%bb%d0%b3%d0%be%d1%80%d0%b8%d1%82%d0%bc"
+    class="is-pretty-link">Алгоритм</a
 >
 
 
@@ -691,10 +683,10 @@
       method.classList.add('ramka-5');
     }
   });
-</script> — технические, правовые, организационные ограничения; 10 допущений</li>
+</script></li>
 <li><a
-  href="/00_overview/03_interfaces/"
-    class="is-pretty-link">Интерфейсы</a
+  href="#%d0%bf%d0%b0%d1%80%d0%b0%d0%bc%d0%b5%d1%82%d1%80%d1%8b"
+    class="is-pretty-link">Параметры</a
 >
 
 
@@ -756,10 +748,10 @@
       method.classList.add('ramka-5');
     }
   });
-</script> — UI-навигация, REST API (полная таблица), WebSocket-события, внешние интеграции</li>
+</script></li>
 <li><a
-  href="/00_overview/04_quality_metrics/"
-    class="is-pretty-link">Метрики качества и итоговая сводка</a
+  href="#%d1%82%d0%b5%d0%bb%d0%be-%d0%b7%d0%b0%d0%bf%d1%80%d0%be%d1%81%d0%b0"
+    class="is-pretty-link">Тело запроса</a
 >
 
 
@@ -821,557 +813,576 @@
       method.classList.add('ramka-5');
     }
   });
-</script> — таблица соответствия требований и метрик, инструменты, топ-3 риска</li>
+</script></li>
+<li><a
+  href="#%d0%be%d1%82%d0%b2%d0%b5%d1%82%d1%8b"
+    class="is-pretty-link">Ответы</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></li>
+<li><a
+  href="#%d0%b2%d0%b0%d0%bb%d0%b8%d0%b4%d0%b0%d1%86%d0%b8%d0%b8"
+    class="is-pretty-link">Валидации</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></li>
+<li><a
+  href="#%d0%b4%d0%b8%d0%b0%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b0-%d0%bf%d0%be%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8c%d0%bd%d0%be%d1%81%d1%82%d0%b8"
+    class="is-pretty-link">Диаграмма последовательности</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></li>
+<li><a
+  href="#%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c"
+    class="is-pretty-link">Безопасность</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></li>
 </ul>
 <hr>
-<h2 id='контекст-задачи'>Контекст задачи<a href='#%d0%ba%d0%be%d0%bd%d1%82%d0%b5%d0%ba%d1%81%d1%82-%d0%b7%d0%b0%d0%b4%d0%b0%d1%87%d0%b8' class='anchor'>#</a>
-</h2><p>С помощью промптинга разработать системный дизайн сервиса по генерации презентаций с учётом бизнес, функциональных и технических требований.</p>
-<h2 id='выбор-llm'>Выбор LLM<a href='#%d0%b2%d1%8b%d0%b1%d0%be%d1%80-llm' class='anchor'>#</a>
-</h2><p>В рамках исследования был выполнен сравнительный анализ современных больших языковых моделей: GPT-5.2, Claude Opus / Sonnet, Gemini 3 / Gemini 3.1 Pro, DeepSeek-V3 / DeepSeek-R1 и Mistral Large / Mixtral.
-Цель сравнения: выбрать LLM, в которую команда будет отправлять промпты для подготовки системного дизайна сервиса по генерации презентаций.</p>
-<p>Важно: это выбор модели для этапа <strong>аналитики и проектирования</strong>, а не выбор LLM, которая будет работать внутри конечного продукта в production.</p>
-<p>Для подготовки документации и системного дизайна выбрана модель <strong>Claude</strong>.</p>
-<p>Отчеты о взаимодействии с ИИ:</p>
-<ul>
-<li>GPT-5.2 (OpenAI): <a
-  href="https://chatgpt.com/share/69a2ee3a-f5bc-8010-a884-8c208a90f67c"
-    class="is-pretty-link" target="_blank">https://chatgpt.com/share/69a2ee3a-f5bc-8010-a884-8c208a90f67c</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script></li>
-<li>Claude Opus / Sonnet (Anthropic): <a
-  href="https://claude.ai/share/5b420602-1eda-431d-a929-64b3977d8aef"
-    class="is-pretty-link" target="_blank">https://claude.ai/share/5b420602-1eda-431d-a929-64b3977d8aef</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script></li>
-<li>Gemini 3 / Gemini 3.1 Pro (Google DeepMind): <a
-  href="https://gemini.google.com/share/5010cc2be7c6"
-    class="is-pretty-link" target="_blank">https://gemini.google.com/share/5010cc2be7c6</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script></li>
-<li>DeepSeek-V3 / DeepSeek-R1 (DeepSeek): <a
-  href="https://chat.deepseek.com/share/qkn0g0mk5m2ovmqwxm"
-    class="is-pretty-link" target="_blank">https://chat.deepseek.com/share/qkn0g0mk5m2ovmqwxm</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script></li>
-<li>Mistral Large / Mixtral (Mistral AI):  <a
-  href="https://chat.mistral.ai/chat/10287d2f-d7ce-414d-8c07-e30f2c4f9048"
-    class="is-pretty-link" target="_blank">https://chat.mistral.ai/chat/10287d2f-d7ce-414d-8c07-e30f2c4f9048</a
->
-
-
-
-<style>
-  .ramka-5 {
-      position: relative;
-      z-index: 0;
-       
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;  
-      font-size: 24px;
-      font-family: 'Roboto', sans-serif;     
-  }
-  .ramka-5::before {
-      content: '';
-      position: absolute;
-      z-index: -2;
-      left: -50%;
-      top: -50%;
-      width: 200%;
-      height: 200%;
-      background-color: #BFE2FF;
-      background-repeat: no-repeat;
-      background-size: 50% 50%, 50% 50%;
-      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
-      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
-      animation: anim-ramka-5 4s linear infinite;
-  }
-  .ramka-5::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      left: 6px;
-      top: 6px;
-      width: calc(100% - 12px);
-      height: calc(100% - 12px);
-      background: white;
-      border-radius: 5px;
-  }
-  @keyframes anim-ramka-5 {
-      100% {
-          transform: rotate(1turn);
-      }
-  }
-  </style>
-
-<script lang="javascript">
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let params = new URLSearchParams(document.location.search);
-    let methodName = params.get('methodName'); 
-    let method = document.getElementById("createRequest");
-
-    if (method != null && methodName != null){
-      method.classList.add('ramka-5');
-    }
-  });
-</script></li>
-</ul>
-<h3 id='сравнение-моделей'>Сравнение моделей<a href='#%d1%81%d1%80%d0%b0%d0%b2%d0%bd%d0%b5%d0%bd%d0%b8%d0%b5-%d0%bc%d0%be%d0%b4%d0%b5%d0%bb%d0%b5%d0%b9' class='anchor'>#</a>
-</h3><table>
+<h2 id='обзор'>Обзор<a href='#%d0%be%d0%b1%d0%b7%d0%be%d1%80' class='anchor'>#</a>
+</h2><table>
 <thead>
 <tr>
-<th>Критерий</th>
-<th>Claude</th>
-<th>ChatGPT</th>
-<th>Gemini</th>
-<th>DeepSeek</th>
-<th>Mistral</th>
+<th>Свойство</th>
+<th>Значение</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Storytelling</td>
-<td>Очень высокий</td>
-<td>Высокий</td>
-<td>Средний</td>
-<td>Средний</td>
-<td>Средний</td>
+<td>Метод</td>
+<td><code>POST</code></td>
 </tr>
 <tr>
-<td>Структура презентаций</td>
-<td>Очень высокий</td>
-<td>Высокий</td>
-<td>Средний</td>
-<td>Средний</td>
-<td>Низкий</td>
+<td>URL</td>
+<td><code>/presentations/{presentation_id}/generate/slides</code></td>
 </tr>
 <tr>
-<td>Логика и flow</td>
-<td>Очень высокий</td>
-<td>Высокий</td>
-<td>Средний</td>
-<td>Средний</td>
-<td>Низкий</td>
+<td>Тип</td>
+<td><strong>Асинхронный</strong> — возвращает <code>task_id</code>, прогресс через WebSocket</td>
 </tr>
 <tr>
-<td>Аналитика</td>
-<td>Высокий</td>
-<td>Высокий</td>
-<td>Средний</td>
-<td>Средний</td>
-<td>Низкий</td>
+<td>LLM</td>
+<td>Claude Sonnet (primary) / GPT-4o (fallback); Claude Haiku — постпроцессинг</td>
 </tr>
 <tr>
-<td>Инсайты</td>
-<td>Очень высокий</td>
-<td>Высокий</td>
-<td>Средний</td>
-<td>Средний</td>
-<td>Низкий</td>
+<td>RAG</td>
+<td>Qdrant — по source_file_ids из утверждённой структуры</td>
 </tr>
 <tr>
-<td>Работа с длинными документами</td>
-<td>Очень высокий</td>
-<td>Высокий</td>
-<td>Средний</td>
-<td>Средний</td>
-<td>Средний</td>
+<td>Успешный код</td>
+<td><code>202 Accepted</code></td>
 </tr>
 <tr>
-<td>Консистентность</td>
-<td>Очень высокая</td>
-<td>Высокая</td>
-<td>Средняя</td>
-<td>Средняя</td>
-<td>Средняя</td>
+<td>SLA</td>
+<td>p95 ≤ 60 секунд для 15 слайдов (NFR-002)</td>
 </tr>
 <tr>
-<td>Галлюцинации</td>
-<td>Ниже среднего</td>
-<td>Средние</td>
-<td>Средние</td>
-<td>Средние</td>
-<td>Средние</td>
+<td>Теги</td>
+<td>Generation</td>
 </tr>
 <tr>
-<td>Контекст</td>
-<td>Очень высокий</td>
-<td>Высокий</td>
-<td>Средний</td>
-<td>Средний</td>
-<td>Средний</td>
-</tr>
-<tr>
-<td>Качество reasoning</td>
-<td>Очень высокий</td>
-<td>Высокий</td>
-<td>Средний</td>
-<td>Средний</td>
-<td>Средний</td>
-</tr>
-<tr>
-<td>Корпоративный стиль</td>
-<td>Очень высокий</td>
-<td>Высокий</td>
-<td>Средний</td>
-<td>Средний</td>
-<td>Низкий</td>
-</tr>
-<tr>
-<td>Простота контроля</td>
-<td>Высокая</td>
-<td>Средняя</td>
-<td>Средняя</td>
-<td>Средняя</td>
-<td>Средняя</td>
-</tr>
-<tr>
-<td>Скорость</td>
-<td>Средняя</td>
-<td>Высокая</td>
-<td>Высокая</td>
-<td>Высокая</td>
-<td>Высокая</td>
-</tr>
-<tr>
-<td>Стоимость</td>
-<td>Средняя</td>
-<td>Средняя</td>
-<td>Средняя</td>
-<td>Низкая</td>
-<td>Низкая</td>
+<td>Требования</td>
+<td>FR-012 (генерация слайдов), FR-013 (постпроцессинг), FR-014 (checkpoint-восстановление)</td>
 </tr>
 </tbody>
 </table>
-<h2 id='почему-выбрали-claude-для-документирования-решения'>Почему выбрали Claude для документирования решения<a href='#%d0%bf%d0%be%d1%87%d0%b5%d0%bc%d1%83-%d0%b2%d1%8b%d0%b1%d1%80%d0%b0%d0%bb%d0%b8-claude-%d0%b4%d0%bb%d1%8f-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f-%d1%80%d0%b5%d1%88%d0%b5%d0%bd%d0%b8%d1%8f' class='anchor'>#</a>
-</h2><ul>
-<li>Лучше сохраняет структуру длинных материалов: от бизнес-требований до технической архитектуры.</li>
-<li>Стабильно следует сложным инструкциям к формату (разделы, таблицы, матрицы трассировки, критерии приемки, готовые шаблоны).</li>
-<li>Дает более связные, полные и логически непротиворечивые артефакты по архитектуре и функциональным сценариям.</li>
-<li>Удобно поддерживает итеративный режим работы: уточнение требований, работа по шагам.</li>
-<li>Качество текста и готовые файлы идеально подходят для быстрой передачи в работу аналитикам, архитекторам и разработке.</li>
-</ul>
-<h3 id='обоснование-выбора-claude'>Обоснование выбора Claude<a href='#%d0%be%d0%b1%d0%be%d1%81%d0%bd%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b2%d1%8b%d0%b1%d0%be%d1%80%d0%b0-claude' class='anchor'>#</a>
-</h3><table>
+<p>Запускает генерацию всех слайдов по ранее утверждённому <code>Outline</code>. Операция ставится в очередь Celery; клиент отслеживает прогресс через WebSocket (события <code>slide_completed</code>, <code>generation_done</code>, <code>generation_error</code>). Поддерживается checkpoint-восстановление через LangGraph: при сбое воркера новый воркер продолжает с последнего завершённого слайда.</p>
+<blockquote>
+<p><strong>Предусловие:</strong> презентация должна находиться в статусе <code>outline_ready</code>. Если статус <code>draft</code> — сначала вызовите <code>POST /presentations/{id}/generate/outline</code>.</p>
+</blockquote>
+<hr>
+<h2 id='алгоритм'>Алгоритм<a href='#%d0%b0%d0%bb%d0%b3%d0%be%d1%80%d0%b8%d1%82%d0%bc' class='anchor'>#</a>
+</h2><ol>
+<li><strong>Аутентификация и авторизация.</strong> Проверка JWT / API-ключа; роли <code>editor</code> и <code>admin</code> разрешены.</li>
+<li><strong>Проверка статуса.</strong> <code>presentation.status</code> должен быть <code>outline_ready</code>; иначе — <code>422 INVALID_STATUS</code>.</li>
+<li><strong>Проверка лимитов тарифного плана.</strong> Если исчерпан лимит — <code>402 Payment Required</code>.</li>
+<li><strong>Rate limit.</strong> Проверка Redis <code>ratelimit:{key_id}:{min}</code>; при превышении — <code>429</code>.</li>
+<li><strong>Создание задачи Celery.</strong> Задача помещается в очередь <code>celery_queue:generation</code>; генерируется <code>task_id</code> (UUID). Статус презентации → <code>generating</code>.</li>
+<li><strong>Возврат <code>202 Accepted</code>.</strong> Клиент получает <code>task_id</code> и <code>estimated_seconds</code>.</li>
+</ol>
+<p><strong>Параллельно (воркер Celery / LangGraph):</strong></p>
+<ol start="7">
+<li><strong>Инициализация checkpoint.</strong> Запись начального состояния LangGraph в Redis HASH <code>gen_checkpoint:{task_id}</code> (TTL 1 ч).</li>
+<li><strong>Цикл по слайдам.</strong> Для каждого слайда из <code>Outline</code>:
+a. RAG-поиск в Qdrant по <code>suggested_data_source</code> и <code>key_thesis</code> (top-10 чанков).
+b. LLM-генерация контента слайда (Claude Sonnet): заголовок, bullets / chart / table, speaker_notes (если запрошены), атрибуция источников (<code>AttributionItem</code>).
+c. Постпроцессинг (Claude Haiku): фильтрация AI-клише, проверка <code>forbidden_words</code> из Brand Kit, запись <code>hallucination_flags</code>.
+d. Обновление прогресса: Redis Stream <code>gen_progress:{task_id}</code>, публикация в <code>pubsub:gen_progress</code>.
+e. Обновление checkpoint в Redis.
+f. Push события <code>slide_completed</code> через WebSocket.</li>
+<li><strong>Завершение.</strong> Статус презентации → <code>ready</code>; создание версии в <code>presentation_versions</code>. Push события <code>generation_done</code> через WebSocket.</li>
+<li><strong>Обработка сбоя.</strong> При падении воркера новый воркер читает checkpoint из Redis и возобновляет с последнего записанного слайда. При исчерпании retry — статус <code>error</code>, push события <code>generation_error</code>.</li>
+</ol>
+<hr>
+<h2 id='параметры'>Параметры<a href='#%d0%bf%d0%b0%d1%80%d0%b0%d0%bc%d0%b5%d1%82%d1%80%d1%8b' class='anchor'>#</a>
+</h2><table>
 <thead>
 <tr>
-<th>Требование продукта</th>
-<th>Почему Claude</th>
+<th>Параметр</th>
+<th>Тип</th>
+<th>Расположение</th>
+<th style="text-align:center">Обязательный</th>
+<th>Описание</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Высокое качество</td>
-<td>Лучшее качество storytelling</td>
-</tr>
-<tr>
-<td>Корпоративный стиль</td>
-<td>Более формальный и структурированный</td>
-</tr>
-<tr>
-<td>Data storytelling</td>
-<td>Более глубокий анализ</td>
-</tr>
-<tr>
-<td>Логика</td>
-<td>Более сильное reasoning</td>
-</tr>
-<tr>
-<td>Контекст</td>
-<td>Лучше работает с длинными файлами</td>
-</tr>
-<tr>
-<td>Надежность</td>
-<td>Более стабильные ответы</td>
+<td><code>presentation_id</code></td>
+<td>uuid</td>
+<td>path</td>
+<td style="text-align:center">Да</td>
+<td>UUID презентации со статусом <code>outline_ready</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id='какие-артефакты-формируем-через-выбранную-llm'>Какие артефакты формируем через выбранную LLM<a href='#%d0%ba%d0%b0%d0%ba%d0%b8%d0%b5-%d0%b0%d1%80%d1%82%d0%b5%d1%84%d0%b0%d0%ba%d1%82%d1%8b-%d1%84%d0%be%d1%80%d0%bc%d0%b8%d1%80%d1%83%d0%b5%d0%bc-%d1%87%d0%b5%d1%80%d0%b5%d0%b7-%d0%b2%d1%8b%d0%b1%d1%80%d0%b0%d0%bd%d0%bd%d1%83%d1%8e-llm' class='anchor'>#</a>
-</h2><ul>
-<li>Бизнес-требования и ограничения.</li>
-<li>Функциональные и нефункциональные требования.</li>
-<li>Системный дизайн сервиса генерации презентаций.</li>
-<li>Описание модулей, интеграций и API-контрактов.</li>
-<li>Пользовательские сценарии, user stories, критерии приемки.</li>
-<li>Риски и допущения.</li>
-</ul>
-<h2 id='отдельно-про-выбор-llm-в-самом-продукте'>Отдельно про выбор LLM в самом продукте<a href='#%d0%be%d1%82%d0%b4%d0%b5%d0%bb%d1%8c%d0%bd%d0%be-%d0%bf%d1%80%d0%be-%d0%b2%d1%8b%d0%b1%d0%be%d1%80-llm-%d0%b2-%d1%81%d0%b0%d0%bc%d0%be%d0%bc-%d0%bf%d1%80%d0%be%d0%b4%d1%83%d0%ba%d1%82%d0%b5' class='anchor'>#</a>
-</h2><p>Выбор LLM для сервиса генерации презентаций выполняется отдельным этапом на основе иных критериев (качество генерации слайдов, latency, стоимость, надежность, безопасность, масштабируемость).</p>
-<div id="inner-pages" class="inner-pages">
-  <br>
-  <p><b>Вложенные статьи:</b></p>
-  <table style="font-size: 14px;">
-    <tr>
-      <th>Название</th>
-      <th>Описание</th>
-    <tr>
-    
-    <tr>
-      <td><a href="http://localhost:1313/00_overview/01_br/">Требования</a></td>
-      <td>Бизнес-требования, акторы, функциональные и нефункциональные требования к сервису генерации презентаций.</td>
-    </tr>
-    
-    <tr>
-      <td><a href="http://localhost:1313/00_overview/02_constraints/">Ограничения и допущения</a></td>
-      <td>Технические, правовые, организационные ограничения и принятые допущения проекта PresentAI.</td>
-    </tr>
-    
-    <tr>
-      <td><a href="http://localhost:1313/00_overview/03_interfaces/">Интерфейсы</a></td>
-      <td>Пользовательский интерфейс, REST API, WebSocket и внешние интеграции сервиса PresentAI.</td>
-    </tr>
-    
-    <tr>
-      <td><a href="http://localhost:1313/00_overview/04_quality_metrics/">Метрики качества и итоговая сводка</a></td>
-      <td>Таблица соответствия требований и метрик, инструменты верификации и итоговая сводка SRS.</td>
-    </tr>
-    
-  </tr>
+<hr>
+<h2 id='тело-запроса'>Тело запроса<a href='#%d1%82%d0%b5%d0%bb%d0%be-%d0%b7%d0%b0%d0%bf%d1%80%d0%be%d1%81%d0%b0' class='anchor'>#</a>
+</h2><p><strong>Content-Type:</strong> <code>application/json</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ToneType</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;formal&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;business&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;persuasive&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;technical&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;educational&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GenerateSlidesRequest</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Тон генерируемого контента.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Если не передан — используется `presentations.tone`.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone?</span>: <span style="color:#66d9ef">ToneType</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Включить генерацию заметок докладчика для каждого слайда.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @default false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">include_speaker_notes?</span>: <span style="color:#66d9ef">boolean</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * UUID Brand Kit для применения стиля, шрифтов и forbidden_words.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Если не передан — используется Brand Kit, указанный при создании презентации.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">brand_kit_id?</span>: <span style="color:#66d9ef">string</span>; <span style="color:#75715e">// uuid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p><strong>Пример запроса:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tone&#34;</span>: <span style="color:#e6db74">&#34;formal&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;include_speaker_notes&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;brand_kit_id&#34;</span>: <span style="color:#e6db74">&#34;aabbccdd-1234-5678-9012-aabbccddeeff&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Тело может быть пустым объектом <code>{}</code> — в этом случае используются настройки из созданной презентации.</p>
+<hr>
+<h2 id='ответы'>Ответы<a href='#%d0%be%d1%82%d0%b2%d0%b5%d1%82%d1%8b' class='anchor'>#</a>
+</h2><h3 id='202-accepted'>202 Accepted<a href='#202-accepted' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TaskStatusEnum</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pending&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;running&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;completed&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;failed&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;cancelled&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">TaskResponse</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">task_id</span>: <span style="color:#66d9ef">string</span>;              <span style="color:#75715e">// uuid — использовать для GET /tasks/{task_id}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">status</span>: <span style="color:#66d9ef">TaskStatusEnum</span>;       <span style="color:#75715e">// при 202 всегда &#34;pending&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">estimated_seconds?</span>: <span style="color:#66d9ef">number</span>;   <span style="color:#75715e">// оценочное время выполнения
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;task_id&#34;</span>: <span style="color:#e6db74">&#34;d4e5f6a7-b8c9-0123-def0-123456789abc&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;pending&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;estimated_seconds&#34;</span>: <span style="color:#ae81ff">45</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>После получения <code>task_id</code> клиент подписывается на WebSocket-события:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Событие: один слайд сгенерирован
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SlideCompletedEvent</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">event_type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;slide_completed&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">presentation_id</span>: <span style="color:#66d9ef">string</span>;  <span style="color:#75715e">// uuid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">slide_id</span>: <span style="color:#66d9ef">string</span>;          <span style="color:#75715e">// uuid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">position</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">progress_percent</span>: <span style="color:#66d9ef">number</span>;  <span style="color:#75715e">// 0–100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Событие: генерация завершена
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GenerationDoneEvent</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">event_type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;generation_done&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">presentation_id</span>: <span style="color:#66d9ef">string</span>;  <span style="color:#75715e">// uuid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">task_id</span>: <span style="color:#66d9ef">string</span>;           <span style="color:#75715e">// uuid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">slide_count</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Событие: генерация завершилась с ошибкой
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GenerationErrorEvent</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">event_type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;generation_error&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">presentation_id</span>: <span style="color:#66d9ef">string</span>;  <span style="color:#75715e">// uuid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">task_id</span>: <span style="color:#66d9ef">string</span>;           <span style="color:#75715e">// uuid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">error_code</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">message</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">last_completed_slide</span>: <span style="color:#66d9ef">number</span>;  <span style="color:#75715e">// слайд, с которого возможно возобновление
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id='опрос-статуса-polling-альтернатива-websocket'>Опрос статуса (polling-альтернатива WebSocket)<a href='#%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d1%82%d0%b0%d1%82%d1%83%d1%81%d0%b0-polling-%d0%b0%d0%bb%d1%8c%d1%82%d0%b5%d1%80%d0%bd%d0%b0%d1%82%d0%b8%d0%b2%d0%b0-websocket' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">GET /tasks/{task_id}
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">TaskStatus</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">task_id</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">status</span>: <span style="color:#66d9ef">TaskStatusEnum</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">progress?</span>: <span style="color:#66d9ef">number</span>;         <span style="color:#75715e">// 0–100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">result?</span>: <span style="color:#66d9ef">object</span>;           <span style="color:#75715e">// заполняется после completed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">error?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">created_at</span>: <span style="color:#66d9ef">string</span>;        <span style="color:#75715e">// ISO 8601
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">completed_at?</span>: <span style="color:#66d9ef">string</span>;     <span style="color:#75715e">// ISO 8601
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id='402-payment-required'>402 Payment Required<a href='#402-payment-required' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;PLAN_LIMIT_EXCEEDED&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Monthly presentation limit reached. Upgrade your plan to continue.&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;details&#34;</span>: { <span style="color:#f92672">&#34;limit&#34;</span>: <span style="color:#ae81ff">5</span>, <span style="color:#f92672">&#34;used&#34;</span>: <span style="color:#ae81ff">5</span>, <span style="color:#f92672">&#34;plan&#34;</span>: <span style="color:#e6db74">&#34;free&#34;</span> },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;request_id&#34;</span>: <span style="color:#e6db74">&#34;req_01HXABCDE&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id='422-unprocessable-entity'>422 Unprocessable Entity<a href='#422-unprocessable-entity' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;INVALID_STATUS&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Presentation must be in &#39;outline_ready&#39; status to generate slides. Current status: &#39;draft&#39;.&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;request_id&#34;</span>: <span style="color:#e6db74">&#34;req_01HXABCDE&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id='429-too-many-requests'>429 Too Many Requests<a href='#429-too-many-requests' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;RATE_LIMIT_EXCEEDED&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Too many generation requests. Retry after 60 seconds.&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;request_id&#34;</span>: <span style="color:#e6db74">&#34;req_01HXABCDE&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id='валидации'>Валидации<a href='#%d0%b2%d0%b0%d0%bb%d0%b8%d0%b4%d0%b0%d1%86%d0%b8%d0%b8' class='anchor'>#</a>
+</h2><table>
+<thead>
+<tr>
+<th>Условие</th>
+<th>Правило</th>
+<th>HTTP-код</th>
+<th>Код ошибки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>presentation_id</code></td>
+<td>Должен существовать и принадлежать организации</td>
+<td>404</td>
+<td><code>PRESENTATION_NOT_FOUND</code></td>
+</tr>
+<tr>
+<td>Статус презентации</td>
+<td>Должен быть <code>outline_ready</code></td>
+<td>422</td>
+<td><code>INVALID_STATUS</code></td>
+</tr>
+<tr>
+<td><code>tone</code></td>
+<td>Если передан: одно из значений <code>ToneType</code></td>
+<td>422</td>
+<td><code>VALIDATION_ERROR</code></td>
+</tr>
+<tr>
+<td><code>brand_kit_id</code></td>
+<td>Если передан: UUID, Brand Kit принадлежит организации</td>
+<td>404</td>
+<td><code>BRAND_KIT_NOT_FOUND</code></td>
+</tr>
+<tr>
+<td>Лимит тарифа</td>
+<td>Число презентаций &lt; <code>plans.max_presentations_per_month</code></td>
+<td>402</td>
+<td><code>PLAN_LIMIT_EXCEEDED</code></td>
+</tr>
+<tr>
+<td>Rate limit</td>
+<td>Не более N запросов в минуту на API-ключ</td>
+<td>429</td>
+<td><code>RATE_LIMIT_EXCEEDED</code></td>
+</tr>
+<tr>
+<td>Роль</td>
+<td><code>admin</code> или <code>editor</code></td>
+<td>403</td>
+<td><code>INSUFFICIENT_ROLE</code></td>
+</tr>
+</tbody>
 </table>
-</div><script lang="js">
+<hr>
+<h2 id='диаграмма-последовательности'>Диаграмма последовательности<a href='#%d0%b4%d0%b8%d0%b0%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b0-%d0%bf%d0%be%d1%81%d0%bb%d0%b5%d0%b4%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8c%d0%bd%d0%be%d1%81%d1%82%d0%b8' class='anchor'>#</a>
+</h2><pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">sequenceDiagram
+    autonumber
+    participant Client as Клиент
+    participant WS as WebSocket
+    participant API as FastAPI
+    participant Redis as Redis
+    participant Celery as Celery Worker
+    participant Qdrant as Qdrant
+    participant LLM as LLM API (Claude Sonnet)
+    participant LLMh as Claude Haiku (постпроц.)
+    participant PG as PostgreSQL
+    participant Mongo as MongoDB
+
+    Client-&gt;&gt;API: POST /presentations/{id}/generate/slides
+    API-&gt;&gt;PG: Проверка статуса (outline_ready) и прав
+    API-&gt;&gt;Redis: Rate limit check
+    API-&gt;&gt;Celery: Постановка задачи в очередь generation
+    API-&gt;&gt;PG: Статус презентации → generating
+    API--&gt;&gt;Client: 202 Accepted — {task_id, estimated_seconds}
+
+    Client-&gt;&gt;WS: Подписка на события presentation_id
+
+    loop Для каждого слайда из Outline
+        Celery-&gt;&gt;Qdrant: RAG-поиск по key_thesis (top-10 чанков)
+        Qdrant--&gt;&gt;Celery: Релевантные чанки
+        Celery-&gt;&gt;LLM: Промпт (слайд + RAG-контекст + tone + brand_kit)
+        LLM--&gt;&gt;Celery: SlideContent + AttributionItems
+        Celery-&gt;&gt;LLMh: Постпроцессинг (AI-cliché filter, forbidden_words)
+        LLMh--&gt;&gt;Celery: Очищенный контент + hallucination_flags
+        Celery-&gt;&gt;PG: Сохранение слайда
+        Celery-&gt;&gt;Mongo: Запись generation_traces
+        Celery-&gt;&gt;Redis: Обновление gen_checkpoint:{task_id}
+        Celery-&gt;&gt;Redis: Публикация в gen_progress stream
+        Redis--&gt;&gt;WS: pubsub:gen_progress
+        WS--&gt;&gt;Client: slide_completed {position, progress_percent}
+    end
+
+    Celery-&gt;&gt;PG: Статус презентации → ready; создание версии
+    Celery-&gt;&gt;Redis: Обновление task status → completed
+    Redis--&gt;&gt;WS: pubsub:gen_progress (done)
+    WS--&gt;&gt;Client: generation_done {slide_count}
+</code></pre><hr>
+<h2 id='безопасность'>Безопасность<a href='#%d0%b1%d0%b5%d0%b7%d0%be%d0%bf%d0%b0%d1%81%d0%bd%d0%be%d1%81%d1%82%d1%8c' class='anchor'>#</a>
+</h2><ul>
+<li><strong>Аутентификация:</strong> Bearer JWT (TTL 15 мин) или <code>X-API-Key</code>; WebSocket использует тот же JWT в заголовке <code>Authorization</code> при рукопожатии.</li>
+<li><strong>Авторизация:</strong> RBAC — только <code>editor</code> и <code>admin</code>; <code>viewer</code> получает <code>403</code>.</li>
+<li><strong>Мультиарендность:</strong> Qdrant-поиск ограничен коллекцией <code>org_{id}_docs</code>; Brand Kit применяется только из организации пользователя.</li>
+<li><strong>Checkpoint-безопасность:</strong> состояние LangGraph в Redis <code>gen_checkpoint:{task_id}</code> имеет TTL 1 ч; при завершении ключ удаляется.</li>
+<li><strong>Стоимость:</strong> постпроцессинг (Claude Haiku) сокращает стоимость относительно Sonnet; семантический кэш на уровне слайдов снижает повторные LLM-вызовы. Цель: ≤ $0.15 за презентацию (NFR-022).</li>
+<li><strong>Транспорт:</strong> TLS 1.3; WebSocket — WSS (NFR-006).</li>
+</ul>
+<script lang="js">
   const innerPages = document.getElementById("inner-pages");
   if (innerPages) {
     innerPages.querySelectorAll("li").forEach(listElement => {
@@ -1391,13 +1402,13 @@
       });
     });
   }
-</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/" title="Промпт-инжиниринг"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - Промпт-инжиниринг</a>
-  <a class="nav nav-next" href="http://localhost:1313/00_overview/01_br/" title="Требования">Следующее - Требования <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/03_backend/02_rest_methods/generateoutline/" title="POST /presentations/{id}/generate/outline"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - POST /presentations/{id}/generate/outline</a>
+  <a class="nav nav-next" href="http://localhost:1313/03_backend/02_rest_methods/regenerateslide/" title="POST /presentations/{id}/generate/slide/{slide_id}">Следующее - POST /presentations/{id}/generate/slide/{slide_id} <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 </nav></div><div class="column is-sticky is-paddingless" id="tocWrapper">
   <div class="is-paddingless" id="tocContainer">
     <div id="tocContent">
       <div class="additionalinfo">
-    <span id="method_name">Описание и артефакты анализа</span>
+    <span id="method_name">POST /presentations/{id}/generate/slides</span>
 
 
 
@@ -1405,7 +1416,7 @@
 
 
 
-    <strong>Описание:</strong> Описание и артефакты анализа
+    <strong>Описание:</strong> Асинхронная генерация всех слайдов по утверждённой структуре. Результат доставляется через WebSocket. Цель: p95 ≤ 60 с.
 </div>
       <div class="toc-header">
         <h6 class="toc-title is-marginless">Содержание:On this page:</h6>
@@ -1417,20 +1428,23 @@
       </div>
       <div id="toc"><nav id="TableOfContents">
   <ul>
-    <li><a href="#содержание-раздела">Содержание раздела</a></li>
-    <li><a href="#контекст-задачи">Контекст задачи</a></li>
-    <li><a href="#выбор-llm">Выбор LLM</a>
+    <li><a href="#содержание">Содержание</a></li>
+    <li><a href="#обзор">Обзор</a></li>
+    <li><a href="#алгоритм">Алгоритм</a></li>
+    <li><a href="#параметры">Параметры</a></li>
+    <li><a href="#тело-запроса">Тело запроса</a></li>
+    <li><a href="#ответы">Ответы</a>
       <ul>
-        <li><a href="#сравнение-моделей">Сравнение моделей</a></li>
+        <li><a href="#202-accepted">202 Accepted</a></li>
+        <li><a href="#опрос-статуса-polling-альтернатива-websocket">Опрос статуса (polling-альтернатива WebSocket)</a></li>
+        <li><a href="#402-payment-required">402 Payment Required</a></li>
+        <li><a href="#422-unprocessable-entity">422 Unprocessable Entity</a></li>
+        <li><a href="#429-too-many-requests">429 Too Many Requests</a></li>
       </ul>
     </li>
-    <li><a href="#почему-выбрали-claude-для-документирования-решения">Почему выбрали Claude для документирования решения</a>
-      <ul>
-        <li><a href="#обоснование-выбора-claude">Обоснование выбора Claude</a></li>
-      </ul>
-    </li>
-    <li><a href="#какие-артефакты-формируем-через-выбранную-llm">Какие артефакты формируем через выбранную LLM</a></li>
-    <li><a href="#отдельно-про-выбор-llm-в-самом-продукте">Отдельно про выбор LLM в самом продукте</a></li>
+    <li><a href="#валидации">Валидации</a></li>
+    <li><a href="#диаграмма-последовательности">Диаграмма последовательности</a></li>
+    <li><a href="#безопасность">Безопасность</a></li>
   </ul>
 </nav></div>
 <ul class="info" style="line-height: 1.2; list-style-type: none; border: 1px solid; border-radius: 1px; padding: 5px; margin: 16px 10px 0; color: black;">
@@ -1506,6 +1520,12 @@
     ></script><script
       type="module"
       src="/js/theme/toc.min.js"
+    ></script><script
+      type="module"
+      src="/js/external/mermaid/mermaid.min.js"
+    ></script><script
+      type="module"
+      src="/js/fencedcodes/mermaid.min.js"
     ></script><script
       type="text/javascript"
       src="/js/external/jquery/jquery-3.6.3.min.js"
