@@ -2,19 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/03_backend/02_rest_methods/</loc>
+    <loc>http://localhost:1313/00_overview/01_br/01_br/</loc>
   </url><url>
     <loc>http://localhost:1313/03_backend/01_info_models/</loc>
   </url><url>
     <loc>http://localhost:1313/00_overview/</loc>
   </url><url>
+    <loc>http://localhost:1313/00_overview/01_br/</loc>
+  </url><url>
     <loc>http://localhost:1313/</loc>
   </url><url>
+    <loc>http://localhost:1313/03_backend/02_rest_methods/</loc>
+  </url><url>
     <loc>http://localhost:1313/01_architecture/</loc>
+  </url><url>
+    <loc>http://localhost:1313/03_backend/01_info_models/relational/</loc>
   </url><url>
     <loc>http://localhost:1313/03_backend/</loc>
   </url><url>
     <loc>http://localhost:1313/02_frontend/</loc>
+  </url><url>
+    <loc>http://localhost:1313/03_backend/01_info_models/documents/</loc>
+  </url><url>
+    <loc>http://localhost:1313/03_backend/01_info_models/vector_store/</loc>
+  </url><url>
+    <loc>http://localhost:1313/03_backend/01_info_models/cache/</loc>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>

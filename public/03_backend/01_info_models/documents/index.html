@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="generator" content="Hugo 0.126.1">
+<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Схемы документных коллекций для хранения трейсов генерации и аналитики." />
+
+<title>Документные коллекции</title>
+<link
+  rel="icon"
+  href="/images/favicon.png?v=1772340971"
+  type="image/x-icon"/>
+<link
+    rel="stylesheet"
+    rel="preload"
+    type="text/css"
+    href="/css/main.css"
+  /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/all.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sharp-thin.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sharp-solid.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sharp-regular.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sharp-light.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sorttable/sorttable.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/tippy/light-border.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/techradar/radar.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/form-js/form-js.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/overlay-scrollbars/overlayscrollbars.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/simplesearch/simplesearch.min.css"
+    />
+</head>
+  <body onload="browserCompatibility()"><div id="navbarInfo" class="is-hidden modal-container">
+  <div class="modal-content-box modal-text-box">
+    <div class="card modal-title is-radiusless">
+      <div class="card-header">
+        <p class="card-header-title is-marginless">About</p>
+      </div>
+    </div>
+    <div class="modal-content-container">
+      <div class="modal-content-block is-block">
+</div>
+    </div>
+  </div>
+</div>
+<div id="navbarShortcuts" class="is-hidden modal-container">
+  <div class="modal-content-box modal-text-box"><div class="card modal-title is-radiusless">
+        <div class="card-header">
+          <p class="card-header-title is-marginless">Keyboard shortcuts</p>
+        </div>
+      </div>
+      <div class="modal-content-container">
+        <div class="modal-content-block"><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>q</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Show current page QR code</p>
+  </div><div class="modal-content"><kbd>Escape</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Close modals</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>i</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Show website information</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>k</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Show shortcuts</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>h</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Go to homepage</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>f</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Find on website</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>m</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Collapse/Uncollapse sidebar</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>t</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Collapse/Uncollapse table of contents</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>↑</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Go to the top of the page</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>↓</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Go to the bottom of the page</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>p</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Print current page</p>
+  </div></div>
+      </div></div>
+</div>
+<div id="modalContainer" class="is-hidden modal-container">
+  <div id="modal" class="modal-content-box"></div>
+</div>
+<nav id="navbar" class="navbar" role="navigation" aria-label="main navigation">
+  <div id="navbarItemsContainer" class="navbar-brand"><div id="globalLogoContainer" class="is-flex"><a
+    id="globalLogo"
+    class="navbar-item navbar-item-standard is-paddingless"
+    href="/"
+  >
+    <img
+      id="globalLogoImg"
+      alt="Homepage"
+      src="/images/logo.png?v=1772340971"/>
+    <div class="logo-header-container">
+      <span>Сервис генерации презентаций</span>
+    </div>
+  </a>
+  <a
+    id="globalTouchLogo"
+    class="navbar-item navbar-item-standard is-paddingless"
+    href="/"
+  >
+    <img
+      alt="Homepage"
+      src="/images/logoTouch.png?v=1772340971"/>
+  </a>
+</div>
+<div id="navbarItems" class="is-flex">
+      <div id="navbarItemsStart" class="is-flex">
+        
+      </div>
+      <div id="navbarItemsEnd" class="is-flex"><div class="navbar-item">
+  <a
+    id="listDocuments"
+    class="button navbar-item-standard"
+    href="/listdocuments/"
+  >
+    <span class="icon">
+      <i class="fa-solid fa-list"></i>
+    </span>
+    <span class="icon-text">&nbsp;Список документов</span>
+  </a>
+</div><div class="navbar-item">
+  <a
+    id="searchButton"
+    class="button navbar-item-standard"
+    href="/search/"
+  >
+    <span class="icon">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </span>
+    <span class="icon-text">&nbsp;Поиск</span>
+  </a>
+</div>
+<div class="navbar-item">
+  <a
+    id="printButton"
+    class="button navbar-item-standard"
+  >
+    <span class="icon-text">Print</span>
+    <span class="icon">
+      <i class="fa-solid fa-print fa-lg"></i>
+    </span>
+  </a>
+</div></div>
+    </div>
+  </div>
+</nav>
+<div id="navbarOverlay"></div><div
+      class="columns is-mobile is-paddingless is-marginless"
+      id="mainContainer"
+    ><div
+  id="sidebarContainer"
+  class="column is-narrow is-paddingless is-marginless"
+>
+  <div id="sidebarWrapper" class="is-fixed">
+    <div id="sidebar" class="is-marginless">
+      <aside class="menu is-paddingless is-marginless">
+        <ul class="menu-list is-marginless is-paddingless"><div class="card is-fs-expandable-icon"><div class="card-header">
+      <a
+        href='/00_overview/'
+        class='card-header-title'>
+        <i class='fa-solid fa-circle-info fa-lg'></i></a></div>
+      </div><div class="is-expandable">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
+      <a
+        href='/00_overview/'
+        class='card-header-title'
+          title='Общее описание'>
+        <i class='fa-solid fa-circle-info fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Общее описание</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
+      <a
+        href='/00_overview/01_br/'
+        class='card-header-title'
+          title='Описание БТ'>
+        <i class='fa-solid fa-circle-info'></i><p class="pt-0 pb-0 pr-2 pl-1">Описание БТ</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/01_br/01_br/'
+        class='card-header-title'
+          title='Бизнес-контекст и БТ'>
+        <i class='fa-solid fa-circle-info'></i><p class="pt-0 pb-0 pr-2 pl-1">Бизнес-контекст и БТ</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div><div class="card is-fs-expandable-icon"><div class="card-header is-single-link">
+      <a
+        href='/01_architecture/'
+        class='card-header-title'>
+        <i class='fa-solid fa-diagram-project fa-lg'></i></a></div>
+      </div><div class="is-expandable">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/01_architecture/'
+        class='card-header-title'
+          title='Архитектура'>
+        <i class='fa-solid fa-diagram-project fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Архитектура</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
+      <a
+        href='/03_backend/'
+        class='card-header-title'>
+        <i class='fa-solid fa-server fa-lg'></i></a></div>
+      </div><div class="is-expandable">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
+            class="card"><div class="card-header">
+      <a
+        href='/03_backend/'
+        class='card-header-title'
+          title='Backend'>
+        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless is-tree-active"><div class="">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-expanded"><div
+            class="card"><div class="card-header">
+      <a
+        href='/03_backend/01_info_models/'
+        class='card-header-title'
+          title='Модель данных и базы данных'>
+        <i class='fa-solid fa-database'></i><p class="pt-0 pb-0 pr-2 pl-1">Модель данных и базы данных</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/01_info_models/relational/'
+        class='card-header-title'
+          title='Реляционные таблицы (PostgreSQL)'>
+        <i class='fa-solid fa-table'></i><p class="pt-0 pb-0 pr-2 pl-1">Реляционные таблицы (PostgreSQL)</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header is-single-link">
+      <a
+        href='/03_backend/01_info_models/documents/'
+        class='card-header-title'
+          title='Документные коллекции'>
+        <i class='fa-solid fa-file-code'></i><p class="pt-0 pb-0 pr-2 pl-1">Документные коллекции</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/01_info_models/vector_store/'
+        class='card-header-title'
+          title='Векторное хранилище (Qdrant)'>
+        <i class='fa-solid fa-magnifying-glass-chart'></i><p class="pt-0 pb-0 pr-2 pl-1">Векторное хранилище (Qdrant)</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/01_info_models/cache/'
+        class='card-header-title'
+          title='Кэш и очереди (Redis)'>
+        <i class='fa-solid fa-bolt'></i><p class="pt-0 pb-0 pr-2 pl-1">Кэш и очереди (Redis)</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/'
+        class='card-header-title'
+          title='REST API'>
+        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div><div class="card is-fs-expandable-icon"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/'
+        class='card-header-title'>
+        <i class='fa-solid fa-display fa-lg'></i></a></div>
+      </div><div class="is-expandable">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/'
+        class='card-header-title'
+          title='Frontend'>
+        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a></div>
+          </div></li>
+      </div>
+    </div></ul>
+      </aside>
+    </div>
+    <div id="sidebarCollapsible" class="is-marginless">
+      <div class="card is-uncollapse-action">
+        <div
+          id="sidebarUncollapse"
+          class="card-header is-single-link"
+          title="Collapse/Uncollapse sidebar"
+        >
+          <a class="card-header-title">
+            <i class="fa-solid fa-angles-right fa-lg"></i>
+          </a>
+        </div>
+      </div>
+      <div class="card is-collapse-action">
+        <div
+          id="sidebarCollapse"
+          class="card-header is-single-link"
+          title="Collapse/Uncollapse sidebar"
+        >
+          <a class="card-header-title">
+            <i class="fa-solid fa-angles-left fa-lg"></i>
+            <p>Collapse sidebar</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="sidebarMobileWrapper" class="column is-narrow is-hidden-desktop"></div>
+<div class="columns is-mobile is-marginless is-scroll-smooth has-toc is-toc-collapsed" id="contentContainer">
+  <div class="column" id="content" data-pagefind-body><style>
+    ul.breadcrumb {
+      padding: 10px 15px;
+      list-style: none;
+      background-color: #eee;
+    }
+    ul.breadcrumb li {
+      display: inline;
+      font-size: 14px;
+    }
+    ul.breadcrumb li+li:before {
+      padding: 8px;
+      color: black;
+      content: "/\00a0";
+    }
+    ul.breadcrumb li a {
+      color: #0275d8;
+      text-decoration: none;
+    }
+    ul.breadcrumb li a:hover {
+      color: #01447e;
+      text-decoration: underline;
+    }
+</style>
+<ul id="breadcrumbs" class="breadcrumb">
+        <li> <a href="/">Промпт-инжиниринг</a> </li>
+        <li> <a href="/03_backend/">Backend</a> </li>
+        <li> <a href="/03_backend/01_info_models/">Модель данных и базы данных</a> </li>
+    <li> <a href="/03_backend/01_info_models/documents/">Документные коллекции</a></li>
+</ul>
+<div id="contentTitle">Документные коллекции</div><h1 id='документные-коллекции'>Документные коллекции<a href='#%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%bd%d1%8b%d0%b5-%d0%ba%d0%be%d0%bb%d0%bb%d0%b5%d0%ba%d1%86%d0%b8%d0%b8' class='anchor'>#</a>
+</h1><blockquote>
+<p><strong>Хранилище:</strong> MongoDB 7.0 / PostgreSQL JSONB (альтернатива)
+<strong>Назначение:</strong> Полуструктурированные данные с высокой вариативностью схемы: трейсы AI-генерации, аналитика просмотров, шаблоны промптов.</p>
+</blockquote>
+<p>Эти коллекции хранят данные, которые плохо ложатся в реляционную модель: вложенные объекты с переменным числом полей, большие JSON-деревья состояний LangGraph-пайплайна, потоковые события аналитики.</p>
+<hr>
+<h2 id='коллекция-generation_traces'>Коллекция: <code>generation_traces</code><a href='#%d0%ba%d0%be%d0%bb%d0%bb%d0%b5%d0%ba%d1%86%d0%b8%d1%8f-generation_traces' class='anchor'>#</a>
+</h2><p><strong>Назначение:</strong> Полный трейс выполнения LangGraph-пайплайна генерации — каждый узел, prompt, ответ LLM, retrieval results, postprocessing.</p>
+<h3 id='схема-документа'>Схема документа<a href='#%d1%81%d1%85%d0%b5%d0%bc%d0%b0-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b0' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GenerationTrace</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">_id</span>: <span style="color:#66d9ef">ObjectId</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">generation_job_id</span>: <span style="color:#66d9ef">string</span>;      <span style="color:#75715e">// UUID, FK → generation_jobs.id
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">presentation_id</span>: <span style="color:#66d9ef">string</span>;        <span style="color:#75715e">// UUID, FK → presentations.id
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">organization_id</span>: <span style="color:#66d9ef">string</span>;        <span style="color:#75715e">// UUID для фильтрации
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">started_at</span>: <span style="color:#66d9ef">Date</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">completed_at?</span>: <span style="color:#66d9ef">Date</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">total_duration_ms?</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">outline_step?</span>: <span style="color:#66d9ef">OutlineStep</span>;     <span style="color:#75715e">// Шаг генерации outline
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">slide_steps</span>: <span style="color:#66d9ef">SlideStep</span>[];       <span style="color:#75715e">// Шаги генерации каждого слайда
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">llm_summary</span>: <span style="color:#66d9ef">LLMSummary</span>;        <span style="color:#75715e">// Агрегированная статистика LLM-вызовов
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">retrieval_summary</span>: <span style="color:#66d9ef">RetrievalSummary</span>; <span style="color:#75715e">// Статистика retrieval
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">OutlineStep</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">prompt_tokens</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">completion_tokens</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">llm_provider</span>: <span style="color:#66d9ef">string</span>;           <span style="color:#75715e">// &#39;claude&#39; | &#39;gpt4o&#39; | &#39;llama3&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">llm_model</span>: <span style="color:#66d9ef">string</span>;              <span style="color:#75715e">// &#39;claude-sonnet-4-6&#39; etc.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">prompt_text</span>: <span style="color:#66d9ef">string</span>;            <span style="color:#75715e">// Системный + пользовательский промпт
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">raw_response</span>: <span style="color:#66d9ef">string</span>;           <span style="color:#75715e">// Сырой ответ LLM
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">parsed_outline</span>: <span style="color:#66d9ef">OutlineItem</span>[];  <span style="color:#75715e">// Распарсенная структура
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">duration_ms</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cost_usd</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">OutlineItem</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">slide_number</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">key_thesis</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">slide_type</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data_required</span>: <span style="color:#66d9ef">boolean</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SlideStep</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">slide_id</span>: <span style="color:#66d9ef">string</span>;               <span style="color:#75715e">// UUID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">slide_number</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">slide_type</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">retrieval_chunks</span>: <span style="color:#66d9ef">RetrievalChunk</span>[];   <span style="color:#75715e">// Найденные чанки из Qdrant
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">prompt_tokens</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">completion_tokens</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">llm_provider</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">llm_model</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">prompt_text</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">raw_response</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">parsed_content</span>: <span style="color:#66d9ef">object</span>;         <span style="color:#75715e">// Структурированный контент слайда
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">postprocessing</span>: <span style="color:#66d9ef">PostprocessingResult</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">duration_ms</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cost_usd</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RetrievalChunk</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">chunk_id</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source_document_id</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source_filename</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">page_number?</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">text_fragment</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">similarity_score</span>: <span style="color:#66d9ef">number</span>;       <span style="color:#75715e">// 0.0 – 1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">rank</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PostprocessingResult</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ai_cliche_count</span>: <span style="color:#66d9ef">number</span>;        <span style="color:#75715e">// Найдено AI-клише до фильтрации
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ai_cliche_removed</span>: <span style="color:#66d9ef">number</span>;      <span style="color:#75715e">// Удалено клише
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">hallucination_flags</span>: <span style="color:#66d9ef">HallucinationFlag</span>[];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fact_checks</span>: <span style="color:#66d9ef">FactCheck</span>[];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">HallucinationFlag</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">claim</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">flag_type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;not_in_sources&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;contradicts_source&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;uncertain&#39;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">confidence</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">FactCheck</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">claim</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">value_extracted</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">found_in_sources</span>: <span style="color:#66d9ef">boolean</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source_chunk_id?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">delta_percent?</span>: <span style="color:#66d9ef">number</span>;         <span style="color:#75715e">// Отклонение числа от источника
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">LLMSummary</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">total_calls</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">total_prompt_tokens</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">total_completion_tokens</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">total_cost_usd</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">providers_used</span>: <span style="color:#66d9ef">string</span>[];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fallback_triggered</span>: <span style="color:#66d9ef">boolean</span>;    <span style="color:#75715e">// Был ли failover на запасной LLM
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RetrievalSummary</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">total_retrieval_calls</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">avg_chunks_per_slide</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">avg_similarity_score</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">qdrant_collection</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id='пример-документа'>Пример документа<a href='#%d0%bf%d1%80%d0%b8%d0%bc%d0%b5%d1%80-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b0' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;_id&#34;</span>: <span style="color:#e6db74">&#34;65f2a3b4c9e8d71234567890&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;generation_job_id&#34;</span>: <span style="color:#e6db74">&#34;018e9a1f-b3c2-7654-9abc-def012345678&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;presentation_id&#34;</span>: <span style="color:#e6db74">&#34;018e9a1f-b3c2-7654-9abc-def012345679&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;organization_id&#34;</span>: <span style="color:#e6db74">&#34;018e9a1f-b3c2-7654-9abc-def012345680&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;started_at&#34;</span>: <span style="color:#e6db74">&#34;2026-03-01T10:15:00.000Z&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;completed_at&#34;</span>: <span style="color:#e6db74">&#34;2026-03-01T10:15:47.320Z&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;total_duration_ms&#34;</span>: <span style="color:#ae81ff">47320</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;outline_step&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;prompt_tokens&#34;</span>: <span style="color:#ae81ff">1850</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;completion_tokens&#34;</span>: <span style="color:#ae81ff">420</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;llm_provider&#34;</span>: <span style="color:#e6db74">&#34;claude&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;llm_model&#34;</span>: <span style="color:#e6db74">&#34;claude-sonnet-4-6&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;prompt_text&#34;</span>: <span style="color:#e6db74">&#34;System: You are a professional presentation architect...\nUser: Create an outline for investor pitch about SaaS product growth...&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;raw_response&#34;</span>: <span style="color:#e6db74">&#34;```json\n[{\&#34;slide_number\&#34;: 1, \&#34;title\&#34;: \&#34;Market Opportunity\&#34;...}]\n```&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;parsed_outline&#34;</span>: [
+</span></span><span style="display:flex;"><span>      {<span style="color:#f92672">&#34;slide_number&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Рыночная возможность&#34;</span>, <span style="color:#f92672">&#34;key_thesis&#34;</span>: <span style="color:#e6db74">&#34;Рынок $2.1B, рост 35% в год&#34;</span>, <span style="color:#f92672">&#34;slide_type&#34;</span>: <span style="color:#e6db74">&#34;content&#34;</span>, <span style="color:#f92672">&#34;data_required&#34;</span>: <span style="color:#66d9ef">true</span>},
+</span></span><span style="display:flex;"><span>      {<span style="color:#f92672">&#34;slide_number&#34;</span>: <span style="color:#ae81ff">2</span>, <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Решение&#34;</span>, <span style="color:#f92672">&#34;key_thesis&#34;</span>: <span style="color:#e6db74">&#34;RAG + LLM для корпоративных данных&#34;</span>, <span style="color:#f92672">&#34;slide_type&#34;</span>: <span style="color:#e6db74">&#34;content&#34;</span>, <span style="color:#f92672">&#34;data_required&#34;</span>: <span style="color:#66d9ef">false</span>}
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;duration_ms&#34;</span>: <span style="color:#ae81ff">3200</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cost_usd&#34;</span>: <span style="color:#ae81ff">0.0089</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;slide_steps&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;slide_id&#34;</span>: <span style="color:#e6db74">&#34;018e9a1f-b3c2-7654-9abc-def012345681&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;slide_number&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;slide_type&#34;</span>: <span style="color:#e6db74">&#34;content&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;retrieval_chunks&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;chunk_id&#34;</span>: <span style="color:#e6db74">&#34;chunk_a1b2c3d4&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;source_document_id&#34;</span>: <span style="color:#e6db74">&#34;018e9a1f-b3c2-7654-9abc-def012345682&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;source_filename&#34;</span>: <span style="color:#e6db74">&#34;market_research_2026.pdf&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;page_number&#34;</span>: <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;text_fragment&#34;</span>: <span style="color:#e6db74">&#34;Глобальный рынок AI-инструментов для презентаций оценивается в $2.1 млрд...&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;similarity_score&#34;</span>: <span style="color:#ae81ff">0.94</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;rank&#34;</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;prompt_tokens&#34;</span>: <span style="color:#ae81ff">2100</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;completion_tokens&#34;</span>: <span style="color:#ae81ff">380</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;llm_provider&#34;</span>: <span style="color:#e6db74">&#34;claude&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;llm_model&#34;</span>: <span style="color:#e6db74">&#34;claude-sonnet-4-6&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;prompt_text&#34;</span>: <span style="color:#e6db74">&#34;Generate slide content for &#39;Market Opportunity&#39;...&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;raw_response&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;parsed_content&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Рыночная возможность&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;bullets&#34;</span>: [<span style="color:#e6db74">&#34;$2.1B рынок AI-презентаций в 2026&#34;</span>, <span style="color:#e6db74">&#34;Рост 35% YoY&#34;</span>]
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;postprocessing&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;ai_cliche_count&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;ai_cliche_removed&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;hallucination_flags&#34;</span>: [],
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;fact_checks&#34;</span>: [
+</span></span><span style="display:flex;"><span>          {<span style="color:#f92672">&#34;claim&#34;</span>: <span style="color:#e6db74">&#34;$2.1B рынок&#34;</span>, <span style="color:#f92672">&#34;value_extracted&#34;</span>: <span style="color:#e6db74">&#34;2.1&#34;</span>, <span style="color:#f92672">&#34;found_in_sources&#34;</span>: <span style="color:#66d9ef">true</span>, <span style="color:#f92672">&#34;source_chunk_id&#34;</span>: <span style="color:#e6db74">&#34;chunk_a1b2c3d4&#34;</span>, <span style="color:#f92672">&#34;delta_percent&#34;</span>: <span style="color:#ae81ff">0</span>}
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;duration_ms&#34;</span>: <span style="color:#ae81ff">4100</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cost_usd&#34;</span>: <span style="color:#ae81ff">0.0096</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;llm_summary&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;total_calls&#34;</span>: <span style="color:#ae81ff">16</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;total_prompt_tokens&#34;</span>: <span style="color:#ae81ff">28400</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;total_completion_tokens&#34;</span>: <span style="color:#ae81ff">6200</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;total_cost_usd&#34;</span>: <span style="color:#ae81ff">0.1340</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;providers_used&#34;</span>: [<span style="color:#e6db74">&#34;claude&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;fallback_triggered&#34;</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;retrieval_summary&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;total_retrieval_calls&#34;</span>: <span style="color:#ae81ff">15</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;avg_chunks_per_slide&#34;</span>: <span style="color:#ae81ff">4.2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;avg_similarity_score&#34;</span>: <span style="color:#ae81ff">0.87</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;qdrant_collection&#34;</span>: <span style="color:#e6db74">&#34;org_018e9a1f_docs&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id='индексы'>Индексы<a href='#%d0%b8%d0%bd%d0%b4%d0%b5%d0%ba%d1%81%d1%8b' class='anchor'>#</a>
+</h3><table>
+<thead>
+<tr>
+<th>Поле(я)</th>
+<th>Тип</th>
+<th>sparse</th>
+<th>unique</th>
+<th>TTL</th>
+<th>Причина</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>generation_job_id</code></td>
+<td>ASCENDING</td>
+<td>false</td>
+<td>true</td>
+<td>—</td>
+<td>Поиск трейса по job ID</td>
+</tr>
+<tr>
+<td><code>presentation_id</code></td>
+<td>ASCENDING</td>
+<td>false</td>
+<td>false</td>
+<td>—</td>
+<td>Трейсы презентации</td>
+</tr>
+<tr>
+<td><code>organization_id</code></td>
+<td>ASCENDING</td>
+<td>false</td>
+<td>false</td>
+<td>—</td>
+<td>Трейсы организации</td>
+</tr>
+<tr>
+<td><code>started_at</code></td>
+<td>DESCENDING</td>
+<td>false</td>
+<td>false</td>
+<td>90 дней</td>
+<td>Retention policy</td>
+</tr>
+<tr>
+<td><code>llm_summary.fallback_triggered</code></td>
+<td>ASCENDING</td>
+<td>true</td>
+<td>false</td>
+<td>—</td>
+<td>Мониторинг failover-событий</td>
+</tr>
+</tbody>
+</table>
+<h3 id='валидаторы-уровня-бд'>Валидаторы уровня БД<a href='#%d0%b2%d0%b0%d0%bb%d0%b8%d0%b4%d0%b0%d1%82%d0%be%d1%80%d1%8b-%d1%83%d1%80%d0%be%d0%b2%d0%bd%d1%8f-%d0%b1%d0%b4' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;$jsonSchema&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;generation_job_id&#34;</span>, <span style="color:#e6db74">&#34;presentation_id&#34;</span>, <span style="color:#e6db74">&#34;organization_id&#34;</span>, <span style="color:#e6db74">&#34;started_at&#34;</span>, <span style="color:#e6db74">&#34;slide_steps&#34;</span>, <span style="color:#e6db74">&#34;llm_summary&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;generation_job_id&#34;</span>: { <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>, <span style="color:#f92672">&#34;pattern&#34;</span>: <span style="color:#e6db74">&#34;^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$&#34;</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;presentation_id&#34;</span>: { <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;organization_id&#34;</span>: { <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;started_at&#34;</span>: { <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;date&#34;</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;slide_steps&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;array&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;items&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;slide_id&#34;</span>, <span style="color:#e6db74">&#34;slide_number&#34;</span>, <span style="color:#e6db74">&#34;slide_type&#34;</span>, <span style="color:#e6db74">&#34;duration_ms&#34;</span>]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;llm_summary&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;total_calls&#34;</span>, <span style="color:#e6db74">&#34;total_cost_usd&#34;</span>, <span style="color:#e6db74">&#34;providers_used&#34;</span>]
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id='коллекция-presentation_analytics'>Коллекция: <code>presentation_analytics</code><a href='#%d0%ba%d0%be%d0%bb%d0%bb%d0%b5%d0%ba%d1%86%d0%b8%d1%8f-presentation_analytics' class='anchor'>#</a>
+</h2><p><strong>Назначение:</strong> Событийная аналитика просмотров и взаимодействий с опубликованными презентациями (согласно US-503 — аналитика просмотров).</p>
+<h3 id='схема-документа-1'>Схема документа<a href='#%d1%81%d1%85%d0%b5%d0%bc%d0%b0-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b0-1' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PresentationAnalyticsEvent</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">_id</span>: <span style="color:#66d9ef">ObjectId</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">presentation_id</span>: <span style="color:#66d9ef">string</span>;        <span style="color:#75715e">// UUID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">share_token?</span>: <span style="color:#66d9ef">string</span>;           <span style="color:#75715e">// Токен публичной ссылки
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">organization_id</span>: <span style="color:#66d9ef">string</span>;        <span style="color:#75715e">// UUID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">session_id</span>: <span style="color:#66d9ef">string</span>;             <span style="color:#75715e">// Случайный UUID сессии просмотра
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">viewer_id?</span>: <span style="color:#66d9ef">string</span>;             <span style="color:#75715e">// UUID пользователя (если залогинен)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">event_type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;view_started&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;slide_viewed&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;slide_time&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;view_ended&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;link_clicked&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;download_triggered&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">slide_number?</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">time_on_slide_ms?</span>: <span style="color:#66d9ef">number</span>;      <span style="color:#75715e">// Время на слайде (для slide_time)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">total_view_time_ms?</span>: <span style="color:#66d9ef">number</span>;    <span style="color:#75715e">// Общее время просмотра (для view_ended)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">slides_viewed_count?</span>: <span style="color:#66d9ef">number</span>;   <span style="color:#75715e">// Сколько слайдов посмотрено
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">completion_rate?</span>: <span style="color:#66d9ef">number</span>;       <span style="color:#75715e">// 0.0 – 1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">referrer?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">user_agent</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ip_hash</span>: <span style="color:#66d9ef">string</span>;                <span style="color:#75715e">// Хеш IP (не сам IP, GDPR)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">country_code?</span>: <span style="color:#66d9ef">string</span>;          <span style="color:#75715e">// GeoIP, 2 буквы
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">device_type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;desktop&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;mobile&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;tablet&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">occurred_at</span>: <span style="color:#66d9ef">Date</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id='пример-документа-1'>Пример документа<a href='#%d0%bf%d1%80%d0%b8%d0%bc%d0%b5%d1%80-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b0-1' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;_id&#34;</span>: <span style="color:#e6db74">&#34;65f2a3b4c9e8d71234567891&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;presentation_id&#34;</span>: <span style="color:#e6db74">&#34;018e9a1f-b3c2-7654-9abc-def012345679&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;share_token&#34;</span>: <span style="color:#e6db74">&#34;abc12345def67890ghij1234&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;organization_id&#34;</span>: <span style="color:#e6db74">&#34;018e9a1f-b3c2-7654-9abc-def012345680&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;session_id&#34;</span>: <span style="color:#e6db74">&#34;sess_xyz789abc123&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;viewer_id&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;event_type&#34;</span>: <span style="color:#e6db74">&#34;slide_time&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;slide_number&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;time_on_slide_ms&#34;</span>: <span style="color:#ae81ff">42000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;user_agent&#34;</span>: <span style="color:#e6db74">&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)...&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;ip_hash&#34;</span>: <span style="color:#e6db74">&#34;sha256:a1b2c3d4e5f6...&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;country_code&#34;</span>: <span style="color:#e6db74">&#34;RU&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;device_type&#34;</span>: <span style="color:#e6db74">&#34;desktop&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;occurred_at&#34;</span>: <span style="color:#e6db74">&#34;2026-03-01T14:32:15.000Z&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id='индексы-1'>Индексы<a href='#%d0%b8%d0%bd%d0%b4%d0%b5%d0%ba%d1%81%d1%8b-1' class='anchor'>#</a>
+</h3><table>
+<thead>
+<tr>
+<th>Поле(я)</th>
+<th>Тип</th>
+<th>sparse</th>
+<th>unique</th>
+<th>TTL</th>
+<th>Причина</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>presentation_id, occurred_at</code></td>
+<td>COMPOUND</td>
+<td>false</td>
+<td>false</td>
+<td>—</td>
+<td>Аналитика по презентации</td>
+</tr>
+<tr>
+<td><code>organization_id, occurred_at</code></td>
+<td>COMPOUND</td>
+<td>false</td>
+<td>false</td>
+<td>—</td>
+<td>Аналитика по организации</td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>ASCENDING</td>
+<td>false</td>
+<td>false</td>
+<td>—</td>
+<td>Группировка сессий</td>
+</tr>
+<tr>
+<td><code>occurred_at</code></td>
+<td>ASCENDING</td>
+<td>false</td>
+<td>false</td>
+<td>365 дней</td>
+<td>Retention policy (TTL index)</td>
+</tr>
+<tr>
+<td><code>share_token</code></td>
+<td>ASCENDING</td>
+<td>true</td>
+<td>false</td>
+<td>—</td>
+<td>Аналитика конкретной ссылки</td>
+</tr>
+</tbody>
+</table>
+<h3 id='валидаторы-уровня-бд-1'>Валидаторы уровня БД<a href='#%d0%b2%d0%b0%d0%bb%d0%b8%d0%b4%d0%b0%d1%82%d0%be%d1%80%d1%8b-%d1%83%d1%80%d0%be%d0%b2%d0%bd%d1%8f-%d0%b1%d0%b4-1' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;$jsonSchema&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;presentation_id&#34;</span>, <span style="color:#e6db74">&#34;organization_id&#34;</span>, <span style="color:#e6db74">&#34;session_id&#34;</span>, <span style="color:#e6db74">&#34;event_type&#34;</span>, <span style="color:#e6db74">&#34;user_agent&#34;</span>, <span style="color:#e6db74">&#34;ip_hash&#34;</span>, <span style="color:#e6db74">&#34;device_type&#34;</span>, <span style="color:#e6db74">&#34;occurred_at&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;event_type&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;enum&#34;</span>: [<span style="color:#e6db74">&#34;view_started&#34;</span>, <span style="color:#e6db74">&#34;slide_viewed&#34;</span>, <span style="color:#e6db74">&#34;slide_time&#34;</span>, <span style="color:#e6db74">&#34;view_ended&#34;</span>, <span style="color:#e6db74">&#34;link_clicked&#34;</span>, <span style="color:#e6db74">&#34;download_triggered&#34;</span>]
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;completion_rate&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;bsonType&#34;</span>: [<span style="color:#e6db74">&#34;double&#34;</span>, <span style="color:#e6db74">&#34;null&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;minimum&#34;</span>: <span style="color:#ae81ff">0.0</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;maximum&#34;</span>: <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;device_type&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;enum&#34;</span>: [<span style="color:#e6db74">&#34;desktop&#34;</span>, <span style="color:#e6db74">&#34;mobile&#34;</span>, <span style="color:#e6db74">&#34;tablet&#34;</span>]
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;occurred_at&#34;</span>: { <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;date&#34;</span> }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id='коллекция-prompt_templates'>Коллекция: <code>prompt_templates</code><a href='#%d0%ba%d0%be%d0%bb%d0%bb%d0%b5%d0%ba%d1%86%d0%b8%d1%8f-prompt_templates' class='anchor'>#</a>
+</h2><p><strong>Назначение:</strong> Версионированные промпт-шаблоны для LangGraph-узлов — позволяет A/B-тестировать и откатывать промпты без деплоя.</p>
+<h3 id='схема-документа-2'>Схема документа<a href='#%d1%81%d1%85%d0%b5%d0%bc%d0%b0-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b0-2' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PromptTemplate</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">_id</span>: <span style="color:#66d9ef">ObjectId</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">template_key</span>: <span style="color:#66d9ef">string</span>;           <span style="color:#75715e">// Уникальный ключ: &#39;outline_generator_v1&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">version</span>: <span style="color:#66d9ef">number</span>;                <span style="color:#75715e">// Монотонно возрастающий номер версии
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">is_active</span>: <span style="color:#66d9ef">boolean</span>;             <span style="color:#75715e">// Используется ли в продакшн
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ab_weight?</span>: <span style="color:#66d9ef">number</span>;             <span style="color:#75715e">// 0.0 – 1.0 для A/B тестирования
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">node_type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;outline&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;slide_gen&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;postprocess&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;fact_check&#39;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tone_variant?</span>: <span style="color:#66d9ef">string</span>;          <span style="color:#75715e">// NULL = все тональности, или &#39;formal&#39;, &#39;persuasive&#39;...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">language?</span>: <span style="color:#66d9ef">string</span>;              <span style="color:#75715e">// NULL = все языки, или &#39;ru&#39;, &#39;en&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">system_prompt</span>: <span style="color:#66d9ef">string</span>;          <span style="color:#75715e">// Системная часть промпта
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">user_prompt_template</span>: <span style="color:#66d9ef">string</span>;   <span style="color:#75715e">// Шаблон с переменными {{variable}}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">variables</span>: <span style="color:#66d9ef">PromptVariable</span>[];    <span style="color:#75715e">// Документация переменных
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">model_params</span>: <span style="color:#66d9ef">ModelParams</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">quality_metrics?</span>: <span style="color:#66d9ef">QualityMetrics</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">created_by</span>: <span style="color:#66d9ef">string</span>;             <span style="color:#75715e">// UUID пользователя
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">created_at</span>: <span style="color:#66d9ef">Date</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">deprecated_at?</span>: <span style="color:#66d9ef">Date</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PromptVariable</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;string&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;number&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;json&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;list&#39;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">required</span>: <span style="color:#66d9ef">boolean</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ModelParams</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">temperature</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">max_tokens</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">top_p?</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">stop_sequences?</span>: <span style="color:#66d9ef">string</span>[];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">QualityMetrics</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">avg_csat_score?</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ai_detection_rate?</span>: <span style="color:#66d9ef">number</span>;     <span style="color:#75715e">// % текстов, определяемых как AI (GPTZero)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">avg_hallucination_flags?</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sample_size?</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">evaluated_at?</span>: <span style="color:#66d9ef">Date</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id='пример-документа-2'>Пример документа<a href='#%d0%bf%d1%80%d0%b8%d0%bc%d0%b5%d1%80-%d0%b4%d0%be%d0%ba%d1%83%d0%bc%d0%b5%d0%bd%d1%82%d0%b0-2' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;_id&#34;</span>: <span style="color:#e6db74">&#34;65f2a3b4c9e8d71234567892&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;template_key&#34;</span>: <span style="color:#e6db74">&#34;outline_generator&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;is_active&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;ab_weight&#34;</span>: <span style="color:#ae81ff">1.0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;node_type&#34;</span>: <span style="color:#e6db74">&#34;outline&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tone_variant&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;language&#34;</span>: <span style="color:#e6db74">&#34;ru&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;system_prompt&#34;</span>: <span style="color:#e6db74">&#34;Ты — опытный бизнес-аналитик и эксперт по структуре презентаций. Ты создаёшь логичные, убедительные структуры на основе предоставленных данных. Никогда не используй клише вроде &#39;в современном мире&#39;, &#39;это позволяет нам&#39;...&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;user_prompt_template&#34;</span>: <span style="color:#e6db74">&#34;Создай outline для презентации.\nЦель: {{goal}}\nАудитория: {{audience}}\nДоступные данные:\n{{source_summary}}\nКоличество слайдов: {{slide_count}}\n\nВерни JSON-массив...&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;variables&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;goal&#34;</span>, <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>, <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Цель презентации&#34;</span>, <span style="color:#f92672">&#34;required&#34;</span>: <span style="color:#66d9ef">true</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;audience&#34;</span>, <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>, <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Целевая аудитория&#34;</span>, <span style="color:#f92672">&#34;required&#34;</span>: <span style="color:#66d9ef">true</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;source_summary&#34;</span>, <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>, <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Краткое резюме загруженных источников&#34;</span>, <span style="color:#f92672">&#34;required&#34;</span>: <span style="color:#66d9ef">false</span>},
+</span></span><span style="display:flex;"><span>    {<span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;slide_count&#34;</span>, <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;number&#34;</span>, <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Желаемое кол-во слайдов&#34;</span>, <span style="color:#f92672">&#34;required&#34;</span>: <span style="color:#66d9ef">true</span>}
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;model_params&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;temperature&#34;</span>: <span style="color:#ae81ff">0.3</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;max_tokens&#34;</span>: <span style="color:#ae81ff">2000</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;top_p&#34;</span>: <span style="color:#ae81ff">0.9</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;quality_metrics&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;avg_csat_score&#34;</span>: <span style="color:#ae81ff">4.3</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;ai_detection_rate&#34;</span>: <span style="color:#ae81ff">0.18</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;avg_hallucination_flags&#34;</span>: <span style="color:#ae81ff">0.2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;sample_size&#34;</span>: <span style="color:#ae81ff">150</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;evaluated_at&#34;</span>: <span style="color:#e6db74">&#34;2026-02-15T00:00:00.000Z&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;created_by&#34;</span>: <span style="color:#e6db74">&#34;018e9a1f-b3c2-7654-9abc-def012345683&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;created_at&#34;</span>: <span style="color:#e6db74">&#34;2026-02-01T10:00:00.000Z&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id='индексы-2'>Индексы<a href='#%d0%b8%d0%bd%d0%b4%d0%b5%d0%ba%d1%81%d1%8b-2' class='anchor'>#</a>
+</h3><table>
+<thead>
+<tr>
+<th>Поле(я)</th>
+<th>Тип</th>
+<th>sparse</th>
+<th>unique</th>
+<th>TTL</th>
+<th>Причина</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>template_key, version</code></td>
+<td>COMPOUND</td>
+<td>false</td>
+<td>true</td>
+<td>—</td>
+<td>Уникальность версии шаблона</td>
+</tr>
+<tr>
+<td><code>template_key, is_active</code></td>
+<td>COMPOUND</td>
+<td>false</td>
+<td>false</td>
+<td>—</td>
+<td>Активный шаблон для ключа</td>
+</tr>
+<tr>
+<td><code>node_type, is_active</code></td>
+<td>COMPOUND</td>
+<td>false</td>
+<td>false</td>
+<td>—</td>
+<td>Активные шаблоны по типу узла</td>
+</tr>
+</tbody>
+</table>
+<h3 id='валидаторы-уровня-бд-2'>Валидаторы уровня БД<a href='#%d0%b2%d0%b0%d0%bb%d0%b8%d0%b4%d0%b0%d1%82%d0%be%d1%80%d1%8b-%d1%83%d1%80%d0%be%d0%b2%d0%bd%d1%8f-%d0%b1%d0%b4-2' class='anchor'>#</a>
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;$jsonSchema&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;template_key&#34;</span>, <span style="color:#e6db74">&#34;version&#34;</span>, <span style="color:#e6db74">&#34;is_active&#34;</span>, <span style="color:#e6db74">&#34;node_type&#34;</span>, <span style="color:#e6db74">&#34;system_prompt&#34;</span>, <span style="color:#e6db74">&#34;user_prompt_template&#34;</span>, <span style="color:#e6db74">&#34;model_params&#34;</span>, <span style="color:#e6db74">&#34;created_at&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;version&#34;</span>: { <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;int&#34;</span>, <span style="color:#f92672">&#34;minimum&#34;</span>: <span style="color:#ae81ff">1</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;node_type&#34;</span>: { <span style="color:#f92672">&#34;enum&#34;</span>: [<span style="color:#e6db74">&#34;outline&#34;</span>, <span style="color:#e6db74">&#34;slide_gen&#34;</span>, <span style="color:#e6db74">&#34;postprocess&#34;</span>, <span style="color:#e6db74">&#34;fact_check&#34;</span>] },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;ab_weight&#34;</span>: { <span style="color:#f92672">&#34;bsonType&#34;</span>: [<span style="color:#e6db74">&#34;double&#34;</span>, <span style="color:#e6db74">&#34;null&#34;</span>], <span style="color:#f92672">&#34;minimum&#34;</span>: <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">&#34;maximum&#34;</span>: <span style="color:#ae81ff">1.0</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;model_params&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;temperature&#34;</span>, <span style="color:#e6db74">&#34;max_tokens&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;properties&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;temperature&#34;</span>: { <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;double&#34;</span>, <span style="color:#f92672">&#34;minimum&#34;</span>: <span style="color:#ae81ff">0.0</span>, <span style="color:#f92672">&#34;maximum&#34;</span>: <span style="color:#ae81ff">2.0</span> },
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;max_tokens&#34;</span>: { <span style="color:#f92672">&#34;bsonType&#34;</span>: <span style="color:#e6db74">&#34;int&#34;</span>, <span style="color:#f92672">&#34;minimum&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&#34;maximum&#34;</span>: <span style="color:#ae81ff">32000</span> }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><script lang="js">
+  const innerPages = document.getElementById("inner-pages");
+  if (innerPages) {
+    innerPages.querySelectorAll("li").forEach(listElement => {
+      listElement.addEventListener("click", () => {
+        const name = listElement.innerText.trim();
+        if (openedMenu) {
+          if (openedMenu.includes(name)) {
+            const index = openedMenu.findIndex(item => item === name);
+            openedMenu.splice(index, 1);
+          } else {
+            openedMenu.push(name);
+          }
+          localStorage.setItem("openedMenu", JSON.stringify(openedMenu));
+        } else {
+          localStorage.setItem("openedMenu", "[" + name + "]")
+        }
+      });
+    });
+  }
+</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/03_backend/01_info_models/relational/" title="Реляционные таблицы (PostgreSQL)"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - Реляционные таблицы (PostgreSQL)</a>
+  <a class="nav nav-next" href="http://localhost:1313/03_backend/01_info_models/vector_store/" title="Векторное хранилище (Qdrant)">Следующее - Векторное хранилище (Qdrant) <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</nav></div><div class="column is-sticky is-paddingless" id="tocWrapper">
+  <div class="is-paddingless" id="tocContainer">
+    <div id="tocContent">
+      <div class="additionalinfo">
+    <span id="method_name">Документные коллекции</span>
+
+
+
+
+
+
+
+    <strong>Описание:</strong> Схемы документных коллекций для хранения трейсов генерации и аналитики.
+</div>
+      <div class="toc-header">
+        <h6 class="toc-title is-marginless">Содержание:On this page:</h6>
+        <i
+          title="Back to top"
+          id="tocBackToTop"
+          class="fa-solid fa-circle-arrow-up"
+        ></i>      
+      </div>
+      <div id="toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#коллекция-generation_traces">Коллекция: <code>generation_traces</code></a>
+      <ul>
+        <li><a href="#схема-документа">Схема документа</a></li>
+        <li><a href="#пример-документа">Пример документа</a></li>
+        <li><a href="#индексы">Индексы</a></li>
+        <li><a href="#валидаторы-уровня-бд">Валидаторы уровня БД</a></li>
+      </ul>
+    </li>
+    <li><a href="#коллекция-presentation_analytics">Коллекция: <code>presentation_analytics</code></a>
+      <ul>
+        <li><a href="#схема-документа-1">Схема документа</a></li>
+        <li><a href="#пример-документа-1">Пример документа</a></li>
+        <li><a href="#индексы-1">Индексы</a></li>
+        <li><a href="#валидаторы-уровня-бд-1">Валидаторы уровня БД</a></li>
+      </ul>
+    </li>
+    <li><a href="#коллекция-prompt_templates">Коллекция: <code>prompt_templates</code></a>
+      <ul>
+        <li><a href="#схема-документа-2">Схема документа</a></li>
+        <li><a href="#пример-документа-2">Пример документа</a></li>
+        <li><a href="#индексы-2">Индексы</a></li>
+        <li><a href="#валидаторы-уровня-бд-2">Валидаторы уровня БД</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+<ul class="info" style="line-height: 1.2; list-style-type: none; border: 1px solid; border-radius: 1px; padding: 5px; margin: 16px 10px 0; color: black;">
+    
+    
+    
+    
+    
+    
+    
+    
+    </ul>
+    
+<div id="taxonomies"><div class="taxonomy-wrapper"></div><div class="taxonomy-wrapper"></div></div>
+      <div class="toc-header"><div class="edit-meta"></div>
+</div>
+    </div>
+  </div>
+  <div
+    class="is-paddingless"
+    id="tocCollapsible"
+    title="Collapse/Uncollapse table of contents"
+  >
+    <i class="fa-solid fa-angles-right fa-lg"></i>
+  </div>
+</div>
+</div>
+</div><script type='text/javascript'>
+  const baseUrl = 'http:\/\/localhost:1313\/';
+  const codeCopyBefore = 'Copy to clipboard';
+  const codeCopyAfter = 'Copied to clipboard';
+  const svgDownloadLabel = 'Download as SVG';
+  const helperLoadingLabel = 'Loading';
+  const searchNoResults = 'No result found';
+  const introNextLabel = 'Next';
+  const introPrevLabel = 'Previous';
+  const introSkipLabel = '✗';
+  const introDoneLabel = 'Done';
+  const printLabel = 'Print current page';
+  const qrCodeLabel = 'Show current page QR code';
+  const naCommonLabel = 'Not available';
+</script>
+<script
+      type="module"
+      src="/js/theme/modules/const.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/modules/helpers.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/modules/helpersGlobal.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/init.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/navbar.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/print.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/qrcode.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/search.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/shortcuts.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/sidebar.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/toc.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/jquery/jquery-3.6.3.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/tippy/popper.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/tippy/tippy-bundle.umd.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/markmap/markmap-autoloader.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/theme/browserCompatibility.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/flexsearch/flexsearch.bundle.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/qrious/qrious.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/overlay-scrollbars/overlayscrollbars.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/markmap/markmap.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/readfile/rawdeflate.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/1ce05b4b.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/techradar/d3.v4.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/techradar/radar.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/bpmn-visualization/bpmn-visualization.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/sorttable/sorttable.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/mermaid/svg-pan-zoom.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/simplesearch/simplesearch.min.js"
+    ></script>
+<script>$("table").addClass("sortable");</script>
+  </body>
+</html>

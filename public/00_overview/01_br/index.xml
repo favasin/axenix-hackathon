@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Описание БТ on Сервис генерации презентаций</title>
+    <link>http://localhost:1313/00_overview/01_br/</link>
+    <description>Recent content in Описание БТ on Сервис генерации презентаций</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/00_overview/01_br/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Бизнес-контекст и БТ</title>
+      <link>http://localhost:1313/00_overview/01_br/01_br/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/00_overview/01_br/01_br/</guid>
+      <description>Бизнес-контекст и БТ: Сервис генерации презентаций# Методология: JTBD (Jobs To Be Done) + Lean Canvas&#xA;Горизонт анализа: 2025–2026&#xA;Контекст: Выход нового игрока на рынок AI-инструментов для создания презентаций&#xA;Executive Summary# Рыночная возможность# Рынок AI-инструментов для создания презентаций растёт на 35% в год. Существующие лидеры (Gamma, Canva AI, Microsoft Copilot) захватили нишу «красивый дизайн за минуту», но оставили незакрытой принципиально более ценную нишу: профессиональный деловой контент с обоснованием, аргументацией и реальными данными клиента.</description>
+    </item>
+  </channel>
+</rss>
