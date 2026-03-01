@@ -1,0 +1,2470 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="generator" content="Hugo 0.126.1">
+<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Функциональные требования к аутентификации, авторизации, управлению организациями и RBAC." />
+
+<title>FR: Управление пользователями</title>
+<link
+  rel="icon"
+  href="/images/favicon.png?v=1772344819"
+  type="image/x-icon"/>
+<link
+    rel="stylesheet"
+    rel="preload"
+    type="text/css"
+    href="/css/main.css"
+  /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/all.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sharp-thin.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sharp-solid.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sharp-regular.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sharp-light.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/sorttable/sorttable.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/tippy/light-border.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/techradar/radar.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/form-js/form-js.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/overlay-scrollbars/overlayscrollbars.min.css"
+    /><link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/external/simplesearch/simplesearch.min.css"
+    />
+</head>
+  <body onload="browserCompatibility()"><div id="navbarInfo" class="is-hidden modal-container">
+  <div class="modal-content-box modal-text-box">
+    <div class="card modal-title is-radiusless">
+      <div class="card-header">
+        <p class="card-header-title is-marginless">About</p>
+      </div>
+    </div>
+    <div class="modal-content-container">
+      <div class="modal-content-block is-block">
+</div>
+    </div>
+  </div>
+</div>
+<div id="navbarShortcuts" class="is-hidden modal-container">
+  <div class="modal-content-box modal-text-box"><div class="card modal-title is-radiusless">
+        <div class="card-header">
+          <p class="card-header-title is-marginless">Keyboard shortcuts</p>
+        </div>
+      </div>
+      <div class="modal-content-container">
+        <div class="modal-content-block"><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>q</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Show current page QR code</p>
+  </div><div class="modal-content"><kbd>Escape</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Close modals</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>i</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Show website information</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>k</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Show shortcuts</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>h</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Go to homepage</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>f</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Find on website</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>m</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Collapse/Uncollapse sidebar</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>t</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Collapse/Uncollapse table of contents</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>↑</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Go to the top of the page</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>↓</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Go to the bottom of the page</p>
+  </div><div class="modal-content"><kbd>Shift</kbd><p>+</p><kbd>p</kbd></div>
+  <div class="modal-content">
+    <p class="has-text-weight-normal">Print current page</p>
+  </div></div>
+      </div></div>
+</div>
+<div id="modalContainer" class="is-hidden modal-container">
+  <div id="modal" class="modal-content-box"></div>
+</div>
+<nav id="navbar" class="navbar" role="navigation" aria-label="main navigation">
+  <div id="navbarItemsContainer" class="navbar-brand"><div id="globalLogoContainer" class="is-flex"><a
+    id="globalLogo"
+    class="navbar-item navbar-item-standard is-paddingless"
+    href="/"
+  >
+    <img
+      id="globalLogoImg"
+      alt="Homepage"
+      src="/images/logo.png?v=1772344819"/>
+    <div class="logo-header-container">
+      <span>Сервис генерации презентаций</span>
+    </div>
+  </a>
+  <a
+    id="globalTouchLogo"
+    class="navbar-item navbar-item-standard is-paddingless"
+    href="/"
+  >
+    <img
+      alt="Homepage"
+      src="/images/logoTouch.png?v=1772344819"/>
+  </a>
+</div>
+<div id="navbarItems" class="is-flex">
+      <div id="navbarItemsStart" class="is-flex">
+        
+      </div>
+      <div id="navbarItemsEnd" class="is-flex"><div class="navbar-item">
+  <a
+    id="listDocuments"
+    class="button navbar-item-standard"
+    href="/listdocuments/"
+  >
+    <span class="icon">
+      <i class="fa-solid fa-list"></i>
+    </span>
+    <span class="icon-text">&nbsp;Список документов</span>
+  </a>
+</div><div class="navbar-item">
+  <a
+    id="searchButton"
+    class="button navbar-item-standard"
+    href="/search/"
+  >
+    <span class="icon">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </span>
+    <span class="icon-text">&nbsp;Поиск</span>
+  </a>
+</div>
+<div class="navbar-item">
+  <a
+    id="printButton"
+    class="button navbar-item-standard"
+  >
+    <span class="icon-text">Print</span>
+    <span class="icon">
+      <i class="fa-solid fa-print fa-lg"></i>
+    </span>
+  </a>
+</div></div>
+    </div>
+  </div>
+</nav>
+<div id="navbarOverlay"></div><div
+      class="columns is-mobile is-paddingless is-marginless"
+      id="mainContainer"
+    ><div
+  id="sidebarContainer"
+  class="column is-narrow is-paddingless is-marginless"
+>
+  <div id="sidebarWrapper" class="is-fixed">
+    <div id="sidebar" class="is-marginless">
+      <aside class="menu is-paddingless is-marginless">
+        <ul class="menu-list is-marginless is-paddingless"><div class="card is-fs-expandable-icon is-sidebar-active"><div class="card-header">
+      <a
+        href='/00_overview/'
+        class='card-header-title'>
+        <i class='fa-solid fa-circle-info fa-lg'></i></a></div>
+      </div><div class="is-expandable">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-tree-active is-entries-expandable is-entries-expanded"><div
+            class="card"><div class="card-header">
+      <a
+        href='/00_overview/'
+        class='card-header-title'
+          title='Описание и артефакты анализа'>
+        <i class='fa-solid fa-circle-info fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Описание и артефакты анализа</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless is-tree-active"><div class="">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-expanded"><div
+            class="card"><div class="card-header">
+      <a
+        href='/00_overview/01_br/'
+        class='card-header-title'
+          title='Требования'>
+        <i class='fa-solid fa-folder-open'></i><p class="pt-0 pb-0 pr-2 pl-1">Требования</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-expanded">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/01_br/01_br/'
+        class='card-header-title'
+          title='Бизнес-контекст и БТ'>
+        <i class='fa-solid fa-circle-info'></i><p class="pt-0 pb-0 pr-2 pl-1">Бизнес-контекст и БТ</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/01_br/02_actors/'
+        class='card-header-title'
+          title='Акторы и границы системы'>
+        <i class='fa-solid fa-users'></i><p class="pt-0 pb-0 pr-2 pl-1">Акторы и границы системы</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/01_br/03_fr_documents/'
+        class='card-header-title'
+          title='FR_01: Загрузка и индексация документов'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR_01: Загрузка и индексация документов</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/01_br/04_fr_rag/'
+        class='card-header-title'
+          title='FR: RAG-поиск и генерация презентаций'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: RAG-поиск и генерация презентаций</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card is-sidebar-active"id='sidebarActiveEntry'><div class="card-header is-single-link">
+      <a
+        href='/00_overview/01_br/05_fr_users/'
+        class='card-header-title'
+          title='FR: Управление пользователями'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: Управление пользователями</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/01_br/06_fr_admin/'
+        class='card-header-title'
+          title='FR: Администрирование'>
+        <i class='fa-solid fa-list-check'></i><p class="pt-0 pb-0 pr-2 pl-1">FR: Администрирование</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/01_br/07_nonfunctional/'
+        class='card-header-title'
+          title='Нефункциональные требования'>
+        <i class='fa-solid fa-gauge-high'></i><p class="pt-0 pb-0 pr-2 pl-1">Нефункциональные требования</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/02_constraints/'
+        class='card-header-title'
+          title='Ограничения и допущения'>
+        <i class='fa-solid fa-lock'></i><p class="pt-0 pb-0 pr-2 pl-1">Ограничения и допущения</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/03_interfaces/'
+        class='card-header-title'
+          title='Интерфейсы'>
+        <i class='fa-solid fa-plug'></i><p class="pt-0 pb-0 pr-2 pl-1">Интерфейсы</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/00_overview/04_quality_metrics/'
+        class='card-header-title'
+          title='Метрики качества и итоговая сводка'>
+        <i class='fa-solid fa-chart-bar'></i><p class="pt-0 pb-0 pr-2 pl-1">Метрики качества и итоговая сводка</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div><div class="card is-fs-expandable-icon"><div class="card-header is-single-link">
+      <a
+        href='/01_architecture/'
+        class='card-header-title'>
+        <i class='fa-solid fa-diagram-project fa-lg'></i></a></div>
+      </div><div class="is-expandable">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/01_architecture/'
+        class='card-header-title'
+          title='Архитектура'>
+        <i class='fa-solid fa-diagram-project fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Архитектура</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="card is-fs-expandable-icon"><div class="card-header">
+      <a
+        href='/03_backend/'
+        class='card-header-title'>
+        <i class='fa-solid fa-server fa-lg'></i></a></div>
+      </div><div class="is-expandable">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
+      <a
+        href='/03_backend/'
+        class='card-header-title'
+          title='Backend'>
+        <i class='fa-solid fa-server fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Backend</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless is-entries-expandable is-entries-shrinked"><div
+            class="card"><div class="card-header">
+      <a
+        href='/03_backend/01_info_models/'
+        class='card-header-title'
+          title='Модель данных и базы данных'>
+        <i class='fa-solid fa-database'></i><p class="pt-0 pb-0 pr-2 pl-1">Модель данных и базы данных</p></a><a class="card-header-icon is-icon-expandable is-paddingless is-icon-shrinked">
+                <span class='icon'></span>
+              </a>
+            </div>
+          </div><ul class="is-marginless"><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/01_info_models/relational/'
+        class='card-header-title'
+          title='Реляционные таблицы (PostgreSQL)'>
+        <i class='fa-solid fa-table'></i><p class="pt-0 pb-0 pr-2 pl-1">Реляционные таблицы (PostgreSQL)</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/01_info_models/documents/'
+        class='card-header-title'
+          title='Документные коллекции'>
+        <i class='fa-solid fa-file-code'></i><p class="pt-0 pb-0 pr-2 pl-1">Документные коллекции</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/01_info_models/vector_store/'
+        class='card-header-title'
+          title='Векторное хранилище (Qdrant)'>
+        <i class='fa-solid fa-magnifying-glass-chart'></i><p class="pt-0 pb-0 pr-2 pl-1">Векторное хранилище (Qdrant)</p></a></div>
+          </div></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/01_info_models/cache/'
+        class='card-header-title'
+          title='Кэш и очереди (Redis)'>
+        <i class='fa-solid fa-bolt'></i><p class="pt-0 pb-0 pr-2 pl-1">Кэш и очереди (Redis)</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div><div class="">
+      <div class=""><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/03_backend/02_rest_methods/'
+        class='card-header-title'
+          title='REST API'>
+        <i class='fa-solid fa-route'></i><p class="pt-0 pb-0 pr-2 pl-1">REST API</p></a></div>
+          </div></li>
+      </div>
+    </div></ul></li>
+      </div>
+    </div><div class="card is-fs-expandable-icon"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/'
+        class='card-header-title'>
+        <i class='fa-solid fa-display fa-lg'></i></a></div>
+      </div><div class="is-expandable">
+      <div class="is-sidebar-list-wrapper"><li class="is-marginless"><div
+            class="card"><div class="card-header is-single-link">
+      <a
+        href='/02_frontend/'
+        class='card-header-title'
+          title='Frontend'>
+        <i class='fa-solid fa-display fa-lg'></i><p class="pt-0 pb-0 pr-2 pl-1">Frontend</p></a></div>
+          </div></li>
+      </div>
+    </div></ul>
+      </aside>
+    </div>
+    <div id="sidebarCollapsible" class="is-marginless">
+      <div class="card is-uncollapse-action">
+        <div
+          id="sidebarUncollapse"
+          class="card-header is-single-link"
+          title="Collapse/Uncollapse sidebar"
+        >
+          <a class="card-header-title">
+            <i class="fa-solid fa-angles-right fa-lg"></i>
+          </a>
+        </div>
+      </div>
+      <div class="card is-collapse-action">
+        <div
+          id="sidebarCollapse"
+          class="card-header is-single-link"
+          title="Collapse/Uncollapse sidebar"
+        >
+          <a class="card-header-title">
+            <i class="fa-solid fa-angles-left fa-lg"></i>
+            <p>Collapse sidebar</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="sidebarMobileWrapper" class="column is-narrow is-hidden-desktop"></div>
+<div class="columns is-mobile is-marginless is-scroll-smooth has-toc is-toc-collapsed" id="contentContainer">
+  <div class="column" id="content" data-pagefind-body><style>
+    ul.breadcrumb {
+      padding: 10px 15px;
+      list-style: none;
+      background-color: #eee;
+    }
+    ul.breadcrumb li {
+      display: inline;
+      font-size: 14px;
+    }
+    ul.breadcrumb li+li:before {
+      padding: 8px;
+      color: black;
+      content: "/\00a0";
+    }
+    ul.breadcrumb li a {
+      color: #0275d8;
+      text-decoration: none;
+    }
+    ul.breadcrumb li a:hover {
+      color: #01447e;
+      text-decoration: underline;
+    }
+</style>
+<ul id="breadcrumbs" class="breadcrumb">
+        <li> <a href="/">Промпт-инжиниринг</a> </li>
+        <li> <a href="/00_overview/">Описание и артефакты анализа</a> </li>
+        <li> <a href="/00_overview/01_br/">Требования</a> </li>
+    <li> <a href="/00_overview/01_br/05_fr_users/">FR: Управление пользователями</a></li>
+</ul>
+<div id="contentTitle">FR: Управление пользователями</div><p>&ndash;</p>
+<h2 id='содержание'>Содержание<a href='#%d1%81%d0%be%d0%b4%d0%b5%d1%80%d0%b6%d0%b0%d0%bd%d0%b8%d0%b5' class='anchor'>#</a>
+</h2><ul>
+<li><a
+  href="#us-025-%d1%80%d0%b5%d0%b3%d0%b8%d1%81%d1%82%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d0%b8-%d0%b2%d1%85%d0%be%d0%b4-%d0%b2-%d1%81%d0%b8%d1%81%d1%82%d0%b5%d0%bc%d1%83"
+    class="is-pretty-link">US-025: Регистрация и вход в систему</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></li>
+<li><a
+  href="#us-026-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%be%d1%80%d0%b3%d0%b0%d0%bd%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d0%b5%d0%b9-%d0%b8-%d0%bf%d1%80%d0%b8%d0%b3%d0%bb%d0%b0%d1%88%d0%b5%d0%bd%d0%b8%d1%8f"
+    class="is-pretty-link">US-026: Управление организацией и приглашения</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></li>
+<li><a
+  href="#us-027-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d0%b0%d0%bc%d0%b8"
+    class="is-pretty-link">US-027: Управление проектами</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></li>
+<li><a
+  href="#us-028-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%bf%d1%80%d0%be%d1%84%d0%b8%d0%bb%d0%b5%d0%bc-%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8f"
+    class="is-pretty-link">US-028: Управление профилем пользователя</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></li>
+<li><a
+  href="#us-029-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%bf%d1%80%d0%b5%d0%b7%d0%b5%d0%bd%d1%82%d0%b0%d1%86%d0%b8%d1%8f%d0%bc%d0%b8"
+    class="is-pretty-link">US-029: Управление презентациями</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></li>
+</ul>
+<blockquote>
+<p><strong>Нумерация:</strong> FR-025 — FR-040. Продолжение в <a
+  href="/00_overview/01_br/06_fr_admin/"
+    class="is-pretty-link">06_fr_admin.md</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> с FR-041.</p>
+</blockquote>
+<hr>
+<h2 id='us-025-регистрация-и-вход-в-систему'>US-025: Регистрация и вход в систему<a href='#us-025-%d1%80%d0%b5%d0%b3%d0%b8%d1%81%d1%82%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d0%b8-%d0%b2%d1%85%d0%be%d0%b4-%d0%b2-%d1%81%d0%b8%d1%81%d1%82%d0%b5%d0%bc%d1%83' class='anchor'>#</a>
+</h2><blockquote>
+<p>Как <strong>пользователь</strong>, я хочу зарегистрироваться и войти в систему через корпоративный SSO или email, чтобы получить доступ к сервису.</p>
+</blockquote>
+<p><strong>Источник:</strong> <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">users</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — <code>email</code>, <code>is_email_verified</code>, <code>last_login_at</code>; <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">oauth_connections</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — <code>provider</code>; <a
+  href="/03_backend/01_info_models/cache/"
+    class="is-pretty-link">cache.md</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — <code>session:{id}</code>, <code>user_sessions:{user_id}</code>; <a
+  href="/01_architecture/"
+    class="is-pretty-link">01_architecture/_index.md</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — SSO</p>
+<h3 id='fr-025-регистрация-через-email-и-подтверждение'>FR-025: Регистрация через email и подтверждение<a href='#fr-025-%d1%80%d0%b5%d0%b3%d0%b8%d1%81%d1%82%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d1%87%d0%b5%d1%80%d0%b5%d0%b7-email-%d0%b8-%d0%bf%d0%be%d0%b4%d1%82%d0%b2%d0%b5%d1%80%d0%b6%d0%b4%d0%b5%d0%bd%d0%b8%d0%b5' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> POST <code>/auth/register</code> принимает <code>email</code>, <code>name</code>, <code>password</code>. Пароль хэшируется bcrypt (work factor ≥ 12). Отправляется письмо с подтверждением. До подтверждения <code>is_email_verified = false</code>; доступ к генерации ограничен. Пользователь без подтверждения email не может создавать организации.</p>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> NFR-004 (bcrypt ≥ 12 rounds), NFR-007 (персональные данные — 152-ФЗ)</p>
+<h3 id='fr-026-вход-через-sso-oauth-20--saml-20'>FR-026: Вход через SSO (OAuth 2.0 / SAML 2.0)<a href='#fr-026-%d0%b2%d1%85%d0%be%d0%b4-%d1%87%d0%b5%d1%80%d0%b5%d0%b7-sso-oauth-20--saml-20' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> Поддерживаются провайдеры: Google (OAuth 2.0), Microsoft (OAuth 2.0), Okta (SAML 2.0). При первом входе через SSO создаётся <code>users</code> + <code>oauth_connections</code>. JWT-токен (срок жизни 15 мин) + refresh-token (7 дней, httpOnly cookie). Сессия кэшируется в Redis: <code>session:{session_id}</code> с TTL 24 часа.</p>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> NFR-004 (JWT, TLS 1.3), NFR-006 (MFA обязателен для Enterprise)</p>
+<h3 id='fr-027-mfa-multi-factor-authentication-для-enterprise'>FR-027: MFA (Multi-Factor Authentication) для Enterprise<a href='#fr-027-mfa-multi-factor-authentication-%d0%b4%d0%bb%d1%8f-enterprise' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> При входе пользователей организаций с планом Enterprise и включённым MFA — после первичной аутентификации запрашивается TOTP-код (RFC 6238, Google Authenticator / Authy). Если MFA не настроен — пользователь обязан настроить до доступа к системе.</p>
+<p><strong>Приоритет:</strong> Must (для Enterprise), Could (для Pro/Free)</p>
+<p><strong>Зависимости:</strong> FR-026, NFR-006</p>
+<h3 id='fr-028-выход-и-инвалидация-сессий'>FR-028: Выход и инвалидация сессий<a href='#fr-028-%d0%b2%d1%8b%d1%85%d0%be%d0%b4-%d0%b8-%d0%b8%d0%bd%d0%b2%d0%b0%d0%bb%d0%b8%d0%b4%d0%b0%d1%86%d0%b8%d1%8f-%d1%81%d0%b5%d1%81%d1%81%d0%b8%d0%b9' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> POST <code>/auth/logout</code> удаляет <code>session:{session_id}</code> из Redis и удаляет session_id из <code>user_sessions:{user_id}</code>. POST <code>/auth/logout-all</code> завершает все активные сессии пользователя через <code>revoke_all_user_sessions(user_id)</code> (Lua-скрипт SCAN + DEL). Refresh-token аннулируется на стороне сервера.</p>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> FR-026, NFR-007 (право пользователя управлять сессиями)</p>
+<h4 id='критерии-приёмки-fr-025--fr-028'>Критерии приёмки FR-025 — FR-028<a href='#%d0%ba%d1%80%d0%b8%d1%82%d0%b5%d1%80%d0%b8%d0%b8-%d0%bf%d1%80%d0%b8%d1%91%d0%bc%d0%ba%d0%b8-fr-025--fr-028' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Сценарий</th>
+<th>Входные данные</th>
+<th>Ожидаемый результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Регистрация по email</td>
+<td><code>email</code>, <code>name</code>, <code>password</code> ≥ 8 символов</td>
+<td>HTTP 201, письмо с подтверждением отправлено; <code>is_email_verified = false</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Вход через Google SSO</td>
+<td>OAuth callback с валидным code</td>
+<td>JWT (15 мин) + refresh-token (7 дней, httpOnly); сессия в Redis; <code>last_login_at</code> обновлён</td>
+</tr>
+<tr>
+<td>3</td>
+<td>MFA — верный TOTP</td>
+<td>Enterprise пользователь, TOTP код верный</td>
+<td>Вход разрешён, JWT выдан</td>
+</tr>
+<tr>
+<td>4</td>
+<td>MFA — неверный TOTP</td>
+<td>TOTP код неверный</td>
+<td>HTTP 401, <code>{&quot;error&quot;: &quot;invalid_totp&quot;}</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Logout-all</td>
+<td>POST <code>/auth/logout-all</code></td>
+<td>Все <code>session:*</code> пользователя удалены из Redis; следующий запрос с любым токеном → 401</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Слабый пароль</td>
+<td><code>password = &quot;123&quot;</code></td>
+<td>HTTP 422, <code>{&quot;error&quot;: &quot;password_too_weak&quot;, &quot;min_length&quot;: 8}</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Повторная регистрация с тем же email</td>
+<td>Email уже существует</td>
+<td>HTTP 409, <code>{&quot;error&quot;: &quot;email_already_registered&quot;}</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id='примечания-архитектора'>Примечания архитектора<a href='#%d0%bf%d1%80%d0%b8%d0%bc%d0%b5%d1%87%d0%b0%d0%bd%d0%b8%d1%8f-%d0%b0%d1%80%d1%85%d0%b8%d1%82%d0%b5%d0%ba%d1%82%d0%be%d1%80%d0%b0' class='anchor'>#</a>
+</h4><blockquote>
+<p>⚙️ JWT содержит минимум claims: <code>sub</code> (user_id), <code>org_id</code> (активная организация), <code>role</code>, <code>plan</code>, <code>exp</code>. Полные данные сессии читаются из Redis HASH за O(1). При смене роли пользователя — немедленная инвалидация через <code>revoke_all_user_sessions</code>.</p>
+</blockquote>
+<hr>
+<h2 id='us-026-управление-организацией-и-приглашения'>US-026: Управление организацией и приглашения<a href='#us-026-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%be%d1%80%d0%b3%d0%b0%d0%bd%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d0%b5%d0%b9-%d0%b8-%d0%bf%d1%80%d0%b8%d0%b3%d0%bb%d0%b0%d1%88%d0%b5%d0%bd%d0%b8%d1%8f' class='anchor'>#</a>
+</h2><blockquote>
+<p>Как <strong>администратор организации</strong>, я хочу приглашать сотрудников, назначать им роли и удалять из организации, чтобы контролировать доступ к корпоративным данным.</p>
+</blockquote>
+<p><strong>Источник:</strong> <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">organizations</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script>; <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">organization_members</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — <code>role</code> (admin/editor/viewer); <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">audit_logs</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></p>
+<h3 id='fr-029-создание-организации'>FR-029: Создание организации<a href='#fr-029-%d1%81%d0%be%d0%b7%d0%b4%d0%b0%d0%bd%d0%b8%d0%b5-%d0%be%d1%80%d0%b3%d0%b0%d0%bd%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d0%b8' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> POST <code>/organizations</code> — доступно только верифицированным пользователям. Создаются: <code>organizations</code> (name, slug = уникальный URL-slug), <code>organization_members</code> (роль admin для создателя), <code>subscriptions</code> (план Free). <code>slug</code> генерируется автоматически из <code>name</code> (lowercase, дефисы), но может быть изменён при создании.</p>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> FR-025 (email верифицирован)</p>
+<h3 id='fr-030-приглашение-члена-организации'>FR-030: Приглашение члена организации<a href='#fr-030-%d0%bf%d1%80%d0%b8%d0%b3%d0%bb%d0%b0%d1%88%d0%b5%d0%bd%d0%b8%d0%b5-%d1%87%d0%bb%d0%b5%d0%bd%d0%b0-%d0%be%d1%80%d0%b3%d0%b0%d0%bd%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d0%b8' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> POST <code>/organizations/{id}/members/invite</code> с <code>email</code> и <code>role</code> (editor/viewer). Система отправляет письмо с invite-ссылкой (токен, TTL 72 часа). При переходе по ссылке: если пользователь с таким email существует — добавляется в организацию; иначе — сначала регистрация, затем добавление. Один пользователь может состоять в нескольких организациях (<code>organization_members</code>).</p>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> FR-029, NFR-007 (приглашение по email — персональные данные)</p>
+<h3 id='fr-031-изменение-роли-и-удаление-члена'>FR-031: Изменение роли и удаление члена<a href='#fr-031-%d0%b8%d0%b7%d0%bc%d0%b5%d0%bd%d0%b5%d0%bd%d0%b8%d0%b5-%d1%80%d0%be%d0%bb%d0%b8-%d0%b8-%d1%83%d0%b4%d0%b0%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d1%87%d0%bb%d0%b5%d0%bd%d0%b0' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> PATCH <code>/organizations/{id}/members/{user_id}</code> — изменение роли (admin/editor/viewer). При изменении роли немедленно инвалидируются все сессии пользователя (<code>revoke_all_user_sessions</code>). DELETE <code>/organizations/{id}/members/{user_id}</code> — удаление из организации. Последний admin организации не может быть удалён или разжалован. Все действия логируются в <code>audit_logs</code>.</p>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> FR-030, FR-028 (инвалидация сессий)</p>
+<h4 id='матрица-rbac'>Матрица RBAC<a href='#%d0%bc%d0%b0%d1%82%d1%80%d0%b8%d1%86%d0%b0-rbac' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>Операция</th>
+<th>Admin</th>
+<th>Editor</th>
+<th>Viewer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Создать/удалить организацию</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Приглашать членов</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Изменять роли</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Создавать/редактировать презентации</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Просматривать презентации</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Загружать/удалять источники</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Управлять Brand Kit</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Создавать API-ключи</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Просматривать аудит-лог</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Просматривать биллинг</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h4 id='критерии-приёмки-fr-029--fr-031'>Критерии приёмки FR-029 — FR-031<a href='#%d0%ba%d1%80%d0%b8%d1%82%d0%b5%d1%80%d0%b8%d0%b8-%d0%bf%d1%80%d0%b8%d1%91%d0%bc%d0%ba%d0%b8-fr-029--fr-031' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Сценарий</th>
+<th>Входные данные</th>
+<th>Ожидаемый результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Создание организации</td>
+<td>POST <code>/organizations</code>, name: &ldquo;Acme Corp&rdquo;</td>
+<td>HTTP 201, slug = &ldquo;acme-corp&rdquo;, роль admin выдана создателю</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Конфликт slug</td>
+<td>name: &ldquo;Acme Corp&rdquo; при существующем slug</td>
+<td>slug автоматически становится &ldquo;acme-corp-2&rdquo;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Приглашение</td>
+<td>POST invite, email: &ldquo;<a
+  href="mailto:bob@acme.com"
+    class="is-pretty-link">bob@acme.com</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script>&rdquo;, role: editor</td>
+<td>Письмо отправлено; <code>organization_members</code> создан после принятия</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Изменение роли editor → admin</td>
+<td>PATCH role: admin</td>
+<td>Роль обновлена; сессии пользователя инвалидированы; событие в <code>audit_logs</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Удаление последнего admin</td>
+<td>DELETE последнего admin</td>
+<td>HTTP 422, <code>{&quot;error&quot;: &quot;cannot_remove_last_admin&quot;}</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Viewer пытается создать презентацию</td>
+<td>POST <code>/presentations</code></td>
+<td>HTTP 403, <code>{&quot;error&quot;: &quot;insufficient_role&quot;, &quot;required&quot;: &quot;editor&quot;}</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id='us-027-управление-проектами'>US-027: Управление проектами<a href='#us-027-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d0%b0%d0%bc%d0%b8' class='anchor'>#</a>
+</h2><blockquote>
+<p>Как <strong>пользователь</strong>, я хочу группировать презентации в проекты, чтобы поддерживать порядок в рабочем пространстве.</p>
+</blockquote>
+<p><strong>Источник:</strong> <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">projects</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — <code>name</code>, <code>description</code>, <code>is_archived</code>; <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">presentations</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — <code>project_id</code></p>
+<h3 id='fr-032-crud-проектов'>FR-032: CRUD проектов<a href='#fr-032-crud-%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d0%be%d0%b2' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong></p>
+<ul>
+<li>POST <code>/projects</code> — создание проекта (<code>name</code>, <code>description</code>, <code>organization_id</code>). Права: editor+.</li>
+<li>GET <code>/projects</code> — список проектов организации. Поддерживает фильтр <code>is_archived</code>.</li>
+<li>PATCH <code>/projects/{id}</code> — редактирование имени и описания. Права: editor+.</li>
+<li>PATCH <code>/projects/{id}</code> с <code>is_archived: true</code> — архивирование. Архивированный проект скрыт по умолчанию, но его презентации доступны по прямой ссылке. Права: admin.</li>
+<li>DELETE <code>/projects/{id}</code> — удаление только пустого проекта (без презентаций). Права: admin.</li>
+</ul>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> FR-029 (организация создана), NFR-001 (CRUD ≤ 500 мс)</p>
+<h4 id='критерии-приёмки-fr-032'>Критерии приёмки FR-032<a href='#%d0%ba%d1%80%d0%b8%d1%82%d0%b5%d1%80%d0%b8%d0%b8-%d0%bf%d1%80%d0%b8%d1%91%d0%bc%d0%ba%d0%b8-fr-032' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Сценарий</th>
+<th>Входные данные</th>
+<th>Ожидаемый результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Создание проекта</td>
+<td>POST <code>/projects</code>, name: &ldquo;Q1 2026 Reports&rdquo;</td>
+<td>HTTP 201, project с UUID</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Архивирование</td>
+<td>PATCH is_archived: true</td>
+<td>Проект скрыт из основного списка; GET с <code>include_archived=true</code> — виден</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Удаление непустого проекта</td>
+<td>DELETE при наличии презентаций</td>
+<td>HTTP 422, <code>{&quot;error&quot;: &quot;project_not_empty&quot;, &quot;presentations_count&quot;: 5}</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id='us-028-управление-профилем-пользователя'>US-028: Управление профилем пользователя<a href='#us-028-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%bf%d1%80%d0%be%d1%84%d0%b8%d0%bb%d0%b5%d0%bc-%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8f' class='anchor'>#</a>
+</h2><blockquote>
+<p>Как <strong>пользователь</strong>, я хочу управлять своим профилем и запросить удаление аккаунта, чтобы контролировать свои персональные данные.</p>
+</blockquote>
+<p><strong>Источник:</strong> <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">users</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — <code>deleted_at</code> (soft delete); NFR-007 (GDPR/152-ФЗ)</p>
+<h3 id='fr-033-просмотр-и-редактирование-профиля'>FR-033: Просмотр и редактирование профиля<a href='#fr-033-%d0%bf%d1%80%d0%be%d1%81%d0%bc%d0%be%d1%82%d1%80-%d0%b8-%d1%80%d0%b5%d0%b4%d0%b0%d0%ba%d1%82%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d0%bf%d1%80%d0%be%d1%84%d0%b8%d0%bb%d1%8f' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> GET <code>/users/me</code> возвращает <code>name</code>, <code>email</code>, <code>avatar_url</code>, <code>is_email_verified</code>, <code>last_login_at</code>, список организаций. PATCH <code>/users/me</code> — изменение <code>name</code>, <code>avatar_url</code>. Изменение email требует повторной верификации.</p>
+<p><strong>Приоритет:</strong> Must</p>
+<h3 id='fr-034-удаление-аккаунта-право-на-забвение--gdpr152-фз'>FR-034: Удаление аккаунта (право на забвение — GDPR/152-ФЗ)<a href='#fr-034-%d1%83%d0%b4%d0%b0%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b0%d0%ba%d0%ba%d0%b0%d1%83%d0%bd%d1%82%d0%b0-%d0%bf%d1%80%d0%b0%d0%b2%d0%be-%d0%bd%d0%b0-%d0%b7%d0%b0%d0%b1%d0%b2%d0%b5%d0%bd%d0%b8%d0%b5--gdpr152-%d1%84%d0%b7' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> DELETE <code>/users/me</code> инициирует процедуру удаления:</p>
+<ol>
+<li>Soft delete: <code>users.deleted_at = now()</code>.</li>
+<li>Удаление персональных данных: <code>email</code>, <code>name</code>, <code>avatar_url</code> заменяются на <code>deleted_user_{id}@deleted.local</code>.</li>
+<li>Все OAuth-токены (<code>oauth_connections</code>) удаляются.</li>
+<li>Все сессии инвалидируются.</li>
+<li>Данные пользователя в <code>audit_logs</code> сохраняются (без ФИО) — только <code>user_id</code> как UUID, согласно требованию аудита.</li>
+<li>Ответ: HTTP 204. Операция необратима.</li>
+</ol>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> NFR-007 (GDPR Art. 17, 152-ФЗ ст. 21), NFR-008 (срок хранения данных)</p>
+<h4 id='критерии-приёмки-fr-033--fr-034'>Критерии приёмки FR-033 — FR-034<a href='#%d0%ba%d1%80%d0%b8%d1%82%d0%b5%d1%80%d0%b8%d0%b8-%d0%bf%d1%80%d0%b8%d1%91%d0%bc%d0%ba%d0%b8-fr-033--fr-034' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Сценарий</th>
+<th>Входные данные</th>
+<th>Ожидаемый результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Редактирование имени</td>
+<td>PATCH name: &ldquo;Иван Петров&rdquo;</td>
+<td>HTTP 200, <code>name</code> обновлён</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Смена email</td>
+<td>PATCH email: &ldquo;<a
+  href="mailto:new@company.ru"
+    class="is-pretty-link">new@company.ru</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script>&rdquo;</td>
+<td>Письмо подтверждения на новый email; старый email действует до подтверждения</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Удаление аккаунта</td>
+<td>DELETE <code>/users/me</code></td>
+<td>HTTP 204; следующий login с этим email → 401; персональные данные анонимизированы в БД в течение 30 сек</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id='us-029-управление-презентациями'>US-029: Управление презентациями<a href='#us-029-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%bf%d1%80%d0%b5%d0%b7%d0%b5%d0%bd%d1%82%d0%b0%d1%86%d0%b8%d1%8f%d0%bc%d0%b8' class='anchor'>#</a>
+</h2><blockquote>
+<p>Как <strong>пользователь</strong>, я хочу создавать, копировать и удалять презентации, чтобы организовать рабочий процесс.</p>
+</blockquote>
+<p><strong>Источник:</strong> <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">presentations</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script> — <code>status</code>, <code>deleted_at</code>; <a
+  href="/03_backend/01_info_models/relational/"
+    class="is-pretty-link">slides</a
+>
+
+
+
+<style>
+  .ramka-5 {
+      position: relative;
+      z-index: 0;
+       
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;     
+  }
+  .ramka-5::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background-color: #BFE2FF;
+      background-repeat: no-repeat;
+      background-size: 50% 50%, 50% 50%;
+      background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+      background-image: linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7), linear-gradient(#BFE2FF, #BFE2FF), linear-gradient(#337AB7, #337AB7);
+      animation: anim-ramka-5 4s linear infinite;
+  }
+  .ramka-5::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 6px;
+      top: 6px;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      background: white;
+      border-radius: 5px;
+  }
+  @keyframes anim-ramka-5 {
+      100% {
+          transform: rotate(1turn);
+      }
+  }
+  </style>
+
+<script lang="javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(document.location.search);
+    let methodName = params.get('methodName'); 
+    let method = document.getElementById("createRequest");
+
+    if (method != null && methodName != null){
+      method.classList.add('ramka-5');
+    }
+  });
+</script></p>
+<h3 id='fr-035-crud-презентаций'>FR-035: CRUD презентаций<a href='#fr-035-crud-%d0%bf%d1%80%d0%b5%d0%b7%d0%b5%d0%bd%d1%82%d0%b0%d1%86%d0%b8%d0%b9' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong></p>
+<ul>
+<li>POST <code>/presentations</code> — создание (см. FR-010).</li>
+<li>GET <code>/presentations</code> — список презентаций проекта с фильтрами: <code>status</code>, <code>created_by</code>. Пагинация: cursor-based, <code>limit</code> max 50.</li>
+<li>GET <code>/presentations/{id}</code> — детали с полным списком слайдов.</li>
+<li>PATCH <code>/presentations/{id}</code> — обновление <code>title</code>, <code>description</code>, <code>brand_kit_id</code>, <code>tone</code>.</li>
+<li>POST <code>/presentations/{id}/duplicate</code> — полное копирование презентации (все слайды, source_refs), без копирования <code>presentation_sources</code> (источники не переносятся). Новая презентация в статусе <code>draft</code>.</li>
+<li>DELETE <code>/presentations/{id}</code> — soft delete (<code>deleted_at = now()</code>). Данные хранятся 30 дней, затем физически удаляются вместе с артефактами в S3.</li>
+</ul>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> NFR-001 (список ≤ 500 мс, детали ≤ 500 мс)</p>
+<h3 id='fr-036-поиск-по-презентациям'>FR-036: Поиск по презентациям<a href='#fr-036-%d0%bf%d0%be%d0%b8%d1%81%d0%ba-%d0%bf%d0%be-%d0%bf%d1%80%d0%b5%d0%b7%d0%b5%d0%bd%d1%82%d0%b0%d1%86%d0%b8%d1%8f%d0%bc' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> GET <code>/presentations?q={query}</code> — полнотекстовый поиск по <code>title</code> и <code>description</code> внутри организации. Реализован через PostgreSQL <code>pg_trgm</code> (GIN-индекс). Не требует отдельного поискового движка на MVP.</p>
+<p><strong>Приоритет:</strong> Should</p>
+<p><strong>Зависимости:</strong> FR-035</p>
+<h4 id='критерии-приёмки-fr-035--fr-036'>Критерии приёмки FR-035 — FR-036<a href='#%d0%ba%d1%80%d0%b8%d1%82%d0%b5%d1%80%d0%b8%d0%b8-%d0%bf%d1%80%d0%b8%d1%91%d0%bc%d0%ba%d0%b8-fr-035--fr-036' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Сценарий</th>
+<th>Входные данные</th>
+<th>Ожидаемый результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Список презентаций</td>
+<td>GET <code>/presentations?project_id={id}</code></td>
+<td>JSON-массив с cursor пагинацией</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Дублирование</td>
+<td>POST <code>/presentations/{id}/duplicate</code></td>
+<td>Новая презентация с <code>(copy)</code> в title, статус <code>draft</code>, слайды скопированы</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Мягкое удаление</td>
+<td>DELETE <code>/presentations/{id}</code></td>
+<td>HTTP 204; GET <code>/presentations/{id}</code> → 404; через 30 дней физическое удаление</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Поиск</td>
+<td>GET <code>/presentations?q=квартальный отчёт</code></td>
+<td>Возвращены презентации с совпадением в title/description</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Viewer удаляет презентацию</td>
+<td>DELETE, роль viewer</td>
+<td>HTTP 403, <code>{&quot;error&quot;: &quot;insufficient_role&quot;, &quot;required&quot;: &quot;editor&quot;}</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id='fr-037-управление-слайдами-вручную'>FR-037: Управление слайдами вручную<a href='#fr-037-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d1%81%d0%bb%d0%b0%d0%b9%d0%b4%d0%b0%d0%bc%d0%b8-%d0%b2%d1%80%d1%83%d1%87%d0%bd%d1%83%d1%8e' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> Помимо AI-генерации, пользователь может:</p>
+<ul>
+<li>POST <code>/presentations/{id}/slides</code> — добавить пустой слайд заданного <code>slide_type</code>.</li>
+<li>PATCH <code>/slides/{id}</code> — редактировать <code>content</code> (JSONB) напрямую.</li>
+<li>DELETE <code>/slides/{id}</code> — удалить слайд (пересчёт <code>position</code> соседних слайдов).</li>
+<li>POST <code>/presentations/{id}/slides/reorder</code> — изменить порядок слайдов (<code>positions: [{id, position}]</code>).</li>
+</ul>
+<p><strong>Приоритет:</strong> Should</p>
+<p><strong>Зависимости:</strong> FR-012, NFR-001 (операции ≤ 300 мс)</p>
+<h4 id='критерии-приёмки-fr-037'>Критерии приёмки FR-037<a href='#%d0%ba%d1%80%d0%b8%d1%82%d0%b5%d1%80%d0%b8%d0%b8-%d0%bf%d1%80%d0%b8%d1%91%d0%bc%d0%ba%d0%b8-fr-037' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Сценарий</th>
+<th>Входные данные</th>
+<th>Ожидаемый результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Добавление слайда</td>
+<td>POST, slide_type: chart</td>
+<td>Слайд создан с <code>position</code> = last + 1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Реордеринг</td>
+<td>POST reorder, [{id1, pos: 2}, {id2, pos: 1}]</td>
+<td>Позиции обменяны атомарно (транзакция)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Удаление слайда</td>
+<td>DELETE слайда на position 3 из 5</td>
+<td>Слайды 4 и 5 перемещены на позиции 3 и 4</td>
+</tr>
+</tbody>
+</table>
+<h3 id='fr-038-просмотр-использования-токенов-и-лимитов'>FR-038: Просмотр использования токенов и лимитов<a href='#fr-038-%d0%bf%d1%80%d0%be%d1%81%d0%bc%d0%be%d1%82%d1%80-%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f-%d1%82%d0%be%d0%ba%d0%b5%d0%bd%d0%be%d0%b2-%d0%b8-%d0%bb%d0%b8%d0%bc%d0%b8%d1%82%d0%be%d0%b2' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> GET <code>/organizations/{id}/usage</code> возвращает текущее потребление из Redis (<code>usage:{org_id}:{period}</code>): <code>presentations_generated</code>, <code>slides_generated</code>, <code>tokens_used</code>, <code>cost_usd</code>; лимиты из <code>plan_limits:{org_id}</code> Redis-кэша. При достижении 80% лимита токенов — UI показывает предупреждение. При достижении 100% — генерация блокируется с HTTP 429.</p>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> NFR-001 (ответ ≤ 200 мс из Redis)</p>
+<h4 id='критерии-приёмки-fr-038'>Критерии приёмки FR-038<a href='#%d0%ba%d1%80%d0%b8%d1%82%d0%b5%d1%80%d0%b8%d0%b8-%d0%bf%d1%80%d0%b8%d1%91%d0%bc%d0%ba%d0%b8-fr-038' class='anchor'>#</a>
+</h4><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Сценарий</th>
+<th>Входные данные</th>
+<th>Ожидаемый результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Просмотр лимитов</td>
+<td>GET <code>/organizations/{id}/usage</code></td>
+<td>JSON: <code>{presentations_used: 23, presentations_limit: 100, tokens_used: 4500000, tokens_limit: 5000000}</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Превышение лимита токенов</td>
+<td>101-я генерация при лимите 100</td>
+<td>HTTP 429, <code>{&quot;error&quot;: &quot;token_limit_exceeded&quot;, &quot;upgrade_url&quot;: &quot;...&quot;}</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id='fr-039-управление-подпиской'>FR-039: Управление подпиской<a href='#fr-039-%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%bf%d0%be%d0%b4%d0%bf%d0%b8%d1%81%d0%ba%d0%be%d0%b9' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> GET <code>/organizations/{id}/subscription</code> — текущий план, статус, <code>current_period_end</code>. POST <code>/organizations/{id}/subscription/upgrade</code> — инициирует Stripe Checkout Session для апгрейда плана. Webhook от Stripe обновляет <code>subscriptions</code> + инвалидирует <code>plan_limits:{org_id}</code> в Redis. POST <code>/organizations/{id}/subscription/cancel</code> — устанавливает <code>cancel_at_period_end = true</code>.</p>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> NFR-007 (биллинг — персональные данные)</p>
+<h3 id='fr-040-экспорт-персональных-данных-gdpr-art-20'>FR-040: Экспорт персональных данных (GDPR Art. 20)<a href='#fr-040-%d1%8d%d0%ba%d1%81%d0%bf%d0%be%d1%80%d1%82-%d0%bf%d0%b5%d1%80%d1%81%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d1%8b%d1%85-%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d1%85-gdpr-art-20' class='anchor'>#</a>
+</h3><p><strong>Описание:</strong> POST <code>/users/me/export-data</code> инициирует создание ZIP-архива с: данными профиля (JSON), списком организаций, историей презентаций (метаданные, без слайдов). Архив готовится асинхронно ≤ 24 часов. Ссылка для скачивания высылается на email. Доступна 7 дней.</p>
+<p><strong>Приоритет:</strong> Must</p>
+<p><strong>Зависимости:</strong> NFR-007 (GDPR Art. 20), NFR-0</p>
+<script lang="js">
+  const innerPages = document.getElementById("inner-pages");
+  if (innerPages) {
+    innerPages.querySelectorAll("li").forEach(listElement => {
+      listElement.addEventListener("click", () => {
+        const name = listElement.innerText.trim();
+        if (openedMenu) {
+          if (openedMenu.includes(name)) {
+            const index = openedMenu.findIndex(item => item === name);
+            openedMenu.splice(index, 1);
+          } else {
+            openedMenu.push(name);
+          }
+          localStorage.setItem("openedMenu", JSON.stringify(openedMenu));
+        } else {
+          localStorage.setItem("openedMenu", "[" + name + "]")
+        }
+      });
+    });
+  }
+</script><nav class="pagination"><a class="nav nav-prev" href="http://localhost:1313/00_overview/01_br/04_fr_rag/" title="FR: RAG-поиск и генерация презентаций"><i class="fa fa-arrow-left" aria-hidden="true"></i> Предыдущее - FR: RAG-поиск и генерация презентаций</a>
+  <a class="nav nav-next" href="http://localhost:1313/00_overview/01_br/06_fr_admin/" title="FR: Администрирование">Следующее - FR: Администрирование <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+</nav></div><div class="column is-sticky is-paddingless" id="tocWrapper">
+  <div class="is-paddingless" id="tocContainer">
+    <div id="tocContent">
+      <div class="additionalinfo">
+    <span id="method_name">FR: Управление пользователями</span>
+
+
+
+
+
+
+
+    <strong>Описание:</strong> Функциональные требования к аутентификации, авторизации, управлению организациями и RBAC.
+</div>
+      <div class="toc-header">
+        <h6 class="toc-title is-marginless">Содержание:On this page:</h6>
+        <i
+          title="Back to top"
+          id="tocBackToTop"
+          class="fa-solid fa-circle-arrow-up"
+        ></i>      
+      </div>
+      <div id="toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#содержание">Содержание</a></li>
+    <li><a href="#us-025-регистрация-и-вход-в-систему">US-025: Регистрация и вход в систему</a>
+      <ul>
+        <li><a href="#fr-025-регистрация-через-email-и-подтверждение">FR-025: Регистрация через email и подтверждение</a></li>
+        <li><a href="#fr-026-вход-через-sso-oauth-20--saml-20">FR-026: Вход через SSO (OAuth 2.0 / SAML 2.0)</a></li>
+        <li><a href="#fr-027-mfa-multi-factor-authentication-для-enterprise">FR-027: MFA (Multi-Factor Authentication) для Enterprise</a></li>
+        <li><a href="#fr-028-выход-и-инвалидация-сессий">FR-028: Выход и инвалидация сессий</a></li>
+      </ul>
+    </li>
+    <li><a href="#us-026-управление-организацией-и-приглашения">US-026: Управление организацией и приглашения</a>
+      <ul>
+        <li><a href="#fr-029-создание-организации">FR-029: Создание организации</a></li>
+        <li><a href="#fr-030-приглашение-члена-организации">FR-030: Приглашение члена организации</a></li>
+        <li><a href="#fr-031-изменение-роли-и-удаление-члена">FR-031: Изменение роли и удаление члена</a></li>
+      </ul>
+    </li>
+    <li><a href="#us-027-управление-проектами">US-027: Управление проектами</a>
+      <ul>
+        <li><a href="#fr-032-crud-проектов">FR-032: CRUD проектов</a></li>
+      </ul>
+    </li>
+    <li><a href="#us-028-управление-профилем-пользователя">US-028: Управление профилем пользователя</a>
+      <ul>
+        <li><a href="#fr-033-просмотр-и-редактирование-профиля">FR-033: Просмотр и редактирование профиля</a></li>
+        <li><a href="#fr-034-удаление-аккаунта-право-на-забвение--gdpr152-фз">FR-034: Удаление аккаунта (право на забвение — GDPR/152-ФЗ)</a></li>
+      </ul>
+    </li>
+    <li><a href="#us-029-управление-презентациями">US-029: Управление презентациями</a>
+      <ul>
+        <li><a href="#fr-035-crud-презентаций">FR-035: CRUD презентаций</a></li>
+        <li><a href="#fr-036-поиск-по-презентациям">FR-036: Поиск по презентациям</a></li>
+        <li><a href="#fr-037-управление-слайдами-вручную">FR-037: Управление слайдами вручную</a></li>
+        <li><a href="#fr-038-просмотр-использования-токенов-и-лимитов">FR-038: Просмотр использования токенов и лимитов</a></li>
+        <li><a href="#fr-039-управление-подпиской">FR-039: Управление подпиской</a></li>
+        <li><a href="#fr-040-экспорт-персональных-данных-gdpr-art-20">FR-040: Экспорт персональных данных (GDPR Art. 20)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+<ul class="info" style="line-height: 1.2; list-style-type: none; border: 1px solid; border-radius: 1px; padding: 5px; margin: 16px 10px 0; color: black;">
+    
+    
+    
+    
+    
+    
+    
+    
+    </ul>
+    
+<div id="taxonomies"><div class="taxonomy-wrapper"></div><div class="taxonomy-wrapper"></div></div>
+      <div class="toc-header"><div class="edit-meta"></div>
+</div>
+    </div>
+  </div>
+  <div
+    class="is-paddingless"
+    id="tocCollapsible"
+    title="Collapse/Uncollapse table of contents"
+  >
+    <i class="fa-solid fa-angles-right fa-lg"></i>
+  </div>
+</div>
+</div>
+</div><script type='text/javascript'>
+  const baseUrl = 'http:\/\/localhost:1313\/';
+  const codeCopyBefore = 'Copy to clipboard';
+  const codeCopyAfter = 'Copied to clipboard';
+  const svgDownloadLabel = 'Download as SVG';
+  const helperLoadingLabel = 'Loading';
+  const searchNoResults = 'No result found';
+  const introNextLabel = 'Next';
+  const introPrevLabel = 'Previous';
+  const introSkipLabel = '✗';
+  const introDoneLabel = 'Done';
+  const printLabel = 'Print current page';
+  const qrCodeLabel = 'Show current page QR code';
+  const naCommonLabel = 'Not available';
+</script>
+<script
+      type="module"
+      src="/js/theme/modules/const.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/modules/helpers.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/modules/helpersGlobal.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/init.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/navbar.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/print.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/qrcode.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/search.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/shortcuts.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/sidebar.min.js"
+    ></script><script
+      type="module"
+      src="/js/theme/toc.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/jquery/jquery-3.6.3.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/tippy/popper.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/tippy/tippy-bundle.umd.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/markmap/markmap-autoloader.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/theme/browserCompatibility.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/flexsearch/flexsearch.bundle.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/qrious/qrious.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/overlay-scrollbars/overlayscrollbars.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/markmap/markmap.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/readfile/rawdeflate.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/1ce05b4b.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/techradar/d3.v4.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/techradar/radar.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/bpmn-visualization/bpmn-visualization.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/sorttable/sorttable.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/mermaid/svg-pan-zoom.min.js"
+    ></script><script
+      type="text/javascript"
+      src="/js/external/simplesearch/simplesearch.min.js"
+    ></script>
+<script>$("table").addClass("sortable");</script>
+  </body>
+</html>
